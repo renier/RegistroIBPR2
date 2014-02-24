@@ -1,0 +1,18 @@
+class CreatePeople < ActiveRecord::Migration
+  def change
+    create_table :people do |t|
+      t.string :salutation
+      t.string :name, null: false
+      t.string :lastnames, null: false
+      t.boolean :sex, null: false
+      t.integer :role, null: false
+      t.text :description
+      t.boolean :attended, default: false
+      t.boolean :print, default: true
+      t.boolean :materials, default: false
+      t.references :church, index: true, null: false
+
+      t.timestamps
+    end
+  end
+end

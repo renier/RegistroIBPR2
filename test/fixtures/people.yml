@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  salutation: MyString
+  name: MyString
+  lastnames: MyString
+  sex: false
+  role: 1
+  description: MyText
+  attended: false
+  print: false
+  materials: false
+  church_id: 
+
+two:
+  salutation: MyString
+  name: MyString
+  lastnames: MyString
+  sex: false
+  role: 1
+  description: MyText
+  attended: false
+  print: false
+  materials: false
+  church_id: 
