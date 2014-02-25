@@ -16,7 +16,14 @@
 
 body { padding-top: 70px }
 
-.logoIcon {
-    float: left;
-    margin: 10px 10px 0 0;
+.navbar-brand {
+    padding-left: 50px;
+    background-image: image-url("ibpr-abc-logo.png");
+    background-repeat: no-repeat;
+    margin-left: 10px !important;
+    background-position: 0 8px;
+}
+
+.navbar-brand:hover {
+    background-image: image-url("ibpr-abc-logo-hover.png");
 }
