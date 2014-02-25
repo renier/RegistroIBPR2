@@ -4,5 +4,5 @@ RegistroIBPR::Application.routes.draw do
     resources :checks
   end
 
-  root 'home#index'
+  root 'dashboard#index'
 end
