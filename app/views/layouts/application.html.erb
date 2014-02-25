@@ -2,12 +2,10 @@
 <html>
 <head>
   <title><%= t('short_title') %></title>
-  <%= stylesheet_link_tag "bootstrap.min", media: "all", "data-turbolinks-track" => true %>
-  <%= stylesheet_link_tag "bootstrap-theme.min", media: "all", "data-turbolinks-track" => true %>
-  <%= stylesheet_link_tag "font-awesome.min", media: "all", "data-turbolinks-track" => true %>
   <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag params[:controller] %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "bootstrap.min", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag params[:controller] %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -20,7 +18,7 @@
         <div class="navbar-header">
             <a class="navbar-brand" href="/"><%= t('short_title') %></a>
             <ul class="nav navbar-nav">
-                <li>
+                <li class="<%= 'active' if controller_name == 'users' %>">
                     <%= link_to("#") do %>
                         <span class="fa fa-smile-o"></span> <%= t("users") %>
                     <% end %>
@@ -39,22 +37,22 @@
     <div class="row">
         <div class="col-md-2">
             <ul class="nav nav-pills nav-stacked">
-                <li>
-                    <%= link_to("#") do %>
+                <li class="<%= 'active' if controller_name == 'churches' %>">
+                    <%= link_to(churches_path) do %>
                         <i class="fa fa-building-o"></i> <%= t("churches") %>
                     <% end %>
                 </li>
-                <li>
-                    <%= link_to("#") do %>
+                <li class="<%= 'active' if controller_name == 'people' %>">
+                    <%= link_to(controller: "people", action: "all") do %>
                         <i class="fa fa-users"></i> <%= t("people") %>
                     <% end %>
                 </li>
-                <li>
+                <li class="<%= 'active' if controller_name == 'printing' %>">
                     <%= link_to("#") do %>
                         <i class="fa fa-print"></i> <%= t("printing") %>
                     <% end %>
                 </li>
-                <li>
+                <li class="<%= 'active' if controller_name == 'reports' %>">
                     <%= link_to("#") do %>
                         <i class="fa fa-bar-chart-o"></i> <%= t("reports") %>
                     <% end %>
