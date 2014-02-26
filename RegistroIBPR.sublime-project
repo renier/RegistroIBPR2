@@ -2,7 +2,8 @@
     "folders":
     [
         {
-            "path": "/Users/renier/Projects/RegistroIBPR"
+            "path": "/Users/renier/Projects/RegistroIBPR",
+            "folder_exclude_patterns": [ "vendor/bundle" ]
         }
     ]
 }

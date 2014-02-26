@@ -26,6 +26,8 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'devise'
 
+gem 'kaminari'
+
 group :development do
   gem 'puma'
 end

@@ -1,2 +1,29 @@
-<h1>Churches#index</h1>
-<p>Find me in app/views/churches/index.html.erb</p>
+<h1>
+    <span class="glyphicon glyphicon-home"></span> 
+    <%= t("Iglesias") %>
+</h1>
+
+<p>
+<%= link_to new_church_path, class: "btn btn-default" do %>
+    <span class="glyphicon glyphicon-plus"></span> 
+    <%= t("new_church") %>
+<% end %>
+</p>
+
+<table class="table table-striped">
+    <tr class="active">
+        <th>#</th>
+        <th><%= t("name") %></th>
+        <th><%= t("activerecord.attributes.church.nickname") %></th>
+        <th><%= t("activerecord.attributes.church.town") %></th>
+    </tr>
+    <% @churches.each do |church| %>
+        <tr>
+            <td><%= church.position %></td>
+            <td><%= link_to church.short_name, church %></td>
+            <td><%= church.nickname %></td>
+            <td><%= church.town %></td>
+        </tr>
+    <% end %>
+</table>
+<%= paginate @churches %>

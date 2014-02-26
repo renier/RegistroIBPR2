@@ -13,9 +13,7 @@
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="/">
-                <%= t('short_title') %>
-            </a>
+            <%= link_to t('short_title'), root_path, class: "navbar-brand"  %>
             <ul class="nav navbar-nav">
                 <li class="<%= 'active' if controller_name == 'users' %>">
                     <%= link_to("#") do %>
@@ -38,7 +36,7 @@
             <ul class="nav nav-pills nav-stacked">
                 <li class="<%= 'active' if controller_name == 'churches' %>">
                     <%= link_to(churches_path) do %>
-                        <i class="fa fa-building-o"></i> <%= t("churches") %>
+                        <i class="glyphicon glyphicon-home"></i> <%= t("churches") %>
                     <% end %>
                 </li>
                 <li class="<%= 'active' if controller_name == 'people' %>">
@@ -48,12 +46,12 @@
                 </li>
                 <li class="<%= 'active' if controller_name == 'printing' %>">
                     <%= link_to("#") do %>
-                        <i class="fa fa-print"></i> <%= t("printing") %>
+                        <i class="glyphicon glyphicon-print"></i> <%= t("printing") %>
                     <% end %>
                 </li>
                 <li class="<%= 'active' if controller_name == 'reports' %>">
                     <%= link_to("#") do %>
-                        <i class="fa fa-bar-chart-o"></i> <%= t("reports") %>
+                        <i class="glyphicon glyphicon-list-alt"></i> <%= t("reports") %>
                     <% end %>
                 </li>
             </ul>

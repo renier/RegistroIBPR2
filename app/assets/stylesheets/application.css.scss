@@ -27,3 +27,12 @@ body { padding-top: 70px }
 .navbar-brand:hover {
     background-image: image-url("ibpr-abc-logo-hover.png");
 }
+
+.row > div:nth-child(2) > h1:first-child { margin-top: 0 }
+
+button.btn { min-width: 117px }
+
+a.cancel {
+    display: inline-block;
+    margin-left: 1em;
+}

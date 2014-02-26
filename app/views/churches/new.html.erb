@@ -1,0 +1,62 @@
+<h1>
+    <span class="glyphicon glyphicon-home"></span> 
+    <%= 
+        t(
+            "helpers.submit.create",
+            model: t("activerecord.models.church"))
+    %>
+</h1>
+
+<p><%= raw(t("required_fields")) %></p>
+
+<div class="well">
+<%= form_for @church, html: { role: "form" } do |f| %>
+    <div class="form-group">
+        <%= f.label :nth %>
+        <%= f.select :nth, t("nth").invert.map { |k, v| [k, v] }, { include_blank: true }, { class: "form-control", id: "church_nth" } %>
+        <span class="help-block"><%= t("nth_help") %></span>
+    </div>
+
+    <div class="form-group">
+        <%= f.label :prefix %>
+        <%= f.text_field :prefix, class: "form-control", id: "church_prefix" %>
+    </div>
+
+    <div class="form-group">
+        <span class="text-danger">*</span> <%= f.label :name %>
+        <%= f.text_field :name, class: "form-control", id: "church_name" %>
+    </div>
+
+    <div class="form-group">
+        <%= f.label :full_name_help %>
+        <%= text_field_tag :full_name_help, @church.display_name, { disabled: true, class: "form-control input-lg", id: "church_full_name" } %>
+    </div>
+
+    <div class="form-group">
+        <%= f.label :nickname %>
+        <%= f.text_field :nickname, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+        <%= f.label :town %>
+        <%= f.select :town, @church.towns, { include_blank: true }, { class: "form-control" } %>
+    </div>
+
+    <div class="form-group">
+        <%= f.label :notes %>
+        <%= f.text_area :notes, class: "form-control" %>
+    </div>
+
+    <%= button_tag(type: "submit", class: "btn btn-primary") do %>
+        <span class="glyphicon glyphicon-ok"></span> 
+        <%=
+            t(
+                "helpers.submit.create",
+                model: t("activerecord.models.church")
+            )
+        %>
+    <% end %>
+
+    <%= link_to t("cancel"), churches_path, class: "cancel" %>
+<% end %>
+</div>

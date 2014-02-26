@@ -1,0 +1,26 @@
+<h1>
+    <span class="glyphicon glyphicon-home"></span> 
+    <%= @church.short_name %>
+</h1>
+<table class="table table-striped">
+    <% ["position", "display_name", "nickname", "town", "notes"].each do |field| %>
+        <tr class="<%= 'active' if field == "position" %>">
+            <td style="width: 18%">
+                <strong>
+                    <%= t("activerecord.attributes.church.#{field}") %>
+                </strong>
+            </td>
+            <td><%= @church.send(field) %></td>
+        </tr>    
+    <% end %>
+</table>
+<button class="btn btn-primary">
+    <span class="glyphicon glyphicon-pencil"></span> Editar
+</button>
+<button class="btn btn-danger">
+    <span class="glyphicon glyphicon-remove"></span> Remover
+</button>
+<%= link_to new_church_path, class: "btn btn-default" do %>
+    <span class="glyphicon glyphicon-plus"></span> 
+    <%= t("new_church") %>
+<% end %>

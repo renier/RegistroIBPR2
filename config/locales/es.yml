@@ -27,3 +27,45 @@ es:
   reports: "Reportes"
   users: "Usuarios"
   search: "Buscar"
+  required_fields: 'Campos con <span class="text-danger">*</span> son requeridos.'
+  nth_help: "e.g. Primera, Segunda, Tercera, etc."
+  cancel: "Cancelar"
+  churches: "Iglesias"
+  name: "Nombre"
+  new_church: "Nueva Iglesia"
+  nth:
+    1: "Primera"
+    2: "Segunda"
+    3: "Tercera"
+    4: "Cuarta"
+    5: "Quinta"
+  activerecord:
+    models:
+      user: "Usuario"
+      church: "Iglesia"
+      person: "Persona"
+      check: "Pago"
+    attributes:
+      church:
+        name: "Nombre de la Iglesia"
+        display_name: "Nombre de la Iglesia"
+        nth: "Número"
+        prefix: "Prefijo"
+        nickname: "Apodo o Barrio"
+        town: "Pueblo"
+        notes: "Notas"
+        position: "No."
+        full_name_help: "Nombre completo de la Iglesia (como se verá)"
+  views:
+    pagination:
+      first: "&laquo; Primero"
+      last: "Último &raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "..."
+  helpers:
+    submit:
+      create: "Crear %{model}"
+      update: "Grabar cambios"
+
+
