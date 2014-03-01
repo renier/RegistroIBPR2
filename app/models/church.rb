@@ -5,4 +5,8 @@ class Church < ActiveRecord::Base
     validates_presence_of :name
 
     include ChurchesHelper
+
+    def self.searchable_language
+      'spanish'
+    end
 end

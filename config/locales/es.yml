@@ -29,6 +29,7 @@ es:
   reports: "Reportes"
   users: "Usuarios"
   search: "Buscar"
+  results: "Resultados"
   required_fields: 'Campos con <span class="text-danger">*</span> son requeridos.'
   nth_help: "e.g. Primera, Segunda, Tercera, etc."
   description_help: "Descripción, Posición u Organización"

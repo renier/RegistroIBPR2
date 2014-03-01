@@ -6,5 +6,7 @@ RegistroIBPR::Application.routes.draw do
 
   resources :people
 
+  get '/search', to: 'search#index'
+
   root 'dashboard#index'
 end

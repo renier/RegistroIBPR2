@@ -60,6 +60,10 @@ td > [data-method="delete"] > .glyphicon { color: #e74c3c }
     margin-left: 0.5em;
 }
 
+.search-results a { text-decoration: none }
+.search-results td { vertical-align: top }
+.search-results td:last-child { padding-left: 1em }
+
 /* Loading */
 .loading {
     display: inline-block;

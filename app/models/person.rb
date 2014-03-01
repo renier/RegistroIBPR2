@@ -1,4 +1,6 @@
 class Person < ActiveRecord::Base
+  extend Textacular
+
   belongs_to :church
 
   validates_presence_of :name
@@ -25,5 +27,9 @@ class Person < ActiveRecord::Base
 
   def sexmf
     sex ? "m" : "f"
+  end
+
+  def self.searchable_language
+    'spanish'
   end
 end
