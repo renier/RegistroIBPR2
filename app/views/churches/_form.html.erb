@@ -1,0 +1,76 @@
+<h1>
+    <span class="glyphicon glyphicon-home"></span> 
+    <%= 
+        if @church.new_record?
+            t(
+                "helpers.submit.create",
+                model: t("activerecord.models.church")
+            )
+        else
+            t("edit_church")
+        end
+    %>
+</h1>
+
+<%= render partial: 'shared/errors', locals: { errors: @church.errors } %>
+
+<p><%= raw(t("required_fields")) %></p>
+
+<div class="well">
+<%= form_for @church, html: { role: "form" } do |f| %>
+    <div class="form-group <%= "has-error" if @church.errors[:nth].any? %>">
+        <%= f.label :nth, class: "control-label" %>
+        <%= f.select :nth, t("nth").invert.map { |k, v| [k, v] }, { include_blank: true }, { class: "form-control", id: "church_nth" } %>
+        <span class="help-block"><%= t("nth_help") %></span>
+    </div>
+
+    <div class="form-group">
+        <%= f.label :prefix %>
+        <%= f.text_field :prefix, class: "form-control", id: "church_prefix" %>
+    </div>
+
+    <div class="form-group <%= "has-error" if @church.errors[:name].any? %>">
+        <span class="text-danger">*</span> 
+        <%= f.label :name, class: "control-label" %>
+        <%= f.text_field :name, class: "form-control", id: "church_name" %>
+    </div>
+
+    <div class="form-group">
+        <%= f.label :full_name_help %>
+        <%= text_field_tag :full_name_help, @church.display_name, { disabled: true, class: "form-control input-lg", id: "church_full_name" } %>
+    </div>
+
+    <div class="form-group">
+        <%= f.label :nickname %>
+        <%= f.text_field :nickname, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+        <%= f.label :town %>
+        <%= f.select :town, @church.towns, { include_blank: true }, { class: "form-control" } %>
+    </div>
+
+    <% if !@church.new_record? %>
+        <div class="form-group">
+            <%= f.label :notes %>
+            <%= f.text_area :notes, class: "form-control" %>
+        </div>
+
+        <div class="form-group <%= "has-error" if @church.errors[:position].any? %>">
+            <%= f.label :position %>
+            <%= f.text_field :position, class: "form-control" %>
+        </div>
+    <% end %>
+
+    <%= button_tag(type: "submit", class: "btn btn-primary") do %>
+        <span class="glyphicon glyphicon-ok"></span> 
+        <%=
+            t(@church.new_record? ?
+                "helpers.submit.create" : "helpers.submit.update",
+                model: t("activerecord.models.church"))
+        %>
+    <% end %>
+
+    <%= link_to_function t("cancel"), "history.back()", class: "cancel-link" %>
+<% end %>
+</div>

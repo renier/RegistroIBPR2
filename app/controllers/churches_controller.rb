@@ -1,6 +1,6 @@
 class ChurchesController < ApplicationController
   def index
-    @churches = Church.page(params[:page] || 1)
+    @churches = Church.order(:name).page(params[:page] || 1)
   end
 
   def new
@@ -8,9 +8,11 @@ class ChurchesController < ApplicationController
   end
 
   def create
-    @church = Church.new(post_params)
+    @church = Church.new(check_params)
     if @church.save
-      redirect_to @church
+      redirect_to @church,
+        notice: I18n.t("flash.church.created",
+          name: @church.short_name)
     else
       render 'new'
     end
@@ -20,9 +22,36 @@ class ChurchesController < ApplicationController
     @church = Church.find(params[:id])
   end
 
+  def edit
+    @church = Church.find(params[:id])
+  end
+
+  def update
+    @church = Church.find(params[:id])
+    if @church.update(check_params)
+      redirect_to @church,
+        notice: I18n.t("flash.church.updated",
+          name: @church.short_name)
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @church = Church.find(params[:id])
+    @church.destroy
+
+    flash[:notice] = I18n.t("flash.church.deleted",
+      name: @church.short_name)
+    respond_to do |format|
+      format.html { redirect_to churches_path }
+      format.json { head :ok, location: churches_path }
+    end
+  end
+
   private
 
-  def post_params
+  def check_params
     params.require(:church).permit(
       :nth, :prefix, :name, :nickname, :town, :notes)
   end

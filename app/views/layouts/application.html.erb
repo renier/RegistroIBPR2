@@ -13,15 +13,15 @@
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
-            <%= link_to t('short_title'), root_path, class: "navbar-brand"  %>
-            <ul class="nav navbar-nav">
-                <li class="<%= 'active' if controller_name == 'users' %>">
-                    <%= link_to("#") do %>
-                        <span class="fa fa-smile-o"></span> <%= t("users") %>
-                    <% end %>
-                </li>
-            </ul>
+            <strong>
+                <%= link_to t('short_title'), root_path, class: "navbar-brand"  %>
+            </strong>
+            <div class="navbar-brand" id="subtitle">
+                <small><%= raw(t("subtitle")) %></small>
+            </div>
         </div>
+        <ul class="nav navbar-nav">
+        </ul>
         <form class="navbar-form navbar-right" role="search">
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="<%= t('search') %>">
@@ -33,14 +33,14 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-2">
-            <ul class="nav nav-pills nav-stacked">
+            <ul id="left-nav" class="nav nav-pills nav-stacked" data-spy="affix">
                 <li class="<%= 'active' if controller_name == 'churches' %>">
                     <%= link_to(churches_path) do %>
                         <i class="glyphicon glyphicon-home"></i> <%= t("churches") %>
                     <% end %>
                 </li>
                 <li class="<%= 'active' if controller_name == 'people' %>">
-                    <%= link_to(controller: "people", action: "all") do %>
+                    <%= link_to(people_path) do %>
                         <i class="fa fa-users"></i> <%= t("people") %>
                     <% end %>
                 </li>
@@ -54,9 +54,23 @@
                         <i class="glyphicon glyphicon-list-alt"></i> <%= t("reports") %>
                     <% end %>
                 </li>
+                <li class="<%= 'active' if controller_name == 'users' %>">
+                    <%= link_to("#") do %>
+                        <span class="fa fa-smile-o"></span> <%= t("users") %>
+                    <% end %>
+                </li>
             </ul>
         </div>
-        <div class="col-md-10"><%= yield %></div>
+        <div class="col-md-10">
+            <% flash.each do |name, msg| -%>
+                <% name = { notice: "info", flash: "info", alert: "danger" }[name] %>
+                <%= content_tag :div, class: "alert alert-#{name} alert-dismissable" do %>
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <%= raw(msg) %>
+                <% end %>
+            <% end -%>
+            <%= yield %>
+        </div>
     </div>
 </div>
 

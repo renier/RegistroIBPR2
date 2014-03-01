@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20140223004552) do
   end
 
   create_table "people", force: true do |t|
-    t.string   "salutation"
+    t.integer  "salutation"
     t.string   "name",                        null: false
     t.string   "lastnames",                   null: false
     t.boolean  "sex",                         null: false
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20140223004552) do
     t.boolean  "attended",    default: false
     t.boolean  "print",       default: true
     t.boolean  "materials",   default: false
-    t.integer  "church_id",                   null: false
+    t.integer  "church_id",
     t.datetime "created_at"
     t.datetime "updated_at"
   end

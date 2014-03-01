@@ -4,7 +4,7 @@ RegistroIBPR::Application.routes.draw do
     resources :checks
   end
 
-  get '/people', to: 'people#all'
+  resources :people
 
   root 'dashboard#index'
 end

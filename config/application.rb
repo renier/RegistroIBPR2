@@ -19,5 +19,13 @@ module RegistroIBPR
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :es
+
+    config.action_view.field_error_proc = Proc.new do |html_tag, instance|
+      html_tag
+    end
+
+    ActiveSupport::Inflector.inflections(:en) do |inflect|
+      inflect.plural /^(iglesia)$/i, '\1s'
+    end
   end
 end

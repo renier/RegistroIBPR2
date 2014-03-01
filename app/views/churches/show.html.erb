@@ -2,10 +2,28 @@
     <span class="glyphicon glyphicon-home"></span> 
     <%= @church.short_name %>
 </h1>
-<table class="table table-striped">
+
+<p>
+<%= link_to edit_church_path, class: "btn btn-primary" do %>
+    <span class="glyphicon glyphicon-pencil"></span> 
+    <%= t("edit") %>
+<% end %>
+
+<%= link_to church_path(@church), class: "btn btn-danger", data: { method: :delete, question: raw(t("confirm_church_delete", name: @church.short_name)) } do %>
+    <span class="glyphicon glyphicon-trash"></span> 
+    <%= t("delete") %>
+<% end %>
+
+<%= link_to new_church_path, class: "btn btn-default" do %>
+    <span class="glyphicon glyphicon-plus"></span> 
+    <%= t("helpers.submit.create", model: t("activerecord.models.church")) %>
+<% end %>
+</p>
+
+<table class="table table-striped round-topleft round-bottomleft">
     <% ["position", "display_name", "nickname", "town", "notes"].each do |field| %>
-        <tr class="<%= 'active' if field == "position" %>">
-            <td style="width: 18%">
+        <tr>
+            <td class="active" style="width: 18%">
                 <strong>
                     <%= t("activerecord.attributes.church.#{field}") %>
                 </strong>
@@ -14,13 +32,20 @@
         </tr>    
     <% end %>
 </table>
-<button class="btn btn-primary">
-    <span class="glyphicon glyphicon-pencil"></span> Editar
-</button>
-<button class="btn btn-danger">
-    <span class="glyphicon glyphicon-remove"></span> Remover
-</button>
-<%= link_to new_church_path, class: "btn btn-default" do %>
-    <span class="glyphicon glyphicon-plus"></span> 
-    <%= t("new_church") %>
-<% end %>
+
+<div class="panel panel-success">
+    <div class="panel-heading">
+        <div class="panel-title"><%= t("people") %></div>
+    </div>
+    <div class="panel-body">
+        <%= link_to new_church_person_path(@church), class: "btn btn-info" do %>
+            <span class="glyphicon glyphicon-plus"></span> 
+            <%= t("helpers.submit.create", model: t("activerecord.models.person")) %>
+        <% end %>
+        &nbsp; &nbsp;<small><em><%= t("person_help") %></em></small>
+
+        <p>
+            <%= render partial: 'people/list', locals: { people: @church.people, with_church: false } %>
+        </p>
+    </div>
+</div>

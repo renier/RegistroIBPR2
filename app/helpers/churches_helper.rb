@@ -4,7 +4,7 @@ module ChurchesHelper
   end
 
   def short_name
-    roman = ["", "I", "II", "III", "IV", "V"][nth]
+    roman = ["", "I", "II", "III", "IV", "V"][nth || 0]
     
     "#{name} #{roman}".strip
   end

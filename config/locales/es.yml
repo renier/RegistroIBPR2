@@ -21,6 +21,7 @@
 
 es:
   short_title: "Registro IBPR 2014"
+  subtitle: "112<sup>va</sup> Asamblea Anual (6-8 marzo)"
   churches: "Iglesias"
   people: "Personas"
   printing: "Impresión"
@@ -29,10 +30,23 @@ es:
   search: "Buscar"
   required_fields: 'Campos con <span class="text-danger">*</span> son requeridos.'
   nth_help: "e.g. Primera, Segunda, Tercera, etc."
+  description_help: "Descripción, Posición u Organización"
   cancel: "Cancelar"
-  churches: "Iglesias"
   name: "Nombre"
-  new_church: "Nueva Iglesia"
+  edit: "Editar"
+  edit_church: "Editar Iglesia"
+  edit_person: "Editar Persona"
+  delete: "Borrar"
+  errors_found: "Corriga los siguientes errores:"
+  confirm_church_delete: "Borrar Iglesia <strong>%{name}</strong> ¿Está seguro(a)?"
+  church_required: "Se requiere decir la Iglesia."
+  confirm_person_delete: "Borrar a <strong>%{name}</strong> ¿Está seguro(a)?"
+  person_help: "Solamente registre las personas de ésta Iglesia que tendrán voto en la asamblea (e.g. pastores y delegados)."
+  create_person_and_start_again: "Crear persona y empezar otra vez"
+  positive: "Sí"
+  negative: "No"
+  male: "Masculino"
+  female: "Femenino"
   nth:
     1: "Primera"
     2: "Segunda"
@@ -49,23 +63,110 @@ es:
       church:
         name: "Nombre de la Iglesia"
         display_name: "Nombre de la Iglesia"
-        nth: "Número"
+        nth: "Instancia"
         prefix: "Prefijo"
         nickname: "Apodo o Barrio"
         town: "Pueblo"
         notes: "Notas"
-        position: "No."
+        position: "Número de control"
         full_name_help: "Nombre completo de la Iglesia (como se verá)"
+      person:
+        salutation: "Título"
+        name: "Nombre"
+        greetname: "Nombre"
+        lastnames: "Apellidos"
+        sex: "Género"
+        description: "Descripción"
+        role: "Rol"
+        display_role: "Rol"
+        attended: "¿Asistió?"
+        materials: "¿Recibió Materiales?"
+        print: "¿Imprimir?"
+        church_id: "Iglesia"
+    errors:
+      models:
+        church:
+          attributes:
+            name:
+              blank: "está en blanco."
+        person:
+          attributes:
+            role:
+              inclusion: "Indique el rol de la persona."
+  kaminari:
+    next: "Próxima página"
+    last: "Última página"
+    prev: "Página anterior"
+    first: "Primera página"
   views:
     pagination:
-      first: "&laquo; Primero"
-      last: "Último &raquo;"
+      first: "&laquo;"
+      last: "&raquo;"
       previous: "&lsaquo;"
       next: "&rsaquo;"
-      truncate: "..."
+      truncate: "&hellip;"
   helpers:
     submit:
       create: "Crear %{model}"
-      update: "Grabar cambios"
-
-
+      update: "Grabar %{model}"
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "No se encontraron %{entry_name}."
+          one: "<b>1</b> %{entry_name}."
+          other: "<b>%{count}</b> %{entry_name}."
+      more_pages:
+        display_entries: "%{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> de <b>%{total}</b>."
+  flash:
+    church:
+      created: "La Iglesia <strong>%{name}</strong> ha sido creada."
+      updated: "La Iglesia <strong>%{name}</strong> fue actualizada."
+      deleted: "La Iglesia <strong>%{name}</strong> ha sido borrada."
+    person:
+      updated: "El record de <strong>%{name}</strong> ha sido actualizado."
+      created: "El record de <strong>%{name}</strong> ha sido creado."
+      deleted: "El record de <strong>%{name}</strong> ha sido borrado."
+  rolemap:
+    either:
+      0: "Pastor(a)"
+      1: "Pastor(a) Asociado(a)"
+      2: "Pastor(a) Jubilado(a)"
+      3: "Delegado(a)"
+      4: "Junta Directiva"
+      5: "Visitante"
+    m:
+      0: "Pastor"
+      1: "Pastor Asociado"
+      2: "Pastor Jubilado"
+      3: "Delegado"
+      4: "Junta Directiva"
+      5: "Visitante"
+    f:
+      0: "Pastora"
+      1: "Pastora Asociada"
+      2: "Pastora Jubilada"
+      3: "Delegada"
+      4: "Junta Directiva"
+      5: "Visitante"
+  salutations:
+    either:
+      0: "Pastor(a)"
+      1: "Rvdo(a)."
+      2: "Dr(a)."
+      3: "Lcdo(a)."
+      4: "Endosado(a)"
+      5: "Capellán"
+    m:
+      0: "Pastor"
+      1: "Rvdo."
+      2: "Dr."
+      3: "Lcdo."
+      4: "Endosado"
+      5: "Capellán"
+    f:
+      0: "Pastora"
+      1: "Rvda."
+      2: "Dra."
+      3: "Lcda."
+      4: "Endosada"
+      5: "Capellán"

@@ -6,4 +6,5 @@ module RegistroConfig
    MSG_PRINT_ALL = "print_all"
    MSG_PRINT_COMPLETE_PAGES = "print_complete_pages"
    MSG_GET_LAST_SEEN = "get_last_seen"
+   LIVE_DATE = Time.new(2014, 3, 6)
 end

@@ -1,17 +1,24 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 $(document).on("page:change", function() {
+    if (!rails.inController("churches")) {
+        return;
+    } // Quit if we are not in the churches controller
+
     // Handle new church form changes
     var nths = <%= I18n.t("nth").values %>;
     nths.unshift("");
 
     function handle_change() {
         $("#church_full_name").val(
-            nths[$("#church_nth").val()] + " " + $("#church_prefix").val() +
+            nths[$("#church_nth").val() || 0] + " " + $("#church_prefix").val() +
             " " + $("#church_name").val()
         )
     }
 
     $("#church_nth").change(handle_change);
     $("#church_prefix, #church_name").on("keyup", handle_change);
+
+    // Handle focus
+    $("#church_nth").focus();
 });

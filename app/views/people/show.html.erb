@@ -1,0 +1,49 @@
+<h1>
+    <span class="glyphicon glyphicon-user"></span> 
+    <%= @person.fullname %>
+</h1>
+
+<p>
+<%= link_to edit_church_person_path(@person.church, @person), class: "btn btn-primary" do %>
+    <span class="glyphicon glyphicon-pencil"></span> 
+    <%= t("edit") %>
+<% end %>
+
+<%= link_to [@person.church, @person], class: "btn btn-danger", data: { method: :delete, question: raw(t("confirm_person_delete", name: @person.fullname)) } do %>
+    <span class="glyphicon glyphicon-trash"></span> 
+    <%= t("delete") %>
+<% end %>
+
+<%= link_to new_church_person_path(@person.church, @person), class: "btn btn-default" do %>
+    <span class="glyphicon glyphicon-plus"></span> 
+    <%= t("helpers.submit.create", model: t("activerecord.models.person")) %>
+<% end %>
+</p>
+
+<table class="table table-striped round-topleft round-bottomleft">
+    <% ["greetname", "display_role", "church", "description"].each do |field| %>
+        <tr>
+            <td style="width: 18%" class="active">
+                <strong>
+                    <%= t("activerecord.attributes.person.#{field}") %>
+                </strong>
+            </td>
+            <% if field == "church" %>
+            <td><%= link_to @person.church.short_name, @person.church if @person.church%></td>
+            <% else %>
+            <td><%= @person.send(field) %></td>
+            <% end %>
+        </tr>    
+    <% end %>
+
+    <% ["attended", "materials", "print"].each do |field| %>
+        <tr>
+            <td class="active">
+                <strong>
+                    <%= t("activerecord.attributes.person.#{field}") %>
+                </strong>
+            </td>
+            <%= render partial: 'toggle', locals: { person: @person, field: field } %>
+        </tr>
+    <% end %>
+</table>

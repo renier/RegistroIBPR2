@@ -6,24 +6,37 @@
 <p>
 <%= link_to new_church_path, class: "btn btn-default" do %>
     <span class="glyphicon glyphicon-plus"></span> 
-    <%= t("new_church") %>
+    <%= t("helpers.submit.create", model: t("activerecord.models.church")) %>
 <% end %>
 </p>
 
-<table class="table table-striped">
+<table class="table table-striped table-hover round-topleft round-topright">
     <tr class="active">
         <th>#</th>
         <th><%= t("name") %></th>
         <th><%= t("activerecord.attributes.church.nickname") %></th>
         <th><%= t("activerecord.attributes.church.town") %></th>
+        <th></th>
+        <th></th>
     </tr>
     <% @churches.each do |church| %>
         <tr>
-            <td><%= church.position %></td>
+            <td><%= church.position || "" %></td>
             <td><%= link_to church.short_name, church %></td>
             <td><%= church.nickname %></td>
             <td><%= church.town %></td>
+            <td>
+                <%= link_to edit_church_path(church), data: { toggle: "tooltip" }, title: t("edit"), class: "edit" do %>
+                    <span class="glyphicon glyphicon-pencil"><span>
+                <% end %>
+            </td>
+            <td>
+                <%= link_to church_path(church), data: { method: :delete, toggle: "tooltip", question: raw(t("confirm_church_delete", name: church.short_name)) }, title: t("delete") do %>
+                    <span class="glyphicon glyphicon-trash"><span>
+                <% end %>
+            </td>
         </tr>
     <% end %>
 </table>
-<%= paginate @churches %>
+
+<%= render partial: 'shared/paging', locals: { collection: @churches } %>

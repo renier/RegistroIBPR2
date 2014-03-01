@@ -1,0 +1,110 @@
+<h1>
+    <span class="glyphicon glyphicon-user"></span> 
+    <%= 
+        if @person.new_record?
+            t(
+                "helpers.submit.create",
+                model: t("activerecord.models.person")
+            )
+        else
+            t("edit_person")
+        end
+    %>
+</h1>
+
+<%= render partial: 'shared/errors', locals: { errors: @person.errors } %>
+
+<p><%= raw(t("required_fields")) %></p>
+
+<div class="well">
+<%= form_for @person, html: { role: "form" } do |f| %>
+    <!-- Salutation -->
+    <div class="form-group">
+        <%= f.label :salutation %>
+        <%= f.select :salutation, t("salutations.either").map { |k, v| [v, k] }, { include_blank: true, selected: @person.read_attribute(:salutation) }, { class: "form-control" } %>
+    </div>
+
+    <!-- Name -->
+    <div class="form-group <%= 'has-error' if @person.errors[:name].any? %>">
+        <span class="text-danger">*</span> 
+        <%= f.label :name, class: "control-label" %>
+        <%= f.text_field :name, class: "form-control" %>
+    </div>
+
+    <!-- Last names -->
+    <div class="form-group <%= 'has-error' if @person.errors[:lastnames].any? %>">
+        <span class="text-danger">*</span> 
+        <%= f.label :lastnames, class: "control-label" %>
+        <%= f.text_field :lastnames, class: "form-control" %>
+    </div>
+
+    <!-- Gender -->
+    <div class="form-group" style="margin-bottom: 0">
+        <%= f.label :sex, class: "control-label" %><br />
+        <div class="radio" style="display:inline-block">
+            <label>
+                <%= radio_button("person", "sex", "true") %><i class="fa fa-male"></i> <%= t("male") %>
+            </label>
+        </div>
+        &nbsp;&nbsp;&nbsp;
+        <div class="radio" style="display:inline-block">
+            <label>
+                <%= radio_button("person", "sex", "false") %><i class="fa fa-female"></i> <%= t("female") %>
+            </label>
+        </div>
+    </div>
+
+    <!-- Role -->
+    <div class="form-group">
+        <%= f.label :role %>
+        <%= f.select :role, t("rolemap.either").map { |k, v| [v, k] }, { include_blank: true }, { class: "form-control" } %>
+    </div>
+
+    <!-- Church -->
+    <div class="form-group">
+        <%= f.label :church_id %>
+        <%= f.collection_select :church_id, Church.order(:name).all, :id, :short_name, { include_blank: true, selected: params[:church_id] }, { class: "form-control" } %>
+    </div>
+
+    <!-- Description -->
+    <div class="form-group">
+        <%= f.label :description %>
+        <%= f.text_field :description, class: "form-control", placeholder: t("description_help") %>
+    </div>
+
+    <!-- Checkboxes -->
+    <div class="form-group">
+    <label class="checkbox-inline">
+        <%= f.check_box :attended %>
+        <%= t("activerecord.attributes.person.attended") %>
+    </label>
+    <label class="checkbox-inline">
+        <%= f.check_box :materials %>
+        <%= t("activerecord.attributes.person.materials") %>
+    </label>
+    <label class="checkbox-inline">
+        <%= f.check_box :print %>
+        <%= t("activerecord.attributes.person.print") %>
+    </label>
+    </div>
+
+    <% if @person.new_record? %>
+        <%= link_to_function(
+                raw('<span class="glyphicon glyphicon-ok"></span> ') +
+                    t("create_person_and_start_again"),
+                "$(this).closest('form')[0].action+='?continue=1';$(this).closest('form').submit()",
+                class: "btn btn-info") %> 
+    <% end %>
+
+    <%= button_tag(type: "submit", class: "btn btn-primary") do %>
+        <span class="glyphicon glyphicon-ok"></span> 
+        <%=
+            t(@person.new_record? ?
+                "helpers.submit.create" : "helpers.submit.update",
+                model: t("activerecord.models.person"))
+        %>
+    <% end %>
+
+    <%= link_to_function t("cancel"), "history.back()", class: "cancel-link" %>
+<% end %>
+</div>

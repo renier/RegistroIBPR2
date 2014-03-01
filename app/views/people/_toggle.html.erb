@@ -1,0 +1,26 @@
+<% 
+    value = person.send(field)
+    affirmation = affirmation(value)
+    id = "#{field}-#{affirmation}-#{person.id}"
+%>
+<td class="yesno" id="<%= id %>">
+    <button
+        type="button"
+        class="btn btn-success btn-xs <%= 'invisible' if !value %>"
+        data-url="<%= url_for person.church ? [person.church, person] : person %>"
+        data-model="person"
+        data-field="<%= field %>"
+        for="<%= id %>">
+            <%= t("positive") %>
+    </button>
+    <span class="loading invisible"></span>
+    <button
+        type="button"
+        class="btn btn-warning btn-xs <%= 'invisible' if value %>" 
+        data-url="<%= url_for person.church ? [person.church, person] : person %>" for="<%= id %>"
+        data-model="person"
+        data-field="<%= field %>"
+        for="<%= id %>">
+            <%= t("negative") %>
+    </button>
+</td>
