@@ -5,10 +5,13 @@ class PeopleController < ApplicationController
 
     if params[:church_id]
       church = Church.find(params[:church_id])
-      @people = church.people.order(*sorts.uniq).page(params[:page] || 1)
+      @people = church.people
     else
-      @people = Person.order(*sorts.uniq).page(params[:page] || 1)
+      @people = Person
+      @people = @people.joins(:church) if params[:order] == 'churches.name'
     end
+
+    @people = @people.order(*sorts.uniq).page(params[:page] || 1)
   end
 
   def show

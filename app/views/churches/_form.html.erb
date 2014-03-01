@@ -58,7 +58,10 @@
 
         <div class="form-group <%= "has-error" if @church.errors[:position].any? %>">
             <%= f.label :position %>
+            <div class="input-group">
+            <span class="input-group-addon">#</span>
             <%= f.text_field :position, class: "form-control" %>
+            </div>
         </div>
     <% end %>
 

@@ -19,18 +19,24 @@
     <div class="form-group <%= "has-error" if check.errors[:church_id].any? %>">
         <span class="text-danger">*</span> 
         <%= f.label :church_id, class: "control-label" %>
-        <%= f.collection_select :church_id, Church.order(:name).all, :id, :short_name, { include_blank: true, selected: params[:church_id] }, { class: "form-control" } %>
+        <%= f.collection_select :church_id, Church.order(:name).all, :id, :short_name, { selected: params[:church_id] }, { class: "form-control" } %>
     </div>
 
     <div class="form-group">
         <%= f.label :number %>
+        <div class="input-group">
+        <span class="input-group-addon">#</span>
         <%= f.text_field :number, class: "form-control" %>
+        </div>
     </div>
 
     <div class="form-group <%= "has-error" if check.errors[:amount].any? %>">
         <span class="text-danger">*</span> 
         <%= f.label :amount, class: "control-label" %>
+        <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-usd"></i></span>
         <%= f.text_field :amount, class: "form-control" %>
+        </div>
     </div>
 
     <div class="form-group">

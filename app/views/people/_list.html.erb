@@ -3,7 +3,7 @@
         <th><a href="?order=name"><%= t("name") %></a></th>
         <th><a href="?order=role"><%= t("activerecord.attributes.person.role") %></a></th>
         <% if with_church %>
-        <th><%= t("activerecord.models.church") %></th>
+        <th><a href="?order=churches.name"><%= t("activerecord.models.church") %></a></th>
         <% end %>
         <th><%= t("activerecord.attributes.person.attended") %></th>
         <th><%= t("activerecord.attributes.person.materials") %></th>
