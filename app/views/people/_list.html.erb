@@ -1,7 +1,7 @@
 <table class="table table-striped table-hover round-topleft round-topright">
     <tr class="active">
-        <th><%= t("name") %></th>
-        <th><%= t("activerecord.attributes.person.role") %></th>
+        <th><a href="?order=name"><%= t("name") %></a></th>
+        <th><a href="?order=role"><%= t("activerecord.attributes.person.role") %></a></th>
         <% if with_church %>
         <th><%= t("activerecord.models.church") %></th>
         <% end %>

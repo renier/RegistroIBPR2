@@ -1,10 +1,13 @@
 class PeopleController < ApplicationController
   def index
+    sorts = [:name]
+    sorts.unshift(params[:order]) if params[:order]
+
     if params[:church_id]
       church = Church.find(params[:church_id])
-      @people = church.people.order(:name).page(params[:page] || 1)
+      @people = church.people.order(*sorts.uniq).page(params[:page] || 1)
     else
-      @people = Person.order(:name).page(params[:page] || 1)
+      @people = Person.order(*sorts.uniq).page(params[:page] || 1)
     end
   end
 

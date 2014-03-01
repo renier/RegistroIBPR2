@@ -63,14 +63,13 @@
     <% end %>
 
     <%= button_tag(type: "submit", class: "btn btn-primary") do %>
-        <span class="glyphicon glyphicon-ok"></span> 
+        <i class="fa fa-save"></i> 
         <%=
-            t(@church.new_record? ?
-                "helpers.submit.create" : "helpers.submit.update",
+            t("helpers.submit.update",
                 model: t("activerecord.models.church"))
         %>
     <% end %>
-
+    &nbsp;<%= t("or") %>
     <%= link_to_function t("cancel"), "history.back()", class: "cancel-link" %>
 <% end %>
 </div>

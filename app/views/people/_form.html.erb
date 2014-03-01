@@ -92,21 +92,26 @@
 
     <% if @person.new_record? %>
         <%= link_to_function(
-                raw('<span class="glyphicon glyphicon-ok"></span> ') +
+                raw('<i class="fa fa-save"></i> ') +
                     t("create_person_and_start_again"),
                 "$(this).closest('form')[0].action+='?continue=1';$(this).closest('form').submit()",
-                class: "btn btn-info") %> 
+                class: "btn btn-info") %> , &nbsp;
     <% end %>
 
     <%= button_tag(type: "submit", class: "btn btn-primary") do %>
-        <span class="glyphicon glyphicon-ok"></span> 
+        <i class="fa fa-save"></i> 
         <%=
-            t(@person.new_record? ?
-                "helpers.submit.create" : "helpers.submit.update",
+            t("helpers.submit.update",
                 model: t("activerecord.models.person"))
         %>
     <% end %>
-
-    <%= link_to_function t("cancel"), "history.back()", class: "cancel-link" %>
+    &nbsp;<%= t("or") %>
+    <% if @person.church %>
+        <%= link_to t("cancel"), church_path(@person.church), class: "cancel-link" %>
+    <% elsif params[:church_id] %>
+        <%= link_to t("cancel"), { action: :show, controller: :churches, id: params[:church_id]}, class: "cancel-link" %>
+    <% else %>
+        <%= link_to t("cancel"), people_path, class: "cancel-link" %>
+    <% end %>
 <% end %>
 </div>

@@ -12,10 +12,10 @@
 
 <table class="table table-striped table-hover round-topleft round-topright">
     <tr class="active">
-        <th>#</th>
-        <th><%= t("name") %></th>
+        <th><a href="?order=position">#</a></th>
+        <th><a href="?order=name"><%= t("name") %></a></th>
         <th><%= t("activerecord.attributes.church.nickname") %></th>
-        <th><%= t("activerecord.attributes.church.town") %></th>
+        <th><a href="?order=town"><%= t("activerecord.attributes.church.town") %></a></th>
         <th></th>
         <th></th>
     </tr>

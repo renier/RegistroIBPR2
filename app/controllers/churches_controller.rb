@@ -1,6 +1,8 @@
 class ChurchesController < ApplicationController
   def index
-    @churches = Church.order(:name).page(params[:page] || 1)
+    sorts = [:name]
+    sorts.unshift(params[:order]) if params[:order]
+    @churches = Church.order(*sorts.uniq).page(params[:page] || 1)
   end
 
   def new
