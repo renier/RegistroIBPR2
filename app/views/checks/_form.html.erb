@@ -53,6 +53,6 @@
         %>
     <% end %>
 
-    <%= link_to_function t("cancel"), "history.back()", class: "cancel-link" %>
+    <%= link_to t("cancel"), church_path(@church), class: "cancel-link" %>
 <% end %>
 </div>

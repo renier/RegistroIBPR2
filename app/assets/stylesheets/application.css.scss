@@ -61,8 +61,9 @@ td > [data-method="delete"] > .glyphicon { color: #e74c3c }
 }
 
 .search-results a { text-decoration: none }
-.search-results td { vertical-align: top }
 .search-results td:last-child { padding-left: 1em }
+
+.yesno { min-width: 97px }
 
 /* Loading */
 .loading {
