@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140223004552) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "checks", force: true do |t|
     t.integer  "number"
     t.decimal  "amount",      precision: 2, scale: 0, null: false
@@ -22,7 +25,7 @@ ActiveRecord::Schema.define(version: 20140223004552) do
     t.datetime "updated_at"
   end
 
-  add_index "checks", ["church_id"], name: "index_checks_on_church_id"
+  add_index "checks", ["church_id"], name: "index_checks_on_church_id", using: :btree
 
   create_table "churches", force: true do |t|
     t.integer  "position"
@@ -47,11 +50,11 @@ ActiveRecord::Schema.define(version: 20140223004552) do
     t.boolean  "attended",    default: false
     t.boolean  "print",       default: true
     t.boolean  "materials",   default: false
-    t.integer  "church_id",
+    t.integer  "church_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "people", ["church_id"], name: "index_people_on_church_id"
+  add_index "people", ["church_id"], name: "index_people_on_church_id", using: :btree
 
 end
