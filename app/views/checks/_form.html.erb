@@ -1,0 +1,52 @@
+<h1>
+    <i class="fa fa-credit-card"></i>
+    <%= 
+        if check.new_record?
+            t("helpers.submit.create",
+                model: t("activerecord.models.check"))
+        else
+            t("edit_check")
+        end
+    %>
+</h1>
+
+<%= render partial: 'shared/errors', locals: { errors: check.errors } %>
+
+<p><%= raw(t("required_fields")) %></p>
+
+<div class="well">
+<%= form_for [church, check], html: { role: "form" } do |f| %>
+    <div class="form-group <%= "has-error" if check.errors[:church_id].any? %>">
+        <span class="text-danger">*</span> 
+        <%= f.label :church_id, class: "control-label" %>
+        <%= f.collection_select :church_id, Church.order(:name).all, :id, :short_name, { include_blank: true, selected: params[:church_id] }, { class: "form-control" } %>
+    </div>
+
+    <div class="form-group">
+        <%= f.label :number %>
+        <%= f.text_field :number, class: "form-control" %>
+    </div>
+
+    <div class="form-group <%= "has-error" if check.errors[:amount].any? %>">
+        <span class="text-danger">*</span> 
+        <%= f.label :amount, class: "control-label" %>
+        <%= f.text_field :amount, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+        <%= f.label :description %>
+        <%= f.text_area :description, class: "form-control" %>
+    </div>
+
+    <%= button_tag(type: "submit", class: "btn btn-primary") do %>
+        <span class="glyphicon glyphicon-ok"></span> 
+        <%=
+            t(check.new_record? ?
+                "helpers.submit.create" : "helpers.submit.update",
+                model: t("activerecord.models.check"))
+        %>
+    <% end %>
+
+    <%= link_to_function t("cancel"), "history.back()", class: "cancel-link" %>
+<% end %>
+</div>

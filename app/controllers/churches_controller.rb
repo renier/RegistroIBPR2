@@ -20,6 +20,11 @@ class ChurchesController < ApplicationController
 
   def show
     @church = Church.find(params[:id])
+
+    @payments = @church.checks.sum(:amount)
+    owed = @church.people.where(
+        "role = ? or role = ? or role = ?", 0, 1, 3).size * RegistroConfig::DUE_PER_DELEGATE
+    @balance = owed - @payments
   end
 
   def edit

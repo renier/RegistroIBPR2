@@ -35,7 +35,7 @@
 
 <div class="panel panel-primary">
     <div class="panel-heading">
-        <div class="panel-title"><i class="fa fa-users"></i> <%= t("people") %></div>
+        <div class="panel-title"><%= t("people") %></div>
     </div>
     <div class="panel-body">
         <%= link_to new_church_person_path(@church), class: "btn btn-info" do %>
@@ -47,19 +47,5 @@
         <p>
             <%= render partial: 'people/list', locals: { people: @church.people, with_church: false } %>
         </p>
-    </div>
-</div>
-
-<div class="panel panel-<%= @balance > 0 ? 'danger' : 'success' %>">
-    <div class="panel-heading">
-        <div class="panel-title">
-            <div class="pull-right"><strong><%= t("balance") %>: <%= number_to_currency(@balance) %></strong></div>
-            <i class="fa fa-credit-card"></i> 
-            <%= t("checks") %> 
-            &nbsp;(<%= number_to_currency(@payments) %>)
-        </div>
-    </div>
-    <div class="panel-body">
-        <%= render partial: 'checks/list', locals: { church: @church, checks: @church.checks } %>
     </div>
 </div>

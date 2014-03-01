@@ -24,6 +24,7 @@ es:
   subtitle: "112<sup>va</sup> Asamblea Anual (6-8 marzo)"
   churches: "Iglesias"
   people: "Personas"
+  checks: "Pagos"
   printing: "Impresión"
   reports: "Reportes"
   users: "Usuarios"
@@ -36,6 +37,7 @@ es:
   edit: "Editar"
   edit_church: "Editar Iglesia"
   edit_person: "Editar Persona"
+  edit_check: "Editar Check"
   delete: "Borrar"
   errors_found: "Corriga los siguientes errores:"
   confirm_church_delete: "Borrar Iglesia <strong>%{name}</strong> ¿Está seguro(a)?"
@@ -43,10 +45,12 @@ es:
   confirm_person_delete: "Borrar a <strong>%{name}</strong> ¿Está seguro(a)?"
   person_help: "Solamente registre las personas de ésta Iglesia que tendrán voto en la asamblea (e.g. pastores y delegados)."
   create_person_and_start_again: "Crear persona y empezar otra vez"
+  confirm_check_delete: "Borrar <strong>%{name}</strong> ¿Está seguro(a)?"
   positive: "Sí"
   negative: "No"
   male: "Masculino"
   female: "Femenino"
+  balance: "Balance"
   nth:
     1: "Primera"
     2: "Segunda"
@@ -83,6 +87,11 @@ es:
         materials: "¿Recibió Materiales?"
         print: "¿Imprimir?"
         church_id: "Iglesia"
+      check:
+        number: "Número de cheque"
+        amount: "Cantidad"
+        description: "Descripción"
+        church_id: "Iglesia"
     errors:
       models:
         church:
@@ -99,6 +108,11 @@ es:
               blank: "está en blanco."
             sex:
               blank: "está en blanco."
+        check:
+          attributes:
+            amount:
+              blank: "está en blanco."
+              not_a_number: "debe ser un número."
   kaminari:
     next: "Próxima página"
     last: "Última página"

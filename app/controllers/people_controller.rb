@@ -18,7 +18,7 @@ class PeopleController < ApplicationController
       attended = materials = true
     end
 
-    @person = Person.new(attended: attended, materials: materials)
+    @person = Person.new(attended: attended, materials: materials, sex: true)
   end
 
   def create

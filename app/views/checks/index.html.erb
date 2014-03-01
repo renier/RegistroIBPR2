@@ -1,0 +1,6 @@
+<h1>
+    <i class="fa fa-credit-card"></i> 
+    <%= t("churches") %>
+</h1>
+
+<%= render partial: 'list', locals: { church: @church, checks: @checks } %>
