@@ -53,12 +53,9 @@ class PeopleController < ApplicationController
         church_person_path(@person.church, @person) :
         person_path(@person)
 
-      flash[:notice] = I18n.t("flash.person.updated", name: @person.fullname)
       respond_to do |format|
         format.html {
-          redirect_to path,
-            notice: I18n.t("flash.person.updated",
-              name: @person.fullname)
+          redirect_to path
         }
         format.json {
           render json: @person, location: path
