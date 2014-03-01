@@ -39,24 +39,26 @@
     </div>
 
     <!-- Gender -->
-    <div class="form-group" style="margin-bottom: 0">
+    <div class="form-group <%= 'has-error' if @person.errors[:sex].any? %>" style="margin-bottom: 0">
+        <span class="text-danger">*</span>
         <%= f.label :sex, class: "control-label" %><br />
         <div class="radio" style="display:inline-block">
-            <label>
-                <%= radio_button("person", "sex", "true") %><i class="fa fa-male"></i> <%= t("male") %>
+            <label class="control-label">
+                <%= radio_button("person", "sex", true) %><i class="fa fa-male"></i> <%= t("male") %>
             </label>
         </div>
         &nbsp;&nbsp;&nbsp;
         <div class="radio" style="display:inline-block">
-            <label>
-                <%= radio_button("person", "sex", "false") %><i class="fa fa-female"></i> <%= t("female") %>
+            <label class="control-label">
+                <%= radio_button("person", "sex", false) %><i class="fa fa-female"></i> <%= t("female") %>
             </label>
         </div>
     </div>
 
     <!-- Role -->
-    <div class="form-group">
-        <%= f.label :role %>
+    <div class="form-group <%= 'has-error' if @person.errors[:role].any? %>">
+        <span class="text-danger">*</span> 
+        <%= f.label :role, class: "control-label" %>
         <%= f.select :role, t("rolemap.either").map { |k, v| [v, k] }, { include_blank: true }, { class: "form-control" } %>
     </div>
 

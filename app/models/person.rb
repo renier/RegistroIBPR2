@@ -4,6 +4,7 @@ class Person < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :lastnames
   validates_presence_of :name
+  validates_presence_of :sex
   validates_inclusion_of :role, in: 0..5
   validates_presence_of :church_id, :if => "role != 2 and role != 4 and role != 5",
     :message => I18n.t("church_required")

@@ -92,7 +92,13 @@ es:
         person:
           attributes:
             role:
-              inclusion: "Indique el rol de la persona."
+              inclusion: "es requerido."
+            name:
+              blank: "está en blanco."
+            lastnames:
+              blank: "está en blanco."
+            sex:
+              blank: "está en blanco."
   kaminari:
     next: "Próxima página"
     last: "Última página"
