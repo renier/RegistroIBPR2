@@ -45,7 +45,7 @@
                     <% end %>
                 </li>
                 <li class="<%= 'active' if controller_name == 'printing' %>">
-                    <%= link_to("#") do %>
+                    <%= link_to(controller: :print) do %>
                         <i class="glyphicon glyphicon-print"></i> <%= t("printing") %>
                     <% end %>
                 </li>

@@ -1,0 +1,15 @@
+<% content_for :title , image_tag("printer.png")+" Carnets por imprimir" %>
+<div class="box2"><div class="bottom2">
+<p>
+<%= link_to image_tag("printer.png")+" Imprimir páginas completas ahora", {
+    :controller => "print",
+    :action => "flush" },
+    { :class => "button_link", :confirm => '¿Está seguro(a)? La aplicación ya las imprime automáticamente cada varios minutos' }
+%>
+</p>
+<%= render partial: "people/list", locals: { people: @print_people, with_church: true } %>
+</div></div>
+
+<h3 title="Últimos carnets impresos"><%= image_tag("printer.png") %> Últimos carnets impresos</h3><br />
+<%= render :partial => "people/list", :locals => {
+      :people => @printed_people }%>

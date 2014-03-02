@@ -16,7 +16,7 @@
             <td><%= link_to person.fullname, person.church ? [person.church, person] : person %></td>
             <td><%= person.display_role %></td>
             <% if with_church %>
-            <td><%= link_to person.church.short_name, person.church %></td>
+            <td><%= link_to person.church.short_name, person.church if person.church %></td>
             <% end %>
             <% ["attended", "materials", "print"].each do |field| %>
             <%= render partial: 'people/toggle', locals: { person: person, field: field } %>
