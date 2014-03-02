@@ -4,17 +4,17 @@
 </h1>
 
 <p>
-<%= link_to edit_church_path, class: "btn btn-primary" do %>
+<%= link_to edit_church_path, class: "btn btn-primary btn-sm" do %>
     <span class="glyphicon glyphicon-pencil"></span> 
     <%= t("edit") %>
 <% end %>
 
-<%= link_to church_path(@church), class: "btn btn-danger", data: { method: :delete, question: raw(t("confirm_church_delete", name: @church.short_name)) } do %>
+<%= link_to church_path(@church), class: "btn btn-danger btn-sm", data: { method: :delete, question: raw(t("confirm_church_delete", name: @church.short_name)) } do %>
     <span class="glyphicon glyphicon-trash"></span> 
     <%= t("delete") %>
 <% end %>
 
-<%= link_to new_church_path, class: "btn btn-default" do %>
+<%= link_to new_church_path, class: "btn btn-default btn-sm" do %>
     <span class="glyphicon glyphicon-plus"></span> 
     <%= t("helpers.submit.create", model: t("activerecord.models.church")) %>
 <% end %>
@@ -33,7 +33,7 @@
     <% end %>
 </table>
 
-<div class="panel panel-primary">
+<div class="panel  panel-<%= @people.size < 1 ? 'warning' : 'info' %>">
     <div class="panel-heading">
         <div class="panel-title"><i class="fa fa-users"></i> <%= t("people") %></div>
     </div>
@@ -50,7 +50,7 @@
     </div>
 </div>
 
-<div class="panel panel-<%= @balance > 0 ? 'danger' : 'success' %>">
+<div class="panel panel-<%= @balance > 0 ? 'warning' : 'success' %>">
     <div class="panel-heading">
         <div class="panel-title">
             <div class="pull-right"><strong><%= t("balance") %>: <%= number_to_currency(@balance) %></strong></div>

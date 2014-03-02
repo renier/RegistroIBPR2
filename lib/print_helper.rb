@@ -1,10 +1,10 @@
 module PrintHelper
-  def print(file)
+  def printit(file)
     if OS.linux?
       require 'cups'
       Cups::PrintJob.new(file).print
     elsif OS.mac?
-      `lpr #{file}`
+      `lpr -o scale=100 -o media=letter #{file}`
     else # assume Windows
       # TODO
     end

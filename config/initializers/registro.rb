@@ -1,10 +1,6 @@
 module RegistroConfig
-   DUE_PER_DELEGATE = 25
-   COST_OF_MATERIALS_FOR_VISITOR = 20
-   PRINT_HOST = 'localhost'
-   PRINT_PORT = 3030
-   MSG_PRINT_ALL = "print_all"
-   MSG_PRINT_COMPLETE_PAGES = "print_complete_pages"
-   MSG_GET_LAST_SEEN = "get_last_seen"
-   LIVE_DATE = Time.new(2014, 3, 6)
+  DUE_PER_DELEGATE = 25
+  COST_OF_MATERIALS_FOR_VISITOR = 20 # TODO:
+  LIVE_DATE = Time.new(2014, 3, 6)
+  INKSCAPE_PATH = "inkscape"
 end

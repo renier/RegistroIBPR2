@@ -1,4 +1,7 @@
 require 'tmpdir'
+require 'tags_helper'
+require 'print_helper'
+require 'celluloid'
 
 class Printer
   include TagsHelper
@@ -8,17 +11,21 @@ class Printer
   PRINT_INTERVAL = 600 # 10 minutes
   DBCHECK_INTERVAL = 180 # 3 minutes
   TAGS_PER_PAGE = 6
-  TAGS_BASENAME = Dir.tmpdir + "registroibpr_tag_page"
-  TAGS_PAGE = File.open("#{RAILS_ROOT}/app/assets/images/tags.svg", 'r').read
-  TAG = File.open("#{RAILS_ROOT}/app/assets/images/tag.svg", 'r').read
+  PAGE_BASENAME = Dir.tmpdir + "/registroibpr_tag_page"
+  TAGS_PAGE = File.open(Rails.root.join('app', 'assets', 'images', 'tags.svg').to_s, 'r').read
   ZZZ = 5
 
   def initialize()
     @last_print = Time.now
     @last_dbcheck = Time.now - DBCHECK_INTERVAL
     @last_tags_printed = []
+    @flush = nil
 
     async.run
+  end
+
+  def logger
+    Rails.logger
   end
 
   def flush(force=false)
@@ -40,20 +47,82 @@ class Printer
       end
 
       if @flush
-        if @flush[:force] # Got message to force a print of anything in queue
-          people = Person.find_by(print: true)
-          @last_dbcheck = Time.now
-          if people.size > 0
-            logger.info "Forced to print anything in queue due to command or timeout."
-            print_tags(people, true)
-            tags_last_seen += people.collect {|p| p.id }
-            @last_print = Time.now
-          end
-        else  # Let's print if we have complete pages in queue.
+        logger.info "Checking queue to see if we have any tags waiting to be printed... "
+        people = Person.joins(:church).order("churches.name", :name, :lastnames).where(print: true)
+        @last_dbcheck = Time.now
+        logger.info "Found #{people.size} tags waiting to be printed."
+        logger.info "No complete pages, yet. Leaving for later..." if people.size < TAGS_PER_PAGE and !@flush[:force]
+        go_ahead = false
+
+        if @flush[:force] and people.size > 0
+          remainder_page = people.size % TAGS_PER_PAGE > 0 ? 1 : 0
+          logger.info "Printing all tags (#{(people.size / TAGS_PER_PAGE) + remainder_page} pages)..."
+          go_ahead = true
+        elsif !@flush[:force] and people.size >= TAGS_PER_PAGE
+          logger.info "Printing #{people.size / TAGS_PER_PAGE} complete pages."
+          logger.info "Leaving #{people.size % TAGS_PER_PAGE} tag(s) for later..."
+          go_ahead = true
         end
+
+        if go_ahead
+          @last_tags_printed.clear
+          @last_tags_printed += print_tags(people, @flush[:force])
+          @last_print = Time.now
+        end
+
         @flush = nil
       end
       sleep ZZZ
     end
+  end
+
+  def print_tags(people, force=false)
+    printed_ids = []
+    if (force and people.size < 1) or (!force and people.size < TAGS_PER_PAGE)
+      return printed_ids
+    end
+
+    # Figure out how many svg pages we need
+    total_pages = people.size / TAGS_PER_PAGE
+    total_pages += 1 if force and people.size % TAGS_PER_PAGE > 0
+    pages = Array.new(total_pages, TAGS_PAGE)
+
+    pages.each do |page|
+      batch = people.shift(TAGS_PER_PAGE)
+      break if !force and batch.size < TAGS_PER_PAGE
+
+      batch.each do |person|
+        current_tag = tag_for(person)
+
+        # Put tag in tags page
+        page = page.sub(/<!-- TAG [0-5] -->/m, current_tag)
+
+        printed_ids << person.id
+      end
+
+      print_page(page, batch)
+    end
+
+    printed_ids
+  end
+
+  def print_page(page, people)
+    basename = "#{PAGE_BASENAME}.#{Time.now.to_f}"
+    svg_file = "#{basename}.svg"
+    pdf_file = "#{basename}.pdf"
+
+    File.open(svg_file, 'w') {|f| f.write(page) }  # Save the SVG into a file.
+
+    # Convert SVG to a PDF for printing.
+    logger.debug `#{RegistroConfig::INKSCAPE_PATH} -A #{pdf_file} #{svg_file}`
+
+    printit(pdf_file)
+    logger.debug "Sent #{pdf_file} to printer. Updating print status in database."
+    # update person records as not needing printing
+    people.each do |person|
+      person.send(:instance_variable_set, :@readonly, false)
+      person.update(print: false)
+    end
+    sleep 1 # breathe
   end
 end

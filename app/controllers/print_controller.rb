@@ -1,37 +1,16 @@
-require 'socket'
-
 class PrintController < ApplicationController
 
   def index
-    @print_people = Person.order(:name, :lastnames).find_by(print: true)
-    @printed_people = []
-
-    begin
-      t = TCPSocket.new(RegistroConfig::PRINT_HOST, RegistroConfig::PRINT_PORT)
-      t.puts RegistroConfig::MSG_GET_LAST_SEEN
-      @printed_people = Person.find(t.gets.chomp.split(/,/).collect {|x| x.to_i })
-      t.close
-    rescue
-      flash[:notice] = nil
-      flash[:error] = "El servicio de impresión no está corriendo!"
-    end
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @people }
-    end
+    @queued = Person.joins(:church).
+      order("churches.name", :name, :lastnames).where(print: true)
+    @printed = Person.find(RegistroConfig::PRINT_AGENT.last_tags_printed)
   end
 
   def flush
+    # TODO: fix notice based on force param
     flash[:notice] = "Impresión sometida de todos los carnets"
-    begin
-      t = TCPSocket.new(RegistroConfig::PRINT_HOST, RegistroConfig::PRINT_PORT)
-      t.puts RegistroConfig::MSG_PRINT_ALL
-      t.close
-    rescue
-      flash[:notice] = nil
-      flash[:error] = "El servicio de impresión no está corriendo!"
-    end
+    
+    RegistroConfig::PRINT_AGENT.flush(params[:force] || false)
 
     redirect_to :action => "index"
   end
