@@ -1,0 +1,35 @@
+<h1>
+    <i class="fa fa-search"></i> 
+    <%= t("results") %>
+</h1>
+
+<table class="table search-results">
+<tr>
+<td class="<%= "hidden" if @peoples.empty? %>">
+<h3><i class="fa fa-users"></i> <%= t("people") %></h3>
+<div class="list-group">
+<% @peoples.each do |person| %>
+    <%= link_to person.church ? church_person_path(person.church, person) : person_path(person), class: "list-group-item" do %>
+        <span class="text-info" style="margin-right:0.5em"><%= person.fullname %></span>
+        <small>
+            <%= ([person.description, person.display_role, person.church ? person.church.short_name : ""].reject { |c| c.empty? }).join(", ") %>
+        </small>
+    <% end %>
+<% end %>
+</div>
+</td>
+<td class="<%= "hidden" if @churches.empty? %>">
+<h3><span class="glyphicon glyphicon-home"></span>  <%= t("churches") %></h3>
+<div class="list-group">
+<% @churches.each do |church| %>
+    <%= link_to church_path(church), class: "list-group-item" do %>
+        <span class="text-info" style="margin-right:0.5em"><%= church.display_name %></span>
+        <small>
+            <%= ([church.nickname, church.town].reject {|c| c.blank? }).join(", ") %>
+        </small>
+    <% end %>
+<% end %>
+</div>
+</td>
+</tr>
+</table>
