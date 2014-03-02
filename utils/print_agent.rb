@@ -20,9 +20,9 @@ def print_tags_page(tags_page, people) # TODO: This could be threaded
   tags_file = File.new("#{basefilename}.svg", 'w+')
   tags_file.write(tags_page)
   tags_file.close
-  # Convert the file to PDF
+  # Convert the file to PDF. "inkscape" should be in the PATH
   `inkscape -A #{basefilename}.pdf #{basefilename}.svg > /dev/null 2>&1`
-  # Print the PDF file
+  # Print the PDF file # TODO: use printhelper
   Cups::PrintJob.new("#{basefilename}.pdf").print
   print "Sent #{basefilename}.pdf to printer. Saving print status..."
   sleep 1 # breathe
@@ -100,7 +100,7 @@ def run_print_agent
         if people.length >= TAG_SET_SIZE # If tags fill up a page at least
           puts "Found #{people.length} tags waiting in queue. printing only full pages"
           print_tags(people, false) # print excluding the last partial page
-          tags_last_seen = []
+          tags_last_seen = [] # TODO: Use Array#clear
           # Collect tags last seen
           upper_bound = TAG_SET_SIZE*(people.length/TAG_SET_SIZE)
           (0...upper_bound).each do |k|

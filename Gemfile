@@ -25,9 +25,14 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
+# For Authentication/Authorization
 gem 'devise'
 
+# For pagination of collections in views
 gem 'kaminari'
+
+# For concurrent worker services (Printing)
+gem 'celluloid'
 
 group :development, :staging do
   gem 'puma'

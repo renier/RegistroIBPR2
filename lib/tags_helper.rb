@@ -1,14 +1,13 @@
-# TODO: Refactor tag svgs into one. Fill in right values
-# depending on whether a visitor and whether for print/web viewing.
+# TODO: Fill in {images_root}
 require 'cgi'
 
 module TagsHelper
 
-  def self.es_upcase(str)
+  def es_upcase(str)
     str.strip.upcase.tr('áéíóúñ','ÁÉÍÓÚÑ')
   end
 
-  def self.format_tag(raw_tag, person)
+  def format_tag(raw_tag, person, browser=false)
     tag = raw_tag
 
     if person.role == "Visitante"
