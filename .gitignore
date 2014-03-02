@@ -6,7 +6,6 @@
 .DS_Store
 Gemfile.lock
 # Ignore bundler config.
-/.bundle
 /vendor/bundle
 
 # Ignore the default SQLite database.
