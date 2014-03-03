@@ -1,4 +1,8 @@
+require 'tags_helper'
+
 class PeopleController < ApplicationController
+  include TagsHelper
+
   def index
     sorts = [:name]
     sorts.unshift(params[:order]) if params[:order]
@@ -84,6 +88,13 @@ class PeopleController < ApplicationController
       format.html { redirect_to path }
       format.json { head :ok, location: path }
     end
+  end
+
+  def tag
+    person = Person.find(params[:id])
+    tag = tag_for(person, true)
+
+    render :text => tag, :content_type => 'image/svg+xml'
   end
 
   private

@@ -65,6 +65,13 @@ td > [data-method="delete"] > .glyphicon { color: #e74c3c }
 
 .yesno { min-width: 97px }
 
+.tag object {
+    border: 1px solid black;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 1);
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 1);
+}
+
 /* Loading */
 .loading {
     display: inline-block;

@@ -8,17 +8,17 @@ module TagsHelper
   end
 
   def tag_for(person, browser=false)
-    tag = TAG.sub(/^.*<!-- START HERE -->(.*)<!-- END HERE -->.*$/m,'\1')
-
     if browser
-      images_root = "#{app.root_path}/assets"
+      tag = TAG.dup
+      images_root = "#{root_url}/assets"
     else
+      tag = TAG.sub(/^.*<!-- START HERE -->(.*)<!-- END HERE -->.*$/m,'\1')
       images_root = Rails.root.join('app', 'assets', 'images').to_s
     end
 
     tag = tag.gsub(/\#\{images_root\}/m, images_root)
 
-    if person.role == "Visitante"
+    if person.role == 5 # Visitante
       tag = tag.sub(/\#\{role_bg_color\}/m, "\#fffed2")
     else
       tag = tag.sub(/\#\{role_bg_color\}/m, "\#ffffff")

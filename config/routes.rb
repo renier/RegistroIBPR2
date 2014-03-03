@@ -6,6 +6,7 @@ RegistroIBPR::Application.routes.draw do
 
   resources :people
 
+  get '/people/:id/tag', to: 'people#tag'
   get '/search', to: 'search#index'
   get '/print', to: 'print#index'
   get '/print/flush', to: 'print#flush'
