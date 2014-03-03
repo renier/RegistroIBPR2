@@ -7,11 +7,10 @@ class PrintController < ApplicationController
   end
 
   def flush
-    # TODO: fix notice based on force param
-    flash[:notice] = "Impresión sometida de todos los carnets"
+    flash[:notice] = I18n.t("forceprintflash")
     
-    RegistroConfig::PRINT_AGENT.flush(params[:force] || false)
+    RegistroConfig::PRINT_AGENT.flush(true)
 
-    redirect_to :action => "index"
+    redirect_to action: "index"
   end
 end

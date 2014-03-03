@@ -53,6 +53,10 @@ es:
   female: "Femenino"
   balance: "Balance"
   or: "ó"
+  pendingtags: "Pendientes for imprimir"
+  justprinted: "Acabados de imprimir"
+  forceprint: "Forzar impresión de páginas incompletas"
+  forceprintflash: "La impresión ha sido forzada con páginas incompletas."
   nth:
     1: "Primera"
     2: "Segunda"

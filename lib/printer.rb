@@ -21,7 +21,7 @@ class Printer
     @last_tags_printed = []
     @flush = nil
 
-    async.run
+    #async.run
   end
 
   def logger

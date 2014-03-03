@@ -36,7 +36,7 @@
             <ul id="left-nav" class="nav nav-pills nav-stacked" data-spy="affix">
                 <li class="<%= 'active' if controller_name == 'churches' %>">
                     <%= link_to(churches_path) do %>
-                        <i class="glyphicon glyphicon-home"></i> <%= t("churches") %>
+                        <span class="glyphicon glyphicon-home"></span> <%= t("churches") %>
                     <% end %>
                 </li>
                 <li class="<%= 'active' if controller_name == 'people' %>">
@@ -46,17 +46,17 @@
                 </li>
                 <li class="<%= 'active' if controller_name == 'printing' %>">
                     <%= link_to(controller: :print) do %>
-                        <i class="glyphicon glyphicon-print"></i> <%= t("printing") %>
+                        <span class="glyphicon glyphicon-print"></span> <%= t("printing") %>
                     <% end %>
                 </li>
                 <li class="<%= 'active' if controller_name == 'reports' %>">
                     <%= link_to("#") do %>
-                        <i class="glyphicon glyphicon-list-alt"></i> <%= t("reports") %>
+                        <span class="glyphicon glyphicon-list-alt"></span> <%= t("reports") %>
                     <% end %>
                 </li>
                 <li class="<%= 'active' if controller_name == 'users' %>">
                     <%= link_to("#") do %>
-                        <span class="fa fa-smile-o"></span> <%= t("users") %>
+                        <i class="fa fa-smile-o"></i> <%= t("users") %>
                     <% end %>
                 </li>
             </ul>

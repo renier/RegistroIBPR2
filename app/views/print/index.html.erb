@@ -1,15 +1,15 @@
-<% content_for :title , image_tag("printer.png")+" Carnets por imprimir" %>
-<div class="box2"><div class="bottom2">
-<p>
-<%= link_to image_tag("printer.png")+" Imprimir páginas completas ahora", {
-    :controller => "print",
-    :action => "flush" },
-    { :class => "button_link", :confirm => '¿Está seguro(a)? La aplicación ya las imprime automáticamente cada varios minutos' }
-%>
-</p>
-<%= render partial: "people/list", locals: { people: @print_people, with_church: true } %>
-</div></div>
+<h1><span class="glyphicon glyphicon-print"></span> <%= t("printing") %></h1>
 
-<h3 title="Últimos carnets impresos"><%= image_tag("printer.png") %> Últimos carnets impresos</h3><br />
-<%= render :partial => "people/list", :locals => {
-      :people => @printed_people }%>
+<h2><%= t("pendingtags") %></h2>
+
+<p>
+<%= link_to({ action: :flush }, { class: "btn btn-danger btn-small" }) do %>
+    <span class="glyphicon glyphicon-print"></span> <%= t("forceprint") %>
+<% end %>
+</p>
+
+<%= render partial: "people/list", locals: { people: @queued, with_church: true } %>
+
+<h2><%= t("justprinted") %></h2>
+
+<%= render partial: "people/list", locals: { people: @printed, with_church: true } %>
