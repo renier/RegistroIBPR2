@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20140223004552) do
 
   create_table "checks", force: true do |t|
     t.integer  "number"
-    t.decimal  "amount",      precision: 2, scale: 0, null: false
+    t.decimal  "amount",      precision: 9, scale: 2, null: false
     t.text     "description"
     t.integer  "church_id",                           null: false
     t.datetime "created_at"
