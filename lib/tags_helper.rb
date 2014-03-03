@@ -10,13 +10,16 @@ module TagsHelper
   def tag_for(person, browser=false)
     if browser
       tag = TAG.dup
-      images_root = "#{root_url}/assets"
+      logo_right = view_context.image_path "ibpr-logo-right-2014.png"
+      logo_left = view_context.image_path "ibpr-logo-left-2014.png"
     else
       tag = TAG.sub(/^.*<!-- START HERE -->(.*)<!-- END HERE -->.*$/m,'\1')
-      images_root = Rails.root.join('app', 'assets', 'images').to_s
+      logo_right = Rails.root.join('app', 'assets', 'images', 'ibpr-logo-right-2014.png').to_s
+      logo_left = Rails.root.join('app', 'assets', 'images', 'ibpr-logo-left-2014.png').to_s
     end
 
-    tag = tag.gsub(/\#\{images_root\}/m, images_root)
+    tag = tag.sub(/\#\{logo_right\}/m, logo_right)
+    tag = tag.sub(/\#\{logo_left\}/m, logo_left)
 
     if person.role == 5 # Visitante
       tag = tag.sub(/\#\{role_bg_color\}/m, "\#fffed2")

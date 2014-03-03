@@ -121,14 +121,14 @@
        id="image2981"
        height="95.499992"
        width="77.142342"
-       xlink:href="#{images_root}/ibpr-logo-right-2014.png" />
+       xlink:href="#{logo_right}" />
     <image
        y="2887.0842"
        x="0"
        id="image2904"
        height="107.99999"
        width="215.31326"
-       xlink:href="#{images_root}/ibpr-logo-left-2014.png" />
+       xlink:href="#{logo_left}" />
     <text
        xml:space="preserve"
        style="font-size:17.99521637px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans Bold"
