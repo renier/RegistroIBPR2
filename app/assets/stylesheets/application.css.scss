@@ -11,6 +11,7 @@
  *= require bootstrap.min
  *= require bootstrap-theme.min
  *= require font-awesome.min
+ *= require dashboard
  *= require_self
  */
 
@@ -70,6 +71,11 @@ td > [data-method="delete"] > .glyphicon { color: #e74c3c }
     -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 1);
     -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 1);
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 1);
+}
+
+/* Override bootstrap-theme */
+a.list-group-item .list-group-item-heading.text-info {
+    color: #3498db;
 }
 
 /* Loading */

@@ -1,37 +1,27 @@
 module ChurchesHelper
-  def display_name
-    "#{nth_to_word} #{prefix} #{name}".strip
+
+  # Any church that has a pastor, assoc. pastor, delegate or board member present
+  def attending_churches
+    churches = (Person.where(attended: true, role: [0,1,3,4]).map {|p| p.church }).uniq
+    churches.sort {|a,b| a.name <=> b.name }
   end
 
-  def short_name
-    roman = ["", "I", "II", "III", "IV", "V"][nth || 0]
-    
-    "#{name} #{roman}".strip
-  end
+  # Any church that has registered (pastor, assoc. pastor, delegate, or board member),
+  # but none are present.
+  def reg_churches
+    churches = []
+    Church.order(:name).all.each do |church|
+      if church.people.size > 0
+        people = church.people.select do |p|
+          [0,1,3,4].include?(p.role)
+        end
 
-  def nth_to_word
-    if nth.nil? || nth == 0
-      ""
-    else
-      I18n.t("nth")[nth]
+        if people.size > 0 and people.size == (people.reject {|p| p.attended }).size
+          churches << church
+        end
+      end
     end
-  end
-
-  def amount_paid
-    if new_record?
-      0
-    else
-      Check.sum("amount", conditions: "church_id = #{id}")
-    end
-  end
-
-  def balance_due
-    if new_record?
-      0
-    else
-      delegates = Person.count(conditions: "role = 'delegate' AND church_id = #{id}")
-      (delegates * RegistroConfig::due_per_delegate) - amount_paid
-    end
+    churches
   end
 
   def towns

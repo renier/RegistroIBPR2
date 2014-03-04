@@ -1,0 +1,20 @@
+<h1><span class="glyphicon glyphicon-list-alt"></span> <%= "#{t('churches')} #{t('present')}" %></h1>
+
+<table class="table table-striped round-topleft round-topright">
+    <tr class="active">
+        <th><%= t("activerecord.models.church") %></th>
+        <th><%= t("present") %></th>
+    </tr>
+    <% total_attending = 0 %>
+    <% @present_churches.each do |church| %>
+        <tr>
+            <td><%= link_to church.short_name, church_path(church) %></td>
+            <td><%= attending = (church.people.reject {|p| !p.attended }).size %></td>
+            <% total_attending += attending %>
+        </tr>
+    <% end %>
+    <tr>
+        <td class="active"><strong><%= @present_churches.size %></strong></td>
+        <td class="active"><strong><%= total_attending %></strong></td>
+    </tr>
+</table>

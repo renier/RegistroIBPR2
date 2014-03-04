@@ -1,0 +1,23 @@
+<h1><span class="glyphicon glyphicon-list-alt"></span> <%= t("reports") %></h1>
+<div class="list-group">
+  <%= link_to({ action: "present_churches" }, {class: "list-group-item"}) do %>
+    <h4 class="list-group-item-heading text-info"><%= "#{t('churches')} #{t('present')}" %></h4>
+    <p class="list-group-item-text"><%= t("present_churches_desc") %></p>
+  <% end %>
+  <%= link_to({ action: "registered_churches" }, {class: "list-group-item"}) do %>
+    <h4 class="list-group-item-heading text-info"><%= "#{t('churches')} #{t('registered')}" %></h4>
+    <p class="list-group-item-text"><%= t("registered_churches_desc") %></p>
+  <% end %>
+  <%= link_to({ action: "missing_churches" }, {class: "list-group-item"}) do %>
+    <h4 class="list-group-item-heading text-info"><%= t("missing_churches") %></h4>
+    <p class="list-group-item-text"><%= t("missing_churches_desc") %></p>
+  <% end %>
+  <%= link_to({ action: "full_roster" }, {class: "list-group-item"}) do %>
+    <h4 class="list-group-item-heading text-info"><%= t("full_roster") %></h4>
+    <p class="list-group-item-text"><%= t("full_roster_desc") %></p>
+  <% end %>
+  <%= link_to({ action: "churches_with_balance" }, {class: "list-group-item"}) do %>
+    <h4 class="list-group-item-heading text-info"><%= t("churches_with_balance") %></h4>
+    <p class="list-group-item-text"><%= t("churches_with_balance_desc") %></p>
+  <% end %>
+</div>

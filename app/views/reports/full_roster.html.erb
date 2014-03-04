@@ -1,0 +1,32 @@
+<h1>
+    <span class="glyphicon glyphicon-list-alt"></span> 
+    <%= "#{t('full_roster')} (#{@churches.size})" %>
+</h1>
+
+<% total_attendance = 0 %>
+
+<% @churches.each do |church| %>
+
+<%
+people = church.people.reject {|p| p.role == 5 or !p.attended }  # Visitors not counted here
+total_attendance += people.size
+%>
+
+<h3><%= "#{church.display_name} (#{people.size})" %></h3>
+
+<table class="table table-striped round-topleft round-topright">
+    <tr class="active">
+        <th style="width:50%"><%= t("name") %></th>
+        <th><%= t("activerecord.attributes.person.role") %></th>
+    </tr>
+
+    <% people.each do |person| %>
+        <tr>
+            <td><%= link_to person.greetname, church_person_path(church, person) %></td>
+            <td><%= person.display_role %></td>
+        </tr>
+    <% end %>
+</table>
+<% end %>
+
+<h3><strong><%= t('grand_voting_total', total: total_attendance) %></strong></h3>

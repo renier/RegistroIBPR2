@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require d3.v3.min
 //= require bootstrap.min
 //= require bootbox.min
 //= require_self

@@ -22,6 +22,7 @@
 es:
   short_title: "Registro IBPR 2014"
   subtitle: "112<sup>va</sup> Asamblea Anual (6-8 marzo)"
+  dashboard: "Estadísticas"
   churches: "Iglesias"
   people: "Personas"
   checks: "Pagos"
@@ -57,6 +58,19 @@ es:
   justprinted: "Acabados de imprimir"
   forceprint: "Forzar impresión de páginas incompletas"
   forceprintflash: "La impresión ha sido forzada con páginas incompletas."
+  present: "Presentes"
+  registered: "Registradas"
+  present_people: "Personas presentes"
+  church_attendance: "Asistencia de Iglesias"
+  present_churches_desc: "Iglesias con pastores, pastores asociados, o delegados que han sido marcados como presentes."
+  registered_churches_desc: "Iglesias con pastores, pastores asociados, o delegados registrados, pero con ninguno presente."
+  missing_churches: "Iglesias sin registro"
+  missing_churches_desc: "No tienen delegados registrados."
+  full_roster: "Asistencia por Iglesia"
+  full_roster_desc: "Asistencia de personas completa agrupada por Iglesias."
+  churches_with_balance: "Iglesias con balance"
+  churches_with_balance_desc: "No han pagado la totalidad de su cuota para la asamblea."
+  grand_voting_total: "Total de asistentes con voto: %{total}"
   nth:
     1: "Primera"
     2: "Segunda"
@@ -174,6 +188,13 @@ es:
       3: "Delegada"
       4: "Junta Directiva"
       5: "Visitante"
+    plural:
+      0: "Pastores"
+      1: "Pastores Asociados"
+      2: "Pastores Jubilados"
+      3: "Delegados"
+      4: "Junta Directiva"
+      5: "Visitantes"
   salutations:
     either:
       0: "Pastor(a)"

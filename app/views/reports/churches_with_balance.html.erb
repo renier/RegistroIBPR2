@@ -1,0 +1,18 @@
+<h1>
+    <span class="glyphicon glyphicon-list-alt"></span> 
+    <%= t('churches_with_balance') %>
+</h1>
+
+<table class="table table-striped round-topleft round-topright">
+    <tr class="active">
+        <th><%= t("activerecord.models.church") %></th>
+    </tr>
+    <% @churches.each do |church| %>
+        <tr>
+            <td><%= link_to church.short_name, church_path(church) %></td>
+        </tr>
+    <% end %>
+    <tr>
+        <td class="active"><strong><%= @churches.size %></strong></td>
+    </tr>
+</table>

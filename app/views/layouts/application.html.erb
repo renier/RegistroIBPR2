@@ -50,7 +50,7 @@
                     <% end %>
                 </li>
                 <li class="<%= 'active' if controller_name == 'reports' %>">
-                    <%= link_to("#") do %>
+                    <%= link_to(controller: :reports) do %>
                         <span class="glyphicon glyphicon-list-alt"></span> <%= t("reports") %>
                     <% end %>
                 </li>
