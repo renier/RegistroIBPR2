@@ -8,7 +8,7 @@ class Printer
   include PrintHelper
   include Celluloid
 
-  PRINT_INTERVAL = 600 # 10 minutes
+  PRINT_INTERVAL = 1800 # 30 minutes
   DBCHECK_INTERVAL = 180 # 3 minutes
   TAGS_PER_PAGE = 6
   PAGE_BASENAME = Dir.tmpdir + "/registroibpr_tag_page"
@@ -35,8 +35,6 @@ class Printer
   def last_tags_printed
     @last_tags_printed.dup
   end
-
-  private
 
   def run
     loop do

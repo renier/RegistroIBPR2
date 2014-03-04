@@ -91,7 +91,7 @@
      transform="translate(0,-2887.0842)">
     <!-- START HERE -->
     <rect
-       style="font-size:14px;fill:#ffffff;fill-opacity:1;stroke:none"
+       style="font-size:14px;fill:#{role_bg_color};fill-opacity:1;stroke:none"
        width="359.80878"
        height="270"
        x="0"
