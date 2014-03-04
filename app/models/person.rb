@@ -10,7 +10,7 @@ class Person < ActiveRecord::Base
     :message => I18n.t("church_required")
 
   def fullname
-    "#{name} #{lastnames}"
+    "#{name.strip} #{lastnames.strip}"
   end
 
   def salutation
