@@ -21,7 +21,7 @@ class Printer
     @last_tags_printed = []
     @flush = nil
 
-    #async.run
+    async.run
   end
 
   def logger
@@ -46,7 +46,9 @@ class Printer
 
       if @flush
         logger.info "Checking queue to see if we have any tags waiting to be printed... "
-        people = Person.joins(:church).order("churches.name", :name, :lastnames).where(print: true)
+        people = Person.joins(:church).
+          order("churches.name", :name, :lastnames).
+          where(printed: false)
         @last_dbcheck = Time.now
         logger.info "Found #{people.size} tags waiting to be printed."
         logger.info "No complete pages, yet. Leaving for later..." if people.size < TAGS_PER_PAGE and !@flush[:force]
@@ -119,7 +121,7 @@ class Printer
     # update person records as not needing printing
     people.each do |person|
       person.send(:instance_variable_set, :@readonly, false)
-      person.update(print: false)
+      person.update(printed: true)
     end
     sleep 1 # breathe
   end

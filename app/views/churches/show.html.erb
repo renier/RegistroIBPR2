@@ -38,7 +38,7 @@
         <div class="panel-title"><i class="fa fa-users"></i> <%= "#{t('people')} (#{@people.size})" %></div>
     </div>
     <div class="panel-body">
-        <%= link_to new_church_person_path(@church), class: "btn btn-info" do %>
+        <%= link_to new_church_person_path(@church), class: "btn btn-info btn-sm" do %>
             <span class="glyphicon glyphicon-plus"></span> 
             <%= t("helpers.submit.create", model: t("activerecord.models.person")) %>
         <% end %>

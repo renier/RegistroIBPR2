@@ -1,13 +1,19 @@
 <table class="table table-striped table-hover round-topleft round-topright">
     <tr class="active">
+        <% if not defined?(no_sort) or no_sort == false %>
         <th><a href="?order=name"><%= t("name") %></a></th>
         <th><a href="?order=role"><%= t("activerecord.attributes.person.role") %></a></th>
         <% if with_church %>
         <th><a href="?order=churches.name"><%= t("activerecord.models.church") %></a></th>
         <% end %>
+        <% else %>
+        <th><%= t("name") %></th>
+        <th><%= t("activerecord.attributes.person.role") %></th>
+        <th><%= t("activerecord.models.church") %></th>
+        <% end %>
         <th><%= t("activerecord.attributes.person.attended") %></th>
         <th><%= t("activerecord.attributes.person.materials") %></th>
-        <th><%= t("activerecord.attributes.person.print") %></th>
+        <th><%= t("activerecord.attributes.person.printed") %></th>
         <th></th>
         <th></th>
     </tr>
@@ -18,7 +24,7 @@
             <% if with_church %>
             <td><%= link_to person.church.short_name, person.church if person.church %></td>
             <% end %>
-            <% ["attended", "materials", "print"].each do |field| %>
+            <% ["attended", "materials", "printed"].each do |field| %>
             <%= render partial: 'people/toggle', locals: { person: person, field: field } %>
             <% end %>
             <td>
