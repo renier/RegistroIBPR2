@@ -8,8 +8,8 @@
 <% end %>
 </p>
 
-<%= render partial: "people/list", locals: { people: @queued, with_church: true } %>
+<%= render partial: "people/list", locals: { people: @queued, with_church: true, no_sort: true } %>
 
 <h2><%= t("justprinted") %></h2>
 
-<%= render partial: "people/list", locals: { people: @printed, with_church: true } %>
+<%= render partial: "people/list", locals: { people: @printed, with_church: true, no_sort: true } %>

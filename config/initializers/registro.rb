@@ -6,7 +6,7 @@ module RegistroConfig
   LIVE_DATE = Time.new(2014, 3, 6)
   INKSCAPE_PATH = "inkscape"
   if not defined?(Rails::Console)
-    PRINT_AGENT = Printer.new
+    #PRINT_AGENT = Printer.new
   end
 end
 

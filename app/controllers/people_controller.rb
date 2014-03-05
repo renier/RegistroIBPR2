@@ -10,9 +10,10 @@ class PeopleController < ApplicationController
     if params[:church_id]
       church = Church.find(params[:church_id])
       @people = church.people
+    elsif params[:order] == 'churches.name'
+      @people = Person.joins(:church)
     else
       @people = Person
-      @people = @people.joins(:church) if params[:order] == 'churches.name'
     end
 
     @people = @people.order(*sorts.uniq).page(params[:page] || 1)
@@ -102,6 +103,6 @@ class PeopleController < ApplicationController
   def check_params
     params.require(:person).permit(
       :salutation, :name, :lastnames, :sex, :role, :description,
-      :attended, :materials, :print, :church_id)
+      :attended, :materials, :printed, :church_id)
   end
 end
