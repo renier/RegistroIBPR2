@@ -70,7 +70,7 @@ $(document).on("page:change", function() {
             type: "PUT",
             data: data,
             success: function(xhr) {
-                buttons.toggleClass("invisible");
+                buttons.toggleClass("hidden");
             },
             complete: function(xhr, status) {
                 loading.toggleClass("invisible");

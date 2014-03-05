@@ -86,6 +86,9 @@ a.list-group-item .list-group-item-heading.text-info {
     height: 24px;
     background-repeat: no-repeat;
     vertical-align: middle;
+    float: right;
+    position: absolute;
+    margin-left: 25px;
 }
 
 .table-striped > tbody > tr:nth-child(odd) > td > .loading {

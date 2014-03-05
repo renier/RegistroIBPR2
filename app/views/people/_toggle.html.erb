@@ -3,20 +3,20 @@
     affirmation = affirmation(value)
     id = "#{field}-#{affirmation}-#{person.id}"
 %>
-<td class="yesno" id="<%= id %>">
+<td class="text-center yesno" id="<%= id %>">
+    <span class="loading invisible"></span>
     <button
         type="button"
-        class="btn btn-success btn-xs <%= 'invisible' if !value %>"
+        class="btn btn-success btn-xs <%= 'hidden' if !value %>"
         data-url="<%= url_for person.church ? [person.church, person] : person %>"
         data-model="person"
         data-field="<%= field %>"
         for="<%= id %>">
             <%= t("positive") %>
     </button>
-    <span class="loading invisible"></span>
     <button
         type="button"
-        class="btn btn-warning btn-xs <%= 'invisible' if value %>" 
+        class="btn btn-warning btn-xs <%= 'hidden' if value %>" 
         data-url="<%= url_for person.church ? [person.church, person] : person %>" for="<%= id %>"
         data-model="person"
         data-field="<%= field %>"
