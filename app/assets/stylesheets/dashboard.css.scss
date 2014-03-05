@@ -1,10 +1,10 @@
 // Place all the styles related to the dashboard controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.chart-head {
+.statistics {
     float: left;
-    width: 300px;
     text-align: center;
+    width: 450px;
 }
 
 .easy-as-pie-chart {
@@ -12,10 +12,8 @@
   font: 10px sans-serif;
   height: 300px;
   text-shadow: none;
-  width: 300px;
-  float: left;
 }
-#easy-as-pie-chart { clear: left }
+
 .easy-as-pie-chart .total{
   font-size: 18px;
   font-weight: bold;

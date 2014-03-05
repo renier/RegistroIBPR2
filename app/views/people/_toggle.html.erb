@@ -3,7 +3,7 @@
     affirmation = affirmation(value)
     id = "#{field}-#{affirmation}-#{person.id}"
 %>
-<td class="text-center yesno" id="<%= id %>">
+<td class="text-<%= defined?(align) ? align : "center" %> yesno" id="<%= id %>">
     <span class="loading invisible"></span>
     <button
         type="button"

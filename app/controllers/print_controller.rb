@@ -1,8 +1,7 @@
 class PrintController < ApplicationController
 
   def index
-    @queued = Person.joins(:church).
-      order("churches.name", :name, :lastnames).where(printed: false)
+    @queued = PeopleHelper.queued
 
     if defined?(RegistroConfig::PRINT_AGENT)
       @printed = Person.find(RegistroConfig::PRINT_AGENT.last_tags_printed)

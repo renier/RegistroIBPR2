@@ -10,6 +10,8 @@
 
 <%= render partial: "people/list", locals: { people: @queued, with_church: true, no_sort: true } %>
 
+<p><strong><%= t("total") %>:</strong> <%= @queued.size %></p>
+
 <h2><%= t("justprinted") %></h2>
 
 <%= render partial: "people/list", locals: { people: @printed, with_church: true, no_sort: true } %>

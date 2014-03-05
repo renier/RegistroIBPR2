@@ -71,6 +71,7 @@ es:
   churches_with_balance: "Iglesias con balance"
   churches_with_balance_desc: "No han pagado la totalidad de su cuota para la asamblea."
   grand_voting_total: "Total de asistentes con voto: %{total}"
+  total: "Total"
   nth:
     1: "Primera"
     2: "Segunda"
@@ -203,6 +204,7 @@ es:
       3: "Lcdo(a)."
       4: "Endosado(a)"
       5: "Capellán"
+      6: "Ing."
     m:
       0: "Pastor"
       1: "Rvdo."
@@ -210,6 +212,7 @@ es:
       3: "Lcdo."
       4: "Endosado"
       5: "Capellán"
+      6: "Ing."
     f:
       0: "Pastora"
       1: "Rvda."
@@ -217,3 +220,4 @@ es:
       3: "Lcda."
       4: "Endosada"
       5: "Capellán"
+      6: "Ing."

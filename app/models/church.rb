@@ -29,7 +29,11 @@ class Church < ActiveRecord::Base
     end
 
     def quota
-      people.where(role: [0, 1, 3]).size * RegistroConfig::DUE_PER_DELEGATE
+      for_delegates = people.where(role: [0, 1, 3]).size *
+                        RegistroConfig::DUE_PER_DELEGATE
+      for_visitors = people.where(role: 5, materials: true).size *
+                      RegistroConfig::COST_OF_MATERIALS_FOR_VISITOR
+      for_delegates + for_visitors
     end
 
     def balance

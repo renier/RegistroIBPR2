@@ -4,7 +4,7 @@
 </h1>
 
 <p>
-<%= link_to edit_church_person_path(@person.church, @person), class: "btn btn-primary" do %>
+<%= link_to @person.church ? edit_church_person_path(@person.church, @person) : edit_person_path(@person), class: "btn btn-primary" do %>
     <span class="glyphicon glyphicon-pencil"></span> 
     <%= t("edit") %>
 <% end %>
@@ -14,7 +14,7 @@
     <%= t("delete") %>
 <% end %>
 
-<%= link_to new_church_person_path(@person.church, @person), class: "btn btn-default" do %>
+<%= link_to @person.church ? new_church_person_path(@person.church, @person) : new_person_path(@person), class: "btn btn-default" do %>
     <span class="glyphicon glyphicon-plus"></span> 
     <%= t("helpers.submit.create", model: t("activerecord.models.person")) %>
 <% end %>
@@ -43,7 +43,7 @@
                     <%= t("activerecord.attributes.person.#{field}") %>
                 </strong>
             </td>
-            <%= render partial: 'toggle', locals: { person: @person, field: field } %>
+            <%= render partial: 'toggle', locals: { person: @person, field: field, align: "left" } %>
         </tr>
     <% end %>
 </table>
