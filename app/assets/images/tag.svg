@@ -121,6 +121,7 @@
        id="image2981"
        height="95.499992"
        width="77.142342"
+       preserveAspectRatio="none"
        xlink:href="#{logo_right}" />
     <image
        y="2887.0842"
@@ -128,6 +129,7 @@
        id="image2904"
        height="107.99999"
        width="215.31326"
+       preserveAspectRatio="none"
        xlink:href="#{logo_left}" />
     <text
        xml:space="preserve"
