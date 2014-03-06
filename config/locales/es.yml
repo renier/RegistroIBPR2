@@ -57,6 +57,7 @@ es:
   balance: "Balance"
   or: "ó"
   pendingtags: "Pendientes for imprimir"
+  confirm: "¿Está seguro(a)?"
   justprinted: "Acabados de imprimir"
   forceprint: "Forzar impresión de páginas incompletas"
   forceprintflash: "La impresión ha sido forzada con páginas incompletas."

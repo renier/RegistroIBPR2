@@ -3,7 +3,7 @@
 <h2><%= t("pendingtags") %></h2>
 
 <p>
-<%= link_to({ action: :flush }, { class: "btn btn-danger btn-small" }) do %>
+<%= link_to({ action: :flush }, { class: "btn btn-danger btn-small", data: { method: :delete, question: raw(t("confirm"))} }) do %>
     <span class="glyphicon glyphicon-print"></span> <%= t("forceprint") %>
 <% end %>
 </p>
