@@ -14,7 +14,7 @@
     <%= t("delete") %>
 <% end %>
 
-<%= link_to @person.church ? new_church_person_path(@person.church, @person) : new_person_path(@person), class: "btn btn-default" do %>
+<%= link_to @person.church ? new_church_person_path(@person.church) : new_person_path, class: "btn btn-default" do %>
     <span class="glyphicon glyphicon-plus"></span> 
     <%= t("helpers.submit.create", model: t("activerecord.models.person")) %>
 <% end %>
