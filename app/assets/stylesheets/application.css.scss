@@ -107,3 +107,9 @@ a.list-group-item .list-group-item-heading.text-info {
 .table-striped > tbody > tr:hover > td > .loading {
     background-image: image-url("loading3.gif");
 }
+
+@media print {
+    .col-md-2 {
+        display: none;
+    }
+}
