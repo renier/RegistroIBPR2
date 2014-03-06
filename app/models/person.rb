@@ -9,6 +9,8 @@ class Person < ActiveRecord::Base
   validates_presence_of :church_id, :if => "role != 2 and role != 4 and role != 5",
     :message => I18n.t("church_required")
 
+  has_paper_trail
+
   def fullname
     "#{name.strip} #{lastnames.strip}"
   end

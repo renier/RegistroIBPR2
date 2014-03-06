@@ -4,6 +4,8 @@ class Church < ActiveRecord::Base
 
     validates_presence_of :name
 
+    has_paper_trail
+
     include ChurchesHelper
 
     def display_name
