@@ -35,6 +35,12 @@ gem 'kaminari'
 # For concurrent worker services (Printing)
 gem 'celluloid'
 
+# For the Frontend
+gem 'bootstrap-sass'
+gem 'font-awesome-sass'
+gem 'bootbox-rails'
+gem 'd3-rails'
+
 group :development, :staging do
   gem 'puma'
 end

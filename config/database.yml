@@ -28,7 +28,7 @@ test:
 
 production:
   adapter: postgresql
-  database: registroibpr_production
+  database: registroibpr_development
   pool: 5
   username: registroibpr
   password: than7ful

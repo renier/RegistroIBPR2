@@ -13,9 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require d3.v3.min
-//= require bootstrap.min
-//= require bootbox.min
+//= require d3
+//= require bootstrap
+//= require bootbox
 //= require_self
 
 var rails = {
