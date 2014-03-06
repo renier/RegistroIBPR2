@@ -12,7 +12,8 @@ class Printer
   DBCHECK_INTERVAL = 180 # 3 minutes
   TAGS_PER_PAGE = 6
   PAGE_BASENAME = Dir.tmpdir + "/registroibpr_tag_page"
-  TAGS_PAGE = File.open(Rails.root.join('app', 'assets', 'images', 'tags.svg').to_s, 'r').read
+  TAGS_PAGE = File.open(
+    Rails.root.join('app', 'assets', 'images', 'tags.svg').to_s, 'r').read
   ZZZ = 5
 
   def initialize()
@@ -48,10 +49,13 @@ class Printer
         logger.info "Checking queue to see if we have any tags waiting to be printed... "
 
         people = PeopleHelper.queued
-
         @last_dbcheck = Time.now
+        @last_print = @last_dbcheck if people.size == 0
+
         logger.info "Found #{people.size} tags waiting to be printed."
-        logger.info "No complete pages, yet. Leaving for later..." if people.size < TAGS_PER_PAGE and !@flush[:force]
+        if people.size < TAGS_PER_PAGE and !@flush[:force]
+          logger.info "No complete pages, yet. Leaving for later..."
+        end
         go_ahead = false
 
         if @flush[:force] and people.size > 0
