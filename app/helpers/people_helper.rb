@@ -1,4 +1,14 @@
 module PeopleHelper
+
+  module Roles
+    PASTOR           = 0
+    ASSOCIATE_PASTOR = 1
+    RETIRED_PASTOR   = 2
+    DELEGATE         = 3
+    BOARD_MEMBER     = 4
+    VISITOR          = 5
+  end
+
   def affirmation(value)
     value ? "positive" : "negative"
   end

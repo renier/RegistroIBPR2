@@ -4,9 +4,9 @@
     <h4 class="list-group-item-heading text-info"><%= "#{t('churches')} #{t('present')}" %></h4>
     <p class="list-group-item-text"><%= t("present_churches_desc") %></p>
   <% end %>
-  <%= link_to({ action: "registered_churches" }, {class: "list-group-item"}) do %>
-    <h4 class="list-group-item-heading text-info"><%= "#{t('churches')} #{t('registered')}" %></h4>
-    <p class="list-group-item-text"><%= t("registered_churches_desc") %></p>
+  <%= link_to({ action: "arriving_churches" }, {class: "list-group-item"}) do %>
+    <h4 class="list-group-item-heading text-info"><%= t('arriving_churches') %></h4>
+    <p class="list-group-item-text"><%= t("arriving_churches_desc") %></p>
   <% end %>
   <%= link_to({ action: "missing_churches" }, {class: "list-group-item"}) do %>
     <h4 class="list-group-item-heading text-info"><%= t("missing_churches") %></h4>

@@ -16,8 +16,8 @@
     </tr>
     <% checks.each do |check| %>
         <tr>
-            <td><%= link_to check.display_amount, [church, check] %></td>
-            <td><%= link_to check.church.short_name, check.church %></td>
+            <td><%= link_to check.display_amount, church_check_path(church, check) %></td>
+            <td><%= link_to check.church.short_name, church_path(church) %></td>
             <td><%= check.number %></td>
             <td><%= check.description %></td>
             <td>

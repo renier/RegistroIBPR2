@@ -1,51 +1,34 @@
 <h1>
-    <span class="glyphicon glyphicon-home"></span> 
-    <%= @church.short_name %>
+    <i class="fa fa-credit-card"></i>
+    <%= t("activerecord.models.check") %>
 </h1>
 
 <p>
-<%= link_to edit_church_path, class: "btn btn-primary" do %>
+<%= link_to edit_church_check_path(@church, @check), class: "btn btn-primary" do %>
     <span class="glyphicon glyphicon-pencil"></span> 
     <%= t("edit") %>
 <% end %>
 
-<%= link_to church_path(@church), class: "btn btn-danger", data: { method: :delete, question: raw(t("confirm_church_delete", name: @church.short_name)) } do %>
+<%= link_to church_check_path(@church, @check), class: "btn btn-danger", data: { method: :delete, question: raw(t("confirm_check_delete", name: @check.amount)) } do %>
     <span class="glyphicon glyphicon-trash"></span> 
     <%= t("delete") %>
 <% end %>
 
-<%= link_to new_church_path, class: "btn btn-default" do %>
+<%= link_to new_church_check_path(@church), class: "btn btn-default" do %>
     <span class="glyphicon glyphicon-plus"></span> 
-    <%= t("helpers.submit.create", model: t("activerecord.models.church")) %>
+    <%= t("helpers.submit.create", model: t("activerecord.models.check")) %>
 <% end %>
 </p>
 
 <table class="table table-striped round-topleft round-bottomleft">
-    <% ["position", "display_name", "nickname", "town", "notes"].each do |field| %>
+    <% ["number", "amount", "description"].each do |field| %>
         <tr>
             <td class="active" style="width: 18%">
                 <strong>
-                    <%= t("activerecord.attributes.church.#{field}") %>
+                    <%= t("activerecord.attributes.check.#{field}") %>
                 </strong>
             </td>
-            <td><%= @church.send(field) %></td>
+            <td><%= field == "amount" ? number_to_currency(@check.send(field)) : @check.send(field) %></td>
         </tr>    
     <% end %>
 </table>
-
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <div class="panel-title"><%= t("people") %></div>
-    </div>
-    <div class="panel-body">
-        <%= link_to new_church_person_path(@church), class: "btn btn-info" do %>
-            <span class="glyphicon glyphicon-plus"></span> 
-            <%= t("helpers.submit.create", model: t("activerecord.models.person")) %>
-        <% end %>
-        &nbsp; &nbsp;<small><em><%= t("person_help") %></em></small>
-
-        <p>
-            <%= render partial: 'people/list', locals: { people: @church.people, with_church: false } %>
-        </p>
-    </div>
-</div>

@@ -1,4 +1,4 @@
-<h1><span class="glyphicon glyphicon-list-alt"></span> <%= "#{t('churches')} #{t('registered')}" %></h1>
+<h1><span class="glyphicon glyphicon-list-alt"></span> <%= t('arriving_churches') %></h1>
 
 <table class="table table-striped round-topleft round-topright">
     <tr class="active">
@@ -6,7 +6,7 @@
         <th><%= t("registered") %></th>
     </tr>
     <% total_registered = 0 %>
-    <% @registered_churches.each do |church| %>
+    <% @arriving_churches.each do |church| %>
         <tr>
             <td><%= link_to church.short_name, church_path(church) %></td>
             <td><%= registered = (church.people.select {|p| [0,1,3,4].include?(p.role) }).size %></td>
@@ -14,7 +14,7 @@
         </tr>
     <% end %>
     <tr>
-        <td class="active"><strong><%= @registered_churches.size %></strong></td>
+        <td class="active"><strong><%= @arriving_churches.size %></strong></td>
         <td class="active"><strong><%= total_registered %></strong></td>
     </tr>
 </table>

@@ -8,8 +8,8 @@ class Printer
   include PrintHelper
   include Celluloid
 
-  PRINT_INTERVAL = 1800 # 30 minutes
-  DBCHECK_INTERVAL = 180 # 3 minutes
+  MAX_PRINT_INTERVAL = 1800 # 30 minutes
+  DBCHECK_INTERVAL = 60 # 1 minute
   TAGS_PER_PAGE = 6
   PAGE_BASENAME = Dir.tmpdir + "/registroibpr_tag_page"
   TAGS_PAGE = File.open(
@@ -39,7 +39,7 @@ class Printer
 
   def run
     loop do
-      if Time.now >= (@last_print + PRINT_INTERVAL)
+      if Time.now >= (@last_print + MAX_PRINT_INTERVAL)
         flush(true)  # too much time has passed sice last print. force a print.
       elsif Time.now >= (@last_dbcheck + DBCHECK_INTERVAL)
         flush()  # if we have any complete pages needing printing, print them.

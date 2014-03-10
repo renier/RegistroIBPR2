@@ -7,7 +7,7 @@
 Gemfile.lock
 # Ignore bundler config.
 /vendor/bundle
-
+/public/assets
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal

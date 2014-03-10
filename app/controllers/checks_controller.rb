@@ -5,6 +5,7 @@ class ChecksController < ApplicationController
   end
 
   def show
+    @church = Church.find(params[:church_id])
     @check = Check.find(params[:id])
   end
 

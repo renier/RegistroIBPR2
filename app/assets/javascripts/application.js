@@ -26,6 +26,11 @@ var rails = {
 };
 
 $(document).on("page:change", function() {
+    // clear statistics refresh
+    if (window.refreshDashboardTimeout) {
+        window.refreshDashboardTimeout = clearTimeout(window.refreshDashboardTimeout);
+    }
+
     // Activate tooltips
     $('[data-toggle="tooltip"]').tooltip();
 
@@ -42,6 +47,16 @@ $(document).on("page:change", function() {
                     location.href = xhr.getResponseHeader("location");
                 }
             });
+        })
+        return false;
+    });
+
+    $('a[data-method="get"]').click(function() {
+        var link = $(this), a = this,
+            question = link.data("question"),
+            url = link.attr("href");
+        bootbox.confirm(question, function(result) {
+            a.click();
         })
         return false;
     });

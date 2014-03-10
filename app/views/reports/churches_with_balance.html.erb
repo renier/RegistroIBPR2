@@ -6,13 +6,19 @@
 <table class="table table-striped round-topleft round-topright">
     <tr class="active">
         <th><%= t("activerecord.models.church") %></th>
+        <th><%= t("balance") %></th>
     </tr>
+    <% total_balance = 0 %>
     <% @churches.each do |church| %>
         <tr>
             <td><%= link_to church.short_name, church_path(church) %></td>
+            <% balance = church.balance %>
+            <% total_balance += balance %>
+            <td><%= number_to_currency(balance) %></td>
         </tr>
     <% end %>
     <tr>
         <td class="active"><strong><%= @churches.size %></strong></td>
+        <td class="active"><strong><%= number_to_currency(total_balance) %></strong></td>
     </tr>
 </table>

@@ -112,4 +112,8 @@ a.list-group-item .list-group-item-heading.text-info {
     .col-md-2 {
         display: none;
     }
+
+    a:link:after, a:visited:after { content: "" }
+
+    a:link { text-decoration: none }
 }

@@ -8,8 +8,8 @@ class ReportsController < ApplicationController
     @present_churches = attending_churches
   end
 
-  def registered_churches
-    @registered_churches = reg_churches
+  def arriving_churches
+    @arriving_churches = registered_churches_not_present
   end
 
   def missing_churches

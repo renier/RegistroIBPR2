@@ -20,7 +20,8 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 es:
-  copyright: "© Copyright Renier Morales, 2009-2014. Derechos reservados."
+  distribution_legend: "P = Pastores, PA = Pastores Asociados, PJ = Pastores Jubilados, D = Delegados, JD = Junta Directiva, V = Visitantes"
+  copyright: "© Copyright Renier Morales Rodríguez, 2009-2014. Derechos reservados."
   contact: "renier@morales-rodriguez.net | 787.469.6236"
   short_title: "Registro IBPR 2014"
   subtitle: "112<sup>va</sup> Asamblea Anual (6-8 marzo)"
@@ -63,10 +64,11 @@ es:
   forceprintflash: "La impresión ha sido forzada con páginas incompletas."
   present: "Presentes"
   registered: "Registradas"
+  arriving_churches: "Iglesias registradas por llegar"
   present_people: "Personas presentes"
   church_attendance: "Asistencia de Iglesias"
   present_churches_desc: "Iglesias con pastores, pastores asociados, o delegados que han sido marcados como presentes."
-  registered_churches_desc: "Iglesias con pastores, pastores asociados, o delegados registrados, pero con ninguno presente."
+  arriving_churches_desc: "Iglesias con pastores, pastores asociados, o delegados registrados, pero con ninguno presente."
   missing_churches: "Iglesias sin registro"
   missing_churches_desc: "No tienen delegados registrados."
   full_roster: "Asistencia por Iglesia"
@@ -137,6 +139,7 @@ es:
             amount:
               blank: "está en blanco."
               not_a_number: "debe ser un número."
+              greater_than: " debe ser mayor de cero."
   kaminari:
     next: "Próxima página"
     last: "Última página"
@@ -193,12 +196,12 @@ es:
       4: "Junta Directiva"
       5: "Visitante"
     plural:
-      0: "Pastores"
-      1: "Pastores Asociados"
-      2: "Pastores Jubilados"
-      3: "Delegados"
-      4: "Junta Directiva"
-      5: "Visitantes"
+      0: "P"
+      1: "PA"
+      2: "PJ"
+      3: "D"
+      4: "JD"
+      5: "V"
   salutations:
     either:
       0: "Pastor(a)"

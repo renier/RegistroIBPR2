@@ -8,7 +8,7 @@ class DashboardController < ApplicationController
     end
 
     present = attending_churches.size
-    registered = reg_churches.size
+    registered = registered_churches_not_present.size
     @churches = [
       { port: I18n.t("present"), octetTotalCount: present },
       { port: I18n.t("registered"), octetTotalCount: registered }

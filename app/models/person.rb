@@ -16,11 +16,16 @@ class Person < ActiveRecord::Base
   end
 
   def salutation
-    I18n.t("salutations.#{sexmf}")[read_attribute(:salutation)]
+    value = read_attribute(:salutation)
+    if value
+      I18n.t("salutations.#{sexmf}")[value]
+    else
+      ""
+    end
   end
 
   def greetname
-    "#{salutation} #{fullname}"
+    "#{salutation} #{fullname}".strip
   end
 
   def display_role
