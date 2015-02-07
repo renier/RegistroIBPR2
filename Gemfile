@@ -36,9 +36,9 @@ gem 'kaminari'
 gem 'celluloid'
 
 # For the Frontend
-gem 'bootstrap-sass'
-gem 'font-awesome-sass'
-gem 'bootbox-rails'
+gem 'bootstrap-sass', '~> 3.3.3'
+gem 'font-awesome-sass', '~> 4.3.0'
+gem 'bootbox-rails', '~> 0.4'
 gem 'd3-rails'
 
 group :development, :staging do

@@ -7,13 +7,14 @@
  *
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
- *
- *= require bootstrap
- *= require bootswatch-flatly
- *= require font-awesome
- *= require dashboard
- *= require_self
  */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "bootswatch-flatly";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+@import "dashboard";
 
 body { padding-top: 70px }
 
