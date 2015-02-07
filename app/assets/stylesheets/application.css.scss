@@ -109,6 +109,8 @@ a.list-group-item .list-group-item-heading.text-info {
     background-image: image-url("loading3.gif");
 }
 
+.bootbox .modal-dialog { z-index: 1050; }
+
 @media print {
     .col-md-2 {
         display: none;
