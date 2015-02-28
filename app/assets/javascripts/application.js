@@ -20,7 +20,7 @@
 
 var rails = {
     inController: function(name) {
-        return (new RegExp("\/" + name + "\/?$|\/" + name + "\/[0-9a-z]+$")).
+        return (new RegExp("\/" + name + "\/?$|\/" + name + "\/[0-9a-z]+(/edit)?$")).
             test(location.href);
     }
 };
