@@ -14,8 +14,8 @@ module TagsHelper
       logo_left = view_context.image_path "ibpr-logo-left-2015.png"
     else
       tag = TAG.sub(/^.*<!-- START HERE -->(.*)<!-- END HERE -->.*$/m,'\1')
-      logo_right = Rails.root.join('app', 'assets', 'images', 'ibpr-logo-right-2014.png').to_s
-      logo_left = Rails.root.join('app', 'assets', 'images', 'ibpr-logo-left-2014.png').to_s
+      logo_right = Rails.root.join('app', 'assets', 'images', 'ibpr-logo-right.png').to_s
+      logo_left = Rails.root.join('app', 'assets', 'images', 'ibpr-logo-left-2015.png').to_s
     end
 
     tag = tag.sub(/\#\{logo_right\}/m, logo_right)
