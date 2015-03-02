@@ -21,9 +21,6 @@ class Printer
     @last_dbcheck = Time.now - DBCHECK_INTERVAL
     @last_tags_printed = []
     @flush = nil
-
-    #async.run
-    run
   end
 
   def logger
@@ -112,6 +109,11 @@ class Printer
   end
 
   def print_page(page, people)
+    if File.exists? Rails.root.join('noprint').to_s
+      sleep 1
+      return
+    end
+
     basename = "#{PAGE_BASENAME}.#{Time.now.to_f}"
     svg_file = "#{basename}.svg"
     pdf_file = "#{basename}.pdf"

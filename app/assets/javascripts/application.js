@@ -52,11 +52,17 @@ $(document).on("page:change", function() {
     });
 
     $('a[data-method="get"]').click(function() {
-        var link = $(this), a = this,
+        var link = $(this),
             question = link.data("question"),
             url = link.attr("href");
         bootbox.confirm(question, function(result) {
-            a.click();
+            if (!result) { return; }
+            $.ajax(url + ".json", {
+                type: "GET",
+                complete: function(xhr) {
+                    location.href = xhr.getResponseHeader("location");
+                }
+            });
         })
         return false;
     });
