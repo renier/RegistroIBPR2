@@ -9,7 +9,9 @@
 
 <%
 unless @all
-people = church.people.reject {|p| p.role == 5 || !p.attended }  # Visitors not counted here
+  people = church.people.reject {|p| p.role == 5 || !p.attended }  # Visitors not counted here
+else
+  people = church.people
 end
 total_attendance += people.size
 %>
