@@ -8,7 +8,9 @@
 <% @churches.each do |church| %>
 
 <%
-people = church.people.reject {|p| p.role == 5 or !p.attended }  # Visitors not counted here
+unless @all
+people = church.people.reject {|p| p.role == 5 || !p.attended }  # Visitors not counted here
+end
 total_attendance += people.size
 %>
 
@@ -29,4 +31,8 @@ total_attendance += people.size
 </table>
 <% end %>
 
+<% unless @all %>
 <h3><strong><%= t('grand_voting_total', total: total_attendance) %></strong></h3>
+<% else %>
+<h3><strong><%= t('grand_registered_total', total: total_attendance) %></strong></h3>
+<% end %>

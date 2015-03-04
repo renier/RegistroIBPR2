@@ -78,6 +78,7 @@ es:
   churches_with_balance: "Iglesias con balance"
   churches_with_balance_desc: "No han pagado la totalidad de su cuota para la asamblea."
   grand_voting_total: "Total de asistentes con voto: %{total}"
+  grand_registered_total: "Total registrados: %{total}"
   total: "Total"
   nth:
     1: "Primera"

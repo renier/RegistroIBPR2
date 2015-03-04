@@ -19,6 +19,7 @@ class ReportsController < ApplicationController
   def full_roster
     if params[:all]
       @churches = Church.order(:name).all.reject {|c| c.people.size == 0 }
+      @all = true
     else
       @churches = attending_churches
     end
