@@ -73,6 +73,8 @@ es:
   missing_churches_desc: "No tienen delegados registrados."
   full_roster: "Asistencia por Iglesia"
   full_roster_desc: "Asistencia de personas completa agrupada por Iglesias."
+  full_roster_all: "Registrados por Iglesia"
+  full_roster_all_desc: "Toda persona registrada agrupados por Iglesia."
   churches_with_balance: "Iglesias con balance"
   churches_with_balance_desc: "No han pagado la totalidad de su cuota para la asamblea."
   grand_voting_total: "Total de asistentes con voto: %{total}"
