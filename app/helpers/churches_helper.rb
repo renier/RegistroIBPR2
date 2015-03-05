@@ -52,6 +52,7 @@ module ChurchesHelper
       "Las Piedras",
       "Loíza",
       "Luquillo",
+      "Maunabo",
       "Mayagüez",
       "Morovis",
       "Naguabo",
