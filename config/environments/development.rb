@@ -27,5 +27,7 @@ RegistroIBPR::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+  config.log_level = :info
+
   I18n.enforce_available_locales = false
 end

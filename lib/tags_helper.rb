@@ -10,12 +10,12 @@ module TagsHelper
   def tag_for(person, browser=false)
     if browser
       tag = TAG.dup
-      logo_right = view_context.image_path "ibpr-logo-right.png"
-      logo_left = view_context.image_path "ibpr-logo-left-2015.png"
+      logo_right = view_context.image_path "ibpr-logo-right-2016.png"
+      logo_left = view_context.image_path "ibpr-logo-left-2016.png"
     else
       tag = TAG.sub(/^.*<!-- START HERE -->(.*)<!-- END HERE -->.*$/m,'\1')
-      logo_right = Rails.root.join('app', 'assets', 'images', 'ibpr-logo-right.png').to_s
-      logo_left = Rails.root.join('app', 'assets', 'images', 'ibpr-logo-left-2015.png').to_s
+      logo_right = Rails.root.join('app', 'assets', 'images', 'ibpr-logo-right-2016.png').to_s
+      logo_left = Rails.root.join('app', 'assets', 'images', 'ibpr-logo-left-2016.png').to_s
     end
 
     tag = tag.sub(/\#\{logo_right\}/m, logo_right)

@@ -5,14 +5,13 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 noprint
 .DS_Store
-Gemfile.lock
 # Ignore bundler config.
 /vendor/bundle
 /public/assets
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
-
+.bundle
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp

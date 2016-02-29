@@ -21,10 +21,10 @@
 
 es:
   distribution_legend: "P = Pastores, PA = Pastores Asociados, PJ = Pastores Jubilados, D = Delegados, JD = Junta Directiva, V = Visitantes"
-  copyright: "© Copyright Renier Morales Rodríguez, 2009-2015. Derechos reservados."
+  copyright: "© Copyright Renier Morales Rodríguez, 2009-2016. Derechos reservados."
   contact: "renier@morales-rodriguez.net | 787.469.6236"
-  short_title: "Registro IBPR 2015"
-  subtitle: "113<sup>ra</sup> Asamblea Anual (5-7 marzo)"
+  short_title: "Registro IBPR 2016"
+  subtitle: "114<sup>ta</sup> Asamblea Anual (3-5 marzo)"
   dashboard: "Estadísticas"
   churches: "Iglesias"
   people: "Personas"
@@ -42,7 +42,7 @@ es:
   edit: "Editar"
   edit_church: "Editar Iglesia"
   edit_person: "Editar Persona"
-  edit_check: "Editar Check"
+  edit_check: "Editar Pago"
   delete: "Borrar"
   errors_found: "Corriga los siguientes errores:"
   confirm_church_delete: "Borrar Iglesia <strong>%{name}</strong> ¿Está seguro(a)?<br>Esto borrara todos sus delegados también."
