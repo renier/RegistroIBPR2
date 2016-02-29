@@ -1,6 +1,6 @@
 <h1>
     <span class="glyphicon glyphicon-list-alt"></span> 
-    <%= "#{t('full_roster_all')} (#{@churches.size})" %>
+    <%= "#{@all ? t('full_roster_all') : t('full_roster')} (#{@churches.size})" %>
 </h1>
 
 <% total_attendance = 0 %>
