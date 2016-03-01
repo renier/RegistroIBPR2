@@ -8,6 +8,9 @@ module TagsHelper
   end
 
   def tag_for(person, browser=false)
+    I18n.load_path = Rails.root.join('config', 'locales')
+    I18n.locale = 'es'
+    I18n.default_locale = 'es'
     if browser
       tag = TAG.dup
       logo_right = view_context.image_path "ibpr-logo-right-2016.png"

@@ -2,6 +2,7 @@ require 'tmpdir'
 require 'tags_helper'
 require 'print_helper'
 require 'celluloid'
+require 'logger'
 
 class Printer
   include TagsHelper
@@ -21,10 +22,16 @@ class Printer
     @last_dbcheck = Time.now - DBCHECK_INTERVAL
     @last_tags_printed = []
     @flush = nil
+
+    # Setup our own logger
+    f = File.open(Rails.root.join('log', 'printing.log').to_s, File::CREAT | File::WRONLY | File::APPEND)
+    f.sync = true
+    @logger = ::Logger.new(f)
+    @logger.level = ::Logger::DEBUG
   end
 
   def logger
-    Rails.logger
+    @logger
   end
 
   def flush(force=false)
@@ -121,7 +128,7 @@ class Printer
     File.open(svg_file, 'w') {|f| f.write(page) }  # Save the SVG into a file.
 
     # Convert SVG to a PDF for printing.
-    logger.debug `#{RegistroConfig::INKSCAPE_PATH} -A #{pdf_file} #{svg_file}`
+    logger.debug `#{RegistroConfig::SVG2PDF_CMD % { input: svg_file, output: pdf_file }}`
 
     printit(pdf_file)
     logger.debug "Sent #{pdf_file} to printer. Updating print status in database."
