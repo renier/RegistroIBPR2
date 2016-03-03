@@ -2,12 +2,18 @@
 
 * Requires a Linux or Mac.
 * Requires Ruby 2.1.x
-* Requires PosgreSQL (look in config/database.yml for the user role needed)
+* Requires Postgres SQL (look in config/database.yml for the user role needed)
 * `bundle install --path vendor/bundle`
 * `bundle exec rake db:migrate`
 * `RAILS_ENV=production bundle exec rake assets:clobber`
 * `RAILS_ENV=production bundle exec rake assets:precompile`
 * `RAILS_ENV=production bundle exec puma`
+
+## Postgres SQL extension
+
+Log into the database and enter the following command to enable a needed extension for fuzzy searches:
+
+    CREATE EXTENSION PG_TRGM;
 
 ## Badge printing handling
 
