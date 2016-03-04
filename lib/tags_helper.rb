@@ -49,7 +49,7 @@ module TagsHelper
           tag = tag.sub(/\#\{church_1\}/m, "#{person.church.nth_to_word} #{person.church.prefix}".strip)
           tag = tag.sub(/\#\{church_2\}/m, person.church.name)
         else
-          tag = tag.sub(/\#\{church_1\}/m, full_church_name)
+          tag = tag.sub(/\#\{church_1\}/m, full_church_name.gsub(/\xc3\xad\xc2\xad/,"\xc3\xad")) # Fix weird problem with í
           tag = tag.sub(/\#\{church_2\}/m, "")
         end
       else
