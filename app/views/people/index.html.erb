@@ -3,12 +3,21 @@
     <%= t("people") %>
 </h1>
 
-<p>
+<p style="float:left">
 <%= link_to({ action: :new }, { class: "btn btn-default" }) do %>
     <span class="glyphicon glyphicon-plus"></span> 
     <%= t("helpers.submit.create", model: t("activerecord.models.person")) %>
 <% end %>
 </p>
+
+<div class="form-group" style="float:right">
+	<select class="form-control" name="filter" id="person-role-filter" onChange="filterOnRole()">
+		<option value=""></option>
+		<% t("rolemap.either").map do |k, v| %>
+		<option value="<%= k %>" <%= @role && @role == k.to_s ? 'selected' : '' %>><%= v %></option>
+		<% end %>
+	</select>
+</div>
 
 <%= render partial: 'list', locals: { people: @people, with_church: true } %>
 
