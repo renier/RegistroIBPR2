@@ -2,16 +2,24 @@
 
 * Requires a Linux or Mac.
 * Requires Ruby 2.1.x
-* Requires PosgreSQL (look in config/database.yml for the user role needed)
+* Requires Postgres SQL (look in config/database.yml for the user role needed)
 * `bundle install --path vendor/bundle`
 * `bundle exec rake db:migrate`
-* `bundle exec rails s`
+* `RAILS_ENV=production bundle exec rake assets:clobber`
+* `RAILS_ENV=production bundle exec rake assets:precompile`
+* `RAILS_ENV=production bundle exec puma`
+
+## Postgres SQL extension
+
+Log into the database and enter the following command to enable a needed extension for fuzzy searches:
+
+    CREATE EXTENSION PG_TRGM;
 
 ## Badge printing handling
 
-* Relies on cups being installed.
-* Configure default printer's IP address in _/etc/cups/printers.conf_
-* Restart cups (`sudo service cups restart`)
+* Relies on cups being installed (on Linux):
+  * Configure default printer's IP address in _/etc/cups/printers.conf_
+  * Restart cups (`sudo service cups restart`)
 
 Some useful commands to control the printing service in Linux:
 * Clear the printing queue: `sudo lprm - -P lp7` (The _lp7_ id of the printer can vary)

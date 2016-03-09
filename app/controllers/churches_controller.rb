@@ -63,6 +63,6 @@ class ChurchesController < ApplicationController
 
   def check_params
     params.require(:church).permit(
-      :nth, :prefix, :name, :nickname, :town, :notes)
+      :nth, :position, :prefix, :name, :nickname, :town, :notes)
   end
 end

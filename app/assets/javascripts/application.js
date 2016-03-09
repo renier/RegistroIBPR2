@@ -99,4 +99,20 @@ $(document).on("page:change", function() {
             }
         });
     });
+
+    $('a.flushPrintQueue').click(function() {
+        bootbox.confirm("¿Está seguro(a)?", function(result) {
+            if (!result) { return; }
+            $.ajax('../print/flush', {
+                type: 'GET',
+                success: function() {
+                    window.location.href = '../print?flash=true'
+                }
+            });
+        });
+    });
+
+    if (window.location.href.indexOf('print?flash=true') !== -1) {
+        window.location.href = '/print';
+    }
 });

@@ -111,6 +111,8 @@ a.list-group-item .list-group-item-heading.text-info {
 
 .bootbox .modal-dialog { z-index: 1050; }
 
+.affix { position: static }
+
 @media print {
     .col-md-2 {
         display: none;

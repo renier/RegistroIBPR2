@@ -1,8 +1,6 @@
 module PrintHelper
   def printit(file)
     if OS.linux?
-      #require 'cups'
-      #Cups::PrintJob.new(file).print
       `lpr -o scale=100 -o media=letter #{file}`
     elsif OS.mac?
       `lpr -o scale=100 -o media=letter #{file}`
@@ -26,6 +24,6 @@ module OS
   end
 
   def OS.linux?
-    OS.unix? and not OS.mac?
+    OS.unix? && !OS.mac?
   end
 end

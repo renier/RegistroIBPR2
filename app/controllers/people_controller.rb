@@ -16,6 +16,11 @@ class PeopleController < ApplicationController
       @people = Person
     end
 
+    if params[:role] && !params[:role].empty?
+      @people = @people.where(role: params[:role])
+      @role = params[:role]
+    end
+
     @people = @people.order(*sorts.uniq).page(params[:page] || 1)
   end
 

@@ -4,6 +4,9 @@ class PrintController < ApplicationController
     @queued = PeopleHelper.queued
 
     if defined?(RegistroConfig::PRINT_AGENT)
+      if params[:flash]
+        flash[:notice] = I18n.t("forceprintflash")
+      end
       @printed = Person.find(RegistroConfig::PRINT_AGENT.last_tags_printed)
     else
       @printed = []
@@ -12,7 +15,6 @@ class PrintController < ApplicationController
 
   def flush
     if defined?(RegistroConfig::PRINT_AGENT)
-      flash[:notice] = I18n.t("forceprintflash")
       RegistroConfig::PRINT_AGENT.flush(true)
     end
 

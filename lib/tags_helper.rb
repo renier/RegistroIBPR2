@@ -8,6 +8,9 @@ module TagsHelper
   end
 
   def tag_for(person, browser=false)
+    I18n.load_path = Dir[Rails.root.join('config', 'locales', '*.yml').to_s]
+    I18n.locale = 'es'
+    I18n.default_locale = 'es'
     if browser
       tag = TAG.dup
       logo_right = view_context.image_path "ibpr-logo-right-2016.png"
@@ -35,8 +38,8 @@ module TagsHelper
     elsif person.role == 4 # Junta Directiva
       tag = tag.sub(/\#\{name\}/m, mb_upcase(person.greetname))
       tag = tag.sub(/\#\{role\}/m, person.display_role)
-      tag = tag.sub(/\#\{church_1\}/m, CGI.escapeHTML(person.description))
-      tag = tag.sub(/\#\{church_2\}/m, "")
+      tag = tag.sub(/\#\{church_1\}/m, person.church ? person.church.short_name : CGI.escapeHTML(person.description))
+      tag = tag.sub(/\#\{church_2\}/m, person.church ? CGI.escapeHTML(person.description) : '')
     else # Delegados
       tag = tag.sub(/\#\{name\}/m, mb_upcase(person.greetname))
       tag = tag.sub(/\#\{role\}/m, person.display_role)
@@ -46,7 +49,7 @@ module TagsHelper
           tag = tag.sub(/\#\{church_1\}/m, "#{person.church.nth_to_word} #{person.church.prefix}".strip)
           tag = tag.sub(/\#\{church_2\}/m, person.church.name)
         else
-          tag = tag.sub(/\#\{church_1\}/m, full_church_name)
+          tag = tag.sub(/\#\{church_1\}/m, full_church_name.gsub(/\xc3\xad\xc2\xad/,"\xc3\xad")) # Fix weird problem with í
           tag = tag.sub(/\#\{church_2\}/m, "")
         end
       else
