@@ -5,17 +5,13 @@
 #   gem 'sqlite3'
 development:
   adapter: postgresql
-  database: registroibpr_development
+  database: registroibpr
   pool: 5
-  username: registroibpr
-  password: than7ful
 
 staging:
   adapter: postgresql
   database: registroibpr_staging
   pool: 5
-  username: registroibpr
-  password: than7ful
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -28,7 +24,5 @@ test:
 
 production:
   adapter: postgresql
-  database: registroibpr_development
+  database: registroibpr
   pool: 5
-  username: registroibpr
-  password: than7ful
