@@ -98,37 +98,20 @@
        y="2887.0842"
        ry="0"
        id="rect3097" />
-    <text
-       xml:space="preserve"
-       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:condensed;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial Narrow;-inkscape-font-specification:Arial Narrow Bold Condensed"
-       x="306.9541"
-       y="2980.5842"
-       id="text3063"
-       sodipodi:linespacing="125%"><tspan
-         sodipodi:role="line"
-         id="tspan3065"
-         x="220"
-         y="2910.5842"
-         style="font-size:8px;font-weight:normal;text-align:center;text-anchor:middle;-inkscape-font-specification:Arial Narrow Condensed">2-4 marzo de 2017</tspan><tspan
-         sodipodi:role="line"
-         x="220"
-         y="2900.5842"
-         style="font-size:8px;font-weight:normal;text-align:center;text-anchor:middle;-inkscape-font-specification:Arial Narrow Condensed"
-         id="tspan3067">Primera Iglesia Bautista de Caguas</tspan></text>
     <image
        y="2890"
-       x="270"
+       x="230"
        id="image2981"
-       height="95.5"
-       width="86.3"
+       height="96"
+       width="126"
        preserveAspectRatio="none"
        xlink:href="#{logo_right}" />
     <image
-       y="2887.0842"
-       x="0"
+       y="2890"
+       x="2"
        id="image2904"
-       height="107.99999"
-       width="215.31326"
+       height="51"
+       width="225"
        preserveAspectRatio="none"
        xlink:href="#{logo_left}" />
     <text
