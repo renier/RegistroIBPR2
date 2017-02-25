@@ -11,14 +11,16 @@ module TagsHelper
     I18n.load_path = Dir[Rails.root.join('config', 'locales', '*.yml').to_s]
     I18n.locale = 'es'
     I18n.default_locale = 'es'
+    logo_right_base = 'ibpr-logo-right-2016.png'
+    logo_left_base = 'ibpr-logo-left-2016.png'
     if browser
       tag = TAG.dup
-      logo_right = view_context.image_path "ibpr-logo-right-2016.png"
-      logo_left = view_context.image_path "ibpr-logo-left-2016.png"
+      logo_right = view_context.image_path logo_right_base
+      logo_left = view_context.image_path logo_left_base
     else
       tag = TAG.sub(/^.*<!-- START HERE -->(.*)<!-- END HERE -->.*$/m,'\1')
-      logo_right = Rails.root.join('app', 'assets', 'images', 'ibpr-logo-right-2016.png').to_s
-      logo_left = Rails.root.join('app', 'assets', 'images', 'ibpr-logo-left-2016.png').to_s
+      logo_right = Rails.root.join('app', 'assets', 'images', logo_right_base).to_s
+      logo_left = Rails.root.join('app', 'assets', 'images', logo_left_base).to_s
     end
 
     tag = tag.sub(/\#\{logo_right\}/m, logo_right)
