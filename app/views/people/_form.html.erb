@@ -7,7 +7,7 @@
                 model: t("activerecord.models.person")
             )
         else
-            t("edit_person")
+            t("edit_person") + ': ' + @person.fullname
         end
     %>
 </h1>
