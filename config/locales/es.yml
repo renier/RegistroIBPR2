@@ -67,6 +67,8 @@ es:
   arriving_churches: "Iglesias registradas por llegar"
   present_people: "Personas presentes"
   church_attendance: "Asistencia de Iglesias"
+  present_churches: "Iglesias Presentes"
+  present_non_churches: "Cuerpos Presentes"
   present_churches_desc: "Iglesias con pastores, pastores asociados, o delegados que han sido marcados como presentes."
   arriving_churches_desc: "Iglesias con pastores, pastores asociados, o delegados registrados, pero con ninguno presente."
   missing_churches: "Iglesias sin registro"

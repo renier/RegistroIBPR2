@@ -2,18 +2,28 @@ module ChurchesHelper
 
   # Any church that has a pastor, assoc. pastor, delegate or board member present
   def attending_churches
-    churches = (Person.where(attended: true, role: [0,1,3,4]).map {|p| p.church }).uniq
+    churches = (Person.where(attended: true, role: [0,1,3]).map {|p| p.church }).uniq
     (churches.reject {|c| c.nil? }).sort {|a,b| a.name <=> b.name }
   end
 
-  # Any church that has registered (pastor, assoc. pastor, delegate, or board member),
+  def attending_churches_only
+    churches = (Person.where(attended: true, role: [0,1,3]).map {|p| p.church }).uniq
+    (churches.reject {|c| c.nil? || c.position == 0 }).sort {|a,b| a.name <=> b.name }
+  end
+
+  def attending_non_churches
+    churches = (Person.where(attended: true, role: 4).map {|p| p.church }).uniq
+    (churches.reject {|c| c.nil? || c.position != 0 }).sort {|a,b| a.name <=> b.name }
+  end
+
+  # Any church that has registered (pastor, assoc. pastor, delegate),
   # but none are present.
   def registered_churches_not_present
     churches = []
     Church.order(:name).all.each do |church|
       if church.people.size > 0
         people = church.people.select do |p|
-          [0,1,3,4].include?(p.role)
+          [0,1,3].include?(p.role)
         end
 
         if people.size > 0 and people.size == (people.reject {|p| p.attended }).size
