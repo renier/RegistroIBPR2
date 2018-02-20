@@ -32,3 +32,19 @@ To pause badge printing service:
 To reenable badge printing service:
 
     rm noprint # From the rails root directory
+
+## Backing up the database
+
+```
+$ pg_dump --encoding UTF8 --inserts registroibpr > registro_dump.date-here.sql
+$ gzip registro_dump.date-here.sql
+```
+
+## To reset data before opening registry for new event
+```
+$ psql registryibpr
+# delete from checks;
+# delete from people where role != 2;
+# update people set attended=false, printed=false, materials=false;
+# \q
+```
