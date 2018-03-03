@@ -38,6 +38,7 @@ module ChurchesHelper
     [
       "Adjuntas",
       "Aguas Buenas",
+      "Aibonito",
       "Arecibo",
       "Barranquitas",
       "Bayamón",
