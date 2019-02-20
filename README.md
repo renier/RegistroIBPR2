@@ -2,7 +2,7 @@
 
 * Requires a Linux or Mac.
 * Requires Ruby 2.1.x
-* Requires Postgres SQL (look in config/database.yml for the user role needed)
+* Requires Postgres SQL 9.x (look in config/database.yml for the user role needed)
 * `bundle install --path vendor/bundle`
 * `RAILS_ENV=production bundle exec rake db:migrate`
 * `RAILS_ENV=production bundle exec rake assets:clobber`
