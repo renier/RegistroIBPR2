@@ -4,7 +4,7 @@
 * Requires Ruby 2.1.x
 * Requires Postgres SQL (look in config/database.yml for the user role needed)
 * `bundle install --path vendor/bundle`
-* `bundle exec rake db:migrate`
+* `RAILS_ENV=production bundle exec rake db:migrate`
 * `RAILS_ENV=production bundle exec rake assets:clobber`
 * `RAILS_ENV=production bundle exec rake assets:precompile`
 * `RAILS_ENV=production bundle exec puma`
@@ -42,7 +42,7 @@ $ gzip registro_dump.date-here.sql
 
 ## To reset data before opening registry for new event
 ```
-$ psql registryibpr
+$ psql registroibpr
 # delete from checks;
 # delete from people where role != 2;
 # update people set attended=false, printed=false, materials=false;
