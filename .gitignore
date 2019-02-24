@@ -12,6 +12,7 @@ noprint
 /public/assets/application*.css
 /public/assets/*.css.gz
 /public/assets/*.png
+/public/assets/*.jpg
 /public/assets/*.gif
 /public/assets/*.xcf
 /public/assets/bootstrap
