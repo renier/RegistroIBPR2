@@ -5,6 +5,7 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 noprint
 .DS_Store
+*.key
 # Ignore bundler config.
 /vendor/bundle
 /public/assets/*.js
