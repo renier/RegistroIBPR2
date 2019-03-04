@@ -16,6 +16,7 @@ noprint
 /public/assets/*.jpg
 /public/assets/*.gif
 /public/assets/*.xcf
+/public/assets/*.ttf
 /public/assets/bootstrap
 /public/assets/font-awesome
 /public/assets/*.svg
