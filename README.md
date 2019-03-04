@@ -8,6 +8,7 @@
 * `RAILS_ENV=production bundle exec rake assets:clobber`
 * `RAILS_ENV=production bundle exec rake assets:precompile`
 * `RAILS_ENV=production bundle exec puma`
+* For SSL `RAILS_ENV=production bundle exec puma -b 'ssl://0.0.0.0:9292?key=server.key&cert=server.crt'`
 
 ## Postgres SQL extension
 
