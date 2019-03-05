@@ -49,3 +49,9 @@ $ psql registroibpr
 # update people set attended=false, printed=false, materials=false;
 # \q
 ```
+
+# References
+
+* https://developers.hp.com/hp-linux-imaging-and-printing/install/step4/cups/local
+* https://www.cups.org/doc/admin.html
+* https://docs.oracle.com/cd/E23824_01/html/821-1451/gllgm.html#gllfr
