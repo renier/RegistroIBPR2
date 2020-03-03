@@ -35,6 +35,10 @@ To reenable badge printing service:
 
     rm noprint # From the rails root directory
 
+To see application printing logs
+
+    tail -f log/printing.log
+
 ## Backing up the database
 
 ```
