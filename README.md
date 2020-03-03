@@ -23,6 +23,7 @@ Log into the database and enter the following command to enable a needed extensi
   * Restart cups (`sudo service cups restart`)
 
 Some useful commands to control the printing service in Linux:
+* Enable the printer: `sudo lpadmin -E lp7`
 * Clear the printing queue: `sudo lprm - -P lp7` (The _lp7_ id of the printer can vary)
 * Verify remote printer's state: `lpstat -a`
 
