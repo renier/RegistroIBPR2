@@ -41,6 +41,13 @@ $ pg_dump --encoding UTF8 --inserts registroibpr > registro_dump.date-here.sql
 $ gzip registro_dump.date-here.sql
 ```
 
+## Restoring the database
+
+```
+$ gunzip registro_dump.date-here.sql.gz
+$ psql registroibpr < registro_dump.date-here.sql
+```
+
 ## To reset data before opening registry for new event
 ```
 $ psql registroibpr
