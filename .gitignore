@@ -6,6 +6,7 @@
 noprint
 .DS_Store
 *.key
+config/database.yml
 # Ignore bundler config.
 /vendor/bundle
 /public/assets/*.js
