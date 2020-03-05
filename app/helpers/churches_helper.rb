@@ -2,7 +2,17 @@ module ChurchesHelper
 
   # Any church that has a pastor, assoc. pastor, delegate or board member present
   def attending_churches
-    churches = (Person.where(attended: true, role: [0,1,3]).map {|p| p.church }).uniq
+    churches = (Person.where(attended: true, role: [0,1,3,4]).map do |p|
+      if p.role == 4
+	if p.church.position == 0
+          p.church
+	else
+	  nil
+	end
+      else
+        p.church
+      end
+    end).uniq
     (churches.reject {|c| c.nil? }).sort {|a,b| a.name <=> b.name }
   end
 
@@ -23,10 +33,16 @@ module ChurchesHelper
     Church.order(:name).all.each do |church|
       if church.people.size > 0
         people = church.people.select do |p|
-          [0,1,3].include?(p.role)
+          if [0,1,2,3].include?(p.role)
+            true
+	  elsif p.role == 4 and church.position == 0
+	    true
+          else
+            false
+	  end
         end
 
-        if people.size > 0 and people.size == (people.reject {|p| p.attended }).size
+	if people.size > 0 and people.all? {|p| !p.attended }
           churches << church
         end
       end

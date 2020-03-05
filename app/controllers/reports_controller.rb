@@ -13,12 +13,12 @@ class ReportsController < ApplicationController
   end
 
   def missing_churches
-    @churches = Church.order(:name).all.reject {|c| c.people.size > 0 }
+    @churches = Church.order(:name).all.select {|c| c.people.size == 0 or (c.position != 0 and c.people.all? {|p| p.role > 3 }) or (c.position == 0 and not c.people.any? {|p| p.role == 4  }) }
   end
 
   def full_roster
     if params[:all]
-      @churches = Church.order(:name).all.reject {|c| c.people.size == 0 }
+      @churches = Church.order(:name).all.reject {|c| c.people.size == 0 or (c.position != 0 and c.people.all? {|p| p.role > 3 }) or (c.position == 0 and not c.people.any? {|p| p.role == 4  }) }
       @all = true
     else
       @churches = attending_churches
