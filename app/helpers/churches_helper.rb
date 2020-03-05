@@ -3,12 +3,12 @@ module ChurchesHelper
   # Any church that has a pastor, assoc. pastor, delegate or board member present
   def attending_churches
     churches = (Person.where(attended: true, role: [0,1,3,4]).map do |p|
-      if p.role == 4
-	if p.church.position == 0
+      if p.role == 4 and p.church
+	    if p.church.position == 0
           p.church
-	else
-	  nil
-	end
+	    else
+	      nil
+	    end
       else
         p.church
       end
