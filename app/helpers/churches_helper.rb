@@ -85,6 +85,7 @@ module ChurchesHelper
       "Naguabo",
       "Naranjito",
       "Orocovis",
+      "Patillas",
       "Ponce",
       "Quebradillas",
       "Río Grande",
