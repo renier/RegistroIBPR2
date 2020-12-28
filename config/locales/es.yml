@@ -21,10 +21,10 @@
 
 es:
   distribution_legend: "P = Pastores, PA = Pastores Asociados, PJ = Pastores Jubilados, D = Delegados, JD = Junta Directiva, V = Visitantes"
-  copyright: "© Copyright Renier Morales Rodríguez, 2009-2020. Derechos reservados."
+  copyright: "© Copyright Renier Morales Rodríguez, 2009-2021. Derechos reservados."
   contact: "renier@morales-rodriguez.net | 787.469.6236"
-  short_title: "Registro IBPR 2020"
-  subtitle: "118<sup>va</sup> Asamblea Anual (5-7 marzo)"
+  short_title: "Registro IBPR 2021"
+  subtitle: "119<sup>a</sup> Asamblea Anual (5-7 marzo)"
   dashboard: "Estadísticas"
   churches: "Iglesias"
   people: "Personas"
@@ -110,6 +110,7 @@ es:
         name: "Nombre"
         greetname: "Nombre"
         lastnames: "Apellidos"
+        email: "Email"
         sex: "Género"
         description: "Descripción"
         role: "Rol"

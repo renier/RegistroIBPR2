@@ -38,6 +38,12 @@
         <%= f.text_field :lastnames, class: "form-control" %>
     </div>
 
+    <!-- Email  -->
+    <div class="form-group">
+        <%= f.label :email, class: "control-label" %>
+        <%= f.text_field :email, class: "form-control" %>
+    </div>
+
     <!-- Gender -->
     <div class="form-group <%= 'has-error' if @person.errors[:sex].any? %>" style="margin-bottom: 0">
         <span class="text-danger">*</span>

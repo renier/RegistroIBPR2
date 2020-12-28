@@ -11,6 +11,7 @@
         <th><%= t("activerecord.attributes.person.role") %></th>
         <th><%= t("activerecord.models.church") %></th>
         <% end %>
+        <th><%= t("activerecord.attributes.person.email") %></th>
         <th class="text-center"><%= t("activerecord.attributes.person.attended") %></th>
         <th class="text-center"><%= t("activerecord.attributes.person.materials") %></th>
         <th class="text-center"><%= t("activerecord.attributes.person.printed") %></th>
@@ -24,7 +25,8 @@
             <% if with_church %>
             <td><%= link_to person.church.short_name, person.church if person.church %></td>
             <% end %>
-            <% ["attended", "materials", "printed"].each do |field| %>
+	    <td><%= person.email %></td>
+	    <% ["attended", "materials", "printed"].each do |field| %>
             <%= render partial: 'people/toggle', locals: { person: person, field: field } %>
             <% end %>
             <td>
