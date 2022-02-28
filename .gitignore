@@ -5,7 +5,8 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 noprint
 .DS_Store
-*.key
+server.key
+server.crt
 config/database.yml
 # Ignore bundler config.
 /vendor/bundle

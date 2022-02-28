@@ -17,7 +17,13 @@ class ReportsController < ApplicationController
   end
 
   def full_roster
-    if params[:all]
+    if params[:church_ids]
+      ids = params[:church_ids].split(/,/).map {|i| Integer(i) }
+      @churches = Church.order(:name).where({ id: ids })
+      @all = true
+      @emails = true
+      @title = params[:title]
+    elsif params[:all]
       @churches = Church.order(:name).all.reject {|c| c.people.size == 0 or (c.position != 0 and c.people.all? {|p| p.role > 3 }) or (c.position == 0 and not c.people.any? {|p| p.role == 4  }) }
       @all = true
     else

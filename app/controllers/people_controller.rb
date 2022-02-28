@@ -108,6 +108,6 @@ class PeopleController < ApplicationController
   def check_params
     params.require(:person).permit(
       :salutation, :name, :lastnames, :sex, :role, :description,
-      :attended, :materials, :printed, :church_id)
+      :attended, :materials, :printed, :church_id, :email)
   end
 end

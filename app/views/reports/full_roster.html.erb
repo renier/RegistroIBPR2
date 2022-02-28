@@ -1,6 +1,10 @@
 <h1>
-    <span class="glyphicon glyphicon-list-alt"></span> 
+    <span class="glyphicon glyphicon-list-alt"></span>
+    <% if @title %>
+    <%= @title  %>
+    <% else %>
     <%= "#{@all ? t('full_roster_all') : t('full_roster')} (#{@churches.size})" %>
+    <% end %>
 </h1>
 
 <% total_attendance = 0 %>
@@ -20,13 +24,15 @@ total_attendance += people.size
 
 <table class="table table-striped round-topleft round-topright">
     <tr class="active">
-        <th style="width:50%"><%= t("name") %></th>
+	<th style="width:40%"><%= t("name") %></th>
+        <% if @emails %><th>Email</th><% end %>
         <th><%= t("activerecord.attributes.person.role") %></th>
     </tr>
 
     <% people.each do |person| %>
         <tr>
             <td><%= link_to person.greetname, church_person_path(church, person) %></td>
+            <% if @emails %><td><%= person.email %></td><% end %>
             <td><%= person.display_role %></td>
         </tr>
     <% end %>

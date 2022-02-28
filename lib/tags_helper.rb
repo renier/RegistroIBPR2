@@ -12,7 +12,7 @@ module TagsHelper
     I18n.locale = 'es'
     I18n.default_locale = 'es'
     logo_right_base = 'ibpr-logo-right-2020.png'
-    logo_left_base = 'ibpr-logo-left-2020.png'
+    logo_left_base = 'ibpr-logo-left-2021.png'
     if browser
       tag = TAG.dup
       logo_right = view_context.image_path logo_right_base
