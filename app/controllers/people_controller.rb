@@ -100,7 +100,7 @@ class PeopleController < ApplicationController
     person = Person.find(params[:id])
     tag = tag_for(person, true)
 
-    render :text => tag, :content_type => 'image/svg+xml'
+    render :plain => tag, :content_type => 'image/svg+xml'
   end
 
   private

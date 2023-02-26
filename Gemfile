@@ -1,14 +1,14 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '5.0.7.2'
-gem 'activerecord', '5.0.7.2'
+gem 'rails', '5.1.7'
+gem 'activerecord', '5.1.7'
 gem 'responders', '~> 2.0'
 gem 'nokogiri', '~> 1.11.7'
 
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.11'
-gem 'textacular', '~> 4.0'
+gem 'textacular', '~> 5.1.0'
 gem 'paper_trail', '~> 8.1'
 
 # Use SCSS for stylesheets
@@ -24,7 +24,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+gem 'jbuilder', '~> 2.8.0'
 
 # For Authentication/Authorization
 gem 'devise'
@@ -45,10 +45,7 @@ gem 'd3-rails', '~> 5.16'
 group :development, :staging do
   gem 'puma', '~> 5.6.5'
   gem 'web-console', '~> 3.0'
-end
-
-group :test do
-  gem 'sqlite3'
+  gem 'listen'
 end
 
 group :doc do
