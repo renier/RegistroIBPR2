@@ -81,7 +81,6 @@ module TagsHelper
       page = page.sub(/<!-- TAG [0-5] -->/m, tag_for(person, true, url))
     end
 
-    puts(page)
     page
   end
 end

@@ -24,8 +24,8 @@ class PrintController < ApplicationController
 
   def page
     people = PeopleHelper.queued
+    people_ids = people.collect(&:id).join(',')
     if people_ids.empty? || (people.size < TAGS_PER_PAGE && (!params.key? :force))
-      people_ids = people.collect(&:id).join(',')
       head :no_content, 'App-People-Ids'.to_sym => people_ids
       return
     end
@@ -35,7 +35,7 @@ class PrintController < ApplicationController
 
     doc = Prawn::Document.new
     doc.scale(0.82) # found by trial and error - unique to prawn-svg
-    doc.svg tags_page_for(people, request.original_url), at: [-45, 945], enable_file_requests_with_root: '/'
+    doc.svg tags_page_for(people, request.original_url), at: [-45, 945], enable_file_requests_with_root: '/', cache_images: true
 
     response.set_header 'App-People-Ids', people_ids
     send_data doc.render, disposition: 'inline', type: :pdf
