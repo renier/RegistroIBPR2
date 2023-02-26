@@ -24,11 +24,14 @@ class PrintController < ApplicationController
 
   def page
     people = PeopleHelper.queued
-    people_ids = people.collect(&:id).join(',')
     if people_ids.empty? || (people.size < TAGS_PER_PAGE && (!params.key? :force))
+      people_ids = people.collect(&:id).join(',')
       head :no_content, 'App-People-Ids'.to_sym => people_ids
       return
     end
+
+    people = people.slice(0, TAGS_PER_PAGE)
+    people_ids = people.collect(&:id).join(',')
 
     doc = Prawn::Document.new
     doc.scale(0.82) # found by trial and error - unique to prawn-svg
