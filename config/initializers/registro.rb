@@ -7,10 +7,10 @@ module RegistroConfig
   #SVG2PDF_CMD = "inkscape -A %{output} %{input}"
   SVG2PDF_CMD = "cairosvg %{input} -o %{output}"
   # Uncomment this when you want to print ids
-  if not defined?(Rails::Console)
-    PRINT_AGENT = Printer.new
-    PRINT_AGENT.async.run
-  end
+  # if not defined?(Rails::Console)
+  #   PRINT_AGENT = Printer.new
+  #   PRINT_AGENT.async.run
+  # end
 end
 
 ActiveRecord::Base.logger = nil
