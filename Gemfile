@@ -7,7 +7,7 @@ gem 'bundler', '2.4.6'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '6.1.7.2'
 gem 'nokogiri', '~> 1.13.10'
-gem 'webpacker' # default javascript compiler in rails 6
+# gem 'importmap-rails' # default javascript compiler in rails 6?
 gem 'net-http' # to silence some constant definition warnings
 
 # Use postgresql as the database for Active Record
