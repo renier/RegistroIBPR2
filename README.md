@@ -1,11 +1,18 @@
-## Running (development)
+## Dependencies
 
 * Requires a Linux or Mac.
 * Requires Ruby 3.2.x or higher
 * Requires Postgres SQL (look in config/database.yml for the user role needed)
+* `pip install cairosvg` (on python 3, requires `pip install wheel` as well)
+
+## Setup
+
 * `bin/bundle install
-* `RAILS_ENV=production bin/rake db:create:all db:migrate`
-* `RAILS_ENV=production bin/rake assets:clobber assets:precompile`
+* `RAILS_ENV=production bin/rails db:migrate`
+* `RAILS_ENV=production bin/rails assets:clobber assets:precompile`
+
+## Running
+
 * `RAILS_ENV=production bin/rails server`
 * For SSL `RAILS_ENV=production bin/bundle exec puma -b 'ssl://0.0.0.0:9292?key=server.key&cert=server.crt'`
 

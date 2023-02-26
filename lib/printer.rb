@@ -45,45 +45,53 @@ class Printer
   end
 
   def run
-    loop do
-      if Time.now >= (@last_print + MAX_PRINT_INTERVAL)
-        flush(true)  # too much time has passed sice last print. force a print.
-      elsif Time.now >= (@last_dbcheck + DBCHECK_INTERVAL)
-        flush()  # if we have any complete pages needing printing, print them.
+    begin
+      loop do
+        if Time.now >= (@last_print + MAX_PRINT_INTERVAL)
+          flush(true)  # too much time has passed sice last print. force a print.
+        elsif Time.now >= (@last_dbcheck + DBCHECK_INTERVAL)
+          flush()  # if we have any complete pages needing printing, print them.
+        end
+
+        if @flush
+          logger.info "Checking queue to see if we have any tags waiting to be printed... "
+
+          people = PeopleHelper.queued
+          @last_dbcheck = Time.now
+          @last_print = @last_dbcheck if people.size == 0
+
+          logger.info "Found #{people.size} tags waiting to be printed."
+          if people.size < TAGS_PER_PAGE and !@flush[:force]
+            logger.info "No complete pages, yet. Leaving for later..."
+          end
+          go_ahead = false
+
+          if @flush[:force] and people.size > 0
+            remainder_page = people.size % TAGS_PER_PAGE > 0 ? 1 : 0
+            logger.info "Printing all tags (#{(people.size / TAGS_PER_PAGE) + remainder_page} pages)..."
+            go_ahead = true
+          elsif !@flush[:force] and people.size >= TAGS_PER_PAGE
+            logger.info "Printing #{people.size / TAGS_PER_PAGE} complete pages."
+            logger.info "Leaving #{people.size % TAGS_PER_PAGE} tag(s) for later..."
+            go_ahead = true
+          end
+
+          if go_ahead
+            @last_tags_printed.clear
+            @last_tags_printed += print_tags(people, @flush[:force])
+            @last_print = Time.now
+          end
+
+          @flush = nil
+        end
+        sleep ZZZ
       end
-
-      if @flush
-        logger.info "Checking queue to see if we have any tags waiting to be printed... "
-
-        people = PeopleHelper.queued
-        @last_dbcheck = Time.now
-        @last_print = @last_dbcheck if people.size == 0
-
-        logger.info "Found #{people.size} tags waiting to be printed."
-        if people.size < TAGS_PER_PAGE and !@flush[:force]
-          logger.info "No complete pages, yet. Leaving for later..."
-        end
-        go_ahead = false
-
-        if @flush[:force] and people.size > 0
-          remainder_page = people.size % TAGS_PER_PAGE > 0 ? 1 : 0
-          logger.info "Printing all tags (#{(people.size / TAGS_PER_PAGE) + remainder_page} pages)..."
-          go_ahead = true
-        elsif !@flush[:force] and people.size >= TAGS_PER_PAGE
-          logger.info "Printing #{people.size / TAGS_PER_PAGE} complete pages."
-          logger.info "Leaving #{people.size % TAGS_PER_PAGE} tag(s) for later..."
-          go_ahead = true
-        end
-
-        if go_ahead
-          @last_tags_printed.clear
-          @last_tags_printed += print_tags(people, @flush[:force])
-          @last_print = Time.now
-        end
-
-        @flush = nil
+    rescue ActiveRecord::StatementInvalid => error
+      if "#{error}".include? "does not exist"
+        puts "Migrations have not yet run. Ignoring error from print loop: #{error}"
+      else
+        raise error
       end
-      sleep ZZZ
     end
   end
 

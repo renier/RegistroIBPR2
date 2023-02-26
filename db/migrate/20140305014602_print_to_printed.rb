@@ -1,4 +1,4 @@
-class PrintToPrinted < ActiveRecord::Migration
+class PrintToPrinted < ActiveRecord::Migration[4.2]
   def change
     change_column :people, :print, :boolean, default: false 
     rename_column :people, :print, :printed
