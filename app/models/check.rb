@@ -1,4 +1,4 @@
-class Check < ActiveRecord::Base
+class Check < ApplicationRecord
   belongs_to :church
 
   validates_presence_of :amount

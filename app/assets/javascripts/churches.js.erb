@@ -1,6 +1,6 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
-$(document).on("page:change", function() {
+$(document).on("turbolinks:render", function() {
     if (!rails.inController("churches")) {
         return;
     } // Quit if we are not in the churches controller

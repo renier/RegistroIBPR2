@@ -1,0 +1,11 @@
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Gemspec/OrderedDependencies:
+  Enabled: false
+
+Bundler/OrderedGems:
+  Enabled: false

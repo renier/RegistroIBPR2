@@ -1,4 +1,4 @@
-class Church < ActiveRecord::Base
+class Church < ApplicationRecord
     has_many :people
     has_many :checks
 

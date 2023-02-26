@@ -1,17 +1,18 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.11.3'
-gem 'activerecord', '4.2.11.3'
+gem 'rails', '5.0.7.2'
+gem 'activerecord', '5.0.7.2'
 gem 'responders', '~> 2.0'
+gem 'nokogiri', '~> 1.11.7'
 
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.11'
-gem 'textacular', '~> 3.0'
-gem 'paper_trail'
+gem 'textacular', '~> 4.0'
+gem 'paper_trail', '~> 8.1'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails', '~> 5.0'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -39,11 +40,11 @@ gem 'celluloid'
 gem 'bootstrap-sass', '~> 3.3'
 gem 'font-awesome-sass', '~> 4.3.0'
 gem 'bootbox-rails', '~> 0.4'
-gem 'd3-rails', '~> 4.1'
+gem 'd3-rails', '~> 5.16'
 
 group :development, :staging do
-  gem 'puma'
-  gem 'web-console', '~> 2.0'
+  gem 'puma', '~> 5.6.5'
+  gem 'web-console', '~> 3.0'
 end
 
 group :test do
