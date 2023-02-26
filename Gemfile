@@ -3,8 +3,7 @@ source 'https://rubygems.org'
 gem 'bundler', '2.3.26'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '6.0.6.1'
-gem 'responders', '~> 3.0'
+gem 'rails', '6.1.7.2'
 gem 'nokogiri', '~> 1.13.10'
 gem 'webpacker' # default javascript compiler in rails 6
 gem 'net-http' # to silence some constant definition warnings

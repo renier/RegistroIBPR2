@@ -72,7 +72,7 @@
         </div>
         <div class="col-md-10">
             <% flash.each do |name, msg| -%>
-                <% name = { notice: "info", flash: "info", alert: "danger" }[name] %>
+                <% name = { notice: "info", flash: "info", alert: "danger" }[name.to_sym] %>
                 <%= content_tag :div, class: "alert alert-#{name} alert-dismissable" do %>
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <%= raw(msg) %>
