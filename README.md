@@ -1,13 +1,13 @@
 ## Running (development)
 
 * Requires a Linux or Mac.
-* Requires Ruby 2.1.x
-* Requires Postgres SQL 9.x (look in config/database.yml for the user role needed)
-* `bundle install --path vendor/bundle`
-* `RAILS_ENV=production bundle exec rake db:migrate`
-* `RAILS_ENV=production bundle exec rake assets:clobber`
-* `RAILS_ENV=production bundle exec rake assets:precompile`
-* `RAILS_ENV=production bundle exec puma`
+* Requires Ruby 2.7.x
+* Requires Postgres SQL (look in config/database.yml for the user role needed)
+* `bundle install
+* `RAILS_ENV=production bin/rake db:migrate`
+* `RAILS_ENV=production bin/rake assets:clobber`
+* `RAILS_ENV=production bin/rake assets:precompile`
+* `RAILS_ENV=production bin/rails server`
 * For SSL `RAILS_ENV=production bundle exec puma -b 'ssl://0.0.0.0:9292?key=server.key&cert=server.crt'`
 
 ## Postgres SQL extension
