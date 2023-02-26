@@ -1,8 +1,9 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.16'
-gem 'activerecord', '4.1.16'
+gem 'rails', '4.2.11.3'
+gem 'activerecord', '4.2.11.3'
+gem 'responders', '~> 2.0'
 
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.11'
@@ -31,17 +32,18 @@ gem 'devise'
 gem 'kaminari'
 
 # For concurrent worker services (Printing)
-gem 'timers', '4.3.2'
+gem 'timers', '4.3.2' # pinned. latest patch was not working with celluloid on 2/10/2023
 gem 'celluloid'
 
 # For the Frontend
 gem 'bootstrap-sass', '~> 3.3'
 gem 'font-awesome-sass', '~> 4.3.0'
 gem 'bootbox-rails', '~> 0.4'
-gem 'd3-rails', '~> 4.1.0'
+gem 'd3-rails', '~> 4.1'
 
 group :development, :staging do
   gem 'puma'
+  gem 'web-console', '~> 2.0'
 end
 
 group :test do
