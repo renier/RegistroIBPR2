@@ -62,6 +62,7 @@ es:
   justprinted: "Acabados de imprimir"
   forceprint: "Forzar impresión de páginas incompletas"
   forceprintflash: "La impresión ha sido forzada con páginas incompletas."
+  printnow: "Imprimir"
   present: "Presentes"
   registered: "Registradas"
   arriving_churches: "Iglesias registradas por llegar"

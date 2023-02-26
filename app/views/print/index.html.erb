@@ -1,17 +1,14 @@
 <h1><span class="glyphicon glyphicon-print"></span> <%= t("printing") %></h1>
 
-<h2><%= t("pendingtags") %></h2>
+<h3><%= t("pendingtags") %></h3>
 
 <p>
-<%= link_to('#', { class: "btn btn-danger btn-small flushPrintQueue" }) do %>
-    <span class="glyphicon glyphicon-print"></span> <%= t("forceprint") %>
+<%= link_to('/print/export', { class: "btn btn-default btn-small" }) do %>
+    <span class="glyphicon glyphicon-print"></span> <%= t("printnow") %>
 <% end %>
 </p>
 
 <%= render partial: "people/list", locals: { people: @queued, with_church: true, no_sort: true } %>
 
-<p><strong><%= t("total") %>:</strong> <%= @queued.size %> (<a href="/print/export">Exportar</a>)</p>
+<p><strong><%= t("total") %>:</strong> <%= @queued.size %></p>
 
-<h2><%= t("justprinted") %></h2>
-
-<%= render partial: "people/list", locals: { people: @printed, with_church: true, no_sort: true } %>
