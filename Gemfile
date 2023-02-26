@@ -1,21 +1,19 @@
 source 'https://rubygems.org'
 
+gem 'bundler', '2.3.26'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '5.1.7'
-gem 'activerecord', '5.1.7'
-gem 'responders', '~> 2.0'
+gem 'rails', '5.2.8.1'
+gem 'activerecord', '5.2.8.1'
+gem 'responders', '~> 3.0'
 gem 'nokogiri', '~> 1.11.7'
 
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.11'
 gem 'textacular', '~> 5.1.0'
-gem 'paper_trail', '~> 8.1'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
-
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'sass-rails', '~> 6.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -24,7 +22,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.8.0'
+gem 'jbuilder', '~> 2.11.5'
 
 # For Authentication/Authorization
 gem 'devise'
@@ -38,7 +36,7 @@ gem 'celluloid'
 
 # For the Frontend
 gem 'bootstrap-sass', '~> 3.3'
-gem 'font-awesome-sass', '~> 4.3.0'
+gem 'font-awesome-sass', '~> 6.0'
 gem 'bootbox-rails', '~> 0.4'
 gem 'd3-rails', '~> 5.16'
 
