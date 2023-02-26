@@ -8,7 +8,7 @@
 ## Setup
 
 * `bin/bundle install
-* `RAILS_ENV=production bin/rails db:migrate`
+* `RAILS_ENV=production bin/rails db:environment:set db:migrate`
 * `RAILS_ENV=production bin/rails assets:clobber assets:precompile`
 
 ## Running
