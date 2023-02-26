@@ -36,6 +36,10 @@ gem 'kaminari'
 gem 'timers', '4.3.2' # pinned. latest patch was not working with celluloid on 2/10/2023
 gem 'celluloid'
 
+gem 'matrix'
+gem 'prawn-svg'
+gem 'prawn-rails'
+
 # For the Frontend
 gem 'bootstrap-sass', '~> 3.3'
 gem 'font-awesome-sass', '~> 6.0'
@@ -55,12 +59,6 @@ end
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]

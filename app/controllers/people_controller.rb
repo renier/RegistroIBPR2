@@ -30,29 +30,31 @@ class PeopleController < ApplicationController
 
   def new
     attended = materials = false
-    if Time.now >= RegistroConfig::LIVE_DATE
-      attended = materials = true
-    end
+    attended = materials = true if Time.now >= RegistroConfig::LIVE_DATE
 
-    @person = Person.new(attended: attended, materials: materials, sex: true)
+    @person = Person.new(attended:, materials:, sex: true)
   end
 
   def create
     @person = Person.new(check_params)
     if @person.save
-      path = params[:church_id] ?
-        church_person_path(@person.church, @person) :
-        person_path(@person)
+      path =
+        if params[:church_id]
+          church_person_path(@person.church, @person)
+        else
+          person_path(@person)
+        end
 
       if params[:continue]
-        path = params[:church_id] ?
-          new_church_person_path(@person.church) :
-          new_person_path
+        path =
+          if params[:church_id]
+            new_church_person_path(@person.church)
+          else
+            new_person_path
+          end
       end
 
-      redirect_to path,
-        notice: I18n.t("flash.person.created",
-          name: @person.fullname)
+      redirect_to path, notice: I18n.t('flash.person.created', name: @person.fullname)
     else
       render 'new'
     end
@@ -65,21 +67,32 @@ class PeopleController < ApplicationController
   def update
     @person = Person.find(params[:id])
     if @person.update(check_params)
-      path = params[:church_id] ?
-        church_person_path(@person.church, @person) :
-        person_path(@person)
+      path =
+        if params[:church_id]
+          church_person_path(@person.church, @person)
+        else
+          person_path(@person)
+        end
 
       respond_to do |format|
-        format.html {
+        format.html do
           redirect_to path
-        }
-        format.json {
+        end
+        format.json do
           render json: @person, location: path
-        }
+        end
       end
     else
       render 'edit'
     end
+  end
+
+  def update_bulk
+    ids = params[:ids].split(/,/)
+    updates = params.select { |k| %i[materials attended printed].include? k.to_sym }
+    updates.permit!
+    Person.where('id IN (?)', ids).update_all(**updates)
+    render json: Person.select(:id, *updates.keys).where('id IN (?)', ids), location: people_path
   end
 
   def destroy
@@ -88,8 +101,7 @@ class PeopleController < ApplicationController
     path = church ? church_path(church) : people_path
     @person.destroy
 
-    flash[:notice] = I18n.t(
-      "flash.person.deleted", name: @person.fullname)
+    flash[:notice] = I18n.t('flash.person.deleted', name: @person.fullname)
     respond_to do |format|
       format.html { redirect_to path }
       format.json { head :ok, location: path }
@@ -100,7 +112,7 @@ class PeopleController < ApplicationController
     person = Person.find(params[:id])
     tag = tag_for(person, true)
 
-    render :plain => tag, :content_type => 'image/svg+xml'
+    render plain: tag, content_type: 'image/svg+xml'
   end
 
   private
@@ -108,6 +120,7 @@ class PeopleController < ApplicationController
   def check_params
     params.require(:person).permit(
       :salutation, :name, :lastnames, :sex, :role, :description,
-      :attended, :materials, :printed, :church_id, :email)
+      :attended, :materials, :printed, :church_id, :email
+    )
   end
 end

@@ -10,7 +10,7 @@
 
 <%= render partial: "people/list", locals: { people: @queued, with_church: true, no_sort: true } %>
 
-<p><strong><%= t("total") %>:</strong> <%= @queued.size %></p>
+<p><strong><%= t("total") %>:</strong> <%= @queued.size %> (<a href="/print/export">Exportar</a>)</p>
 
 <h2><%= t("justprinted") %></h2>
 

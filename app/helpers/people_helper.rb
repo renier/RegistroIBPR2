@@ -1,5 +1,4 @@
 module PeopleHelper
-
   module Roles
     PASTOR           = 0
     ASSOCIATE_PASTOR = 1
@@ -10,18 +9,18 @@ module PeopleHelper
   end
 
   def affirmation(value)
-    value ? "positive" : "negative"
+    value ? 'positive' : 'negative'
   end
 
   def self.queued
     if Time.now >= RegistroConfig::LIVE_DATE
-      people = Person.order(:updated_at).where(printed: false);
+      Person.order(:updated_at).where(printed: false)
     else
-      people = Person.joins(:church).
-                order("churches.name", :name, :lastnames).
-                where(printed: false) +
-                Person.order(:updated_at).
-                  where(printed: false, church_id: nil)
+      Person.joins(:church)
+            .order('churches.name', :name, :lastnames)
+            .where(printed: false) +
+        Person.order(:updated_at)
+              .where(printed: false, church_id: nil)
     end
   end
 end

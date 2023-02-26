@@ -14,12 +14,19 @@ class Printer
   MAX_PRINT_INTERVAL = 1800 # 30 minutes
   DBCHECK_INTERVAL = 60 # 1 minute
   TAGS_PER_PAGE = 6
-  PAGE_BASENAME = Dir.tmpdir + "/registroibpr_tag_page"
+  PAGE_BASENAME = "#{Dir.tmpdir}/registroibpr_tag_page".freeze
   TAGS_PAGE = File.open(
-    Rails.root.join('app', 'assets', 'images', 'tags.svg').to_s, 'r').read
+    Rails.root.join('app', 'assets', 'images', 'tags.svg').to_s, 'r'
+  ).read
   ZZZ = 5
 
-  def initialize()
+  attr_reader :logger
+
+  def logger
+    @logger
+  end
+
+  def initialize
     @last_print = Time.now
     @last_dbcheck = Time.now - DBCHECK_INTERVAL
     @last_tags_printed = []
@@ -32,11 +39,7 @@ class Printer
     @logger.level = ::Logger::DEBUG
   end
 
-  def logger
-    @logger
-  end
-
-  def flush(force=false)
+  def flush(force: false)
     @flush = { force: force }
   end
 
@@ -48,29 +51,29 @@ class Printer
     begin
       loop do
         if Time.now >= (@last_print + MAX_PRINT_INTERVAL)
-          flush(true)  # too much time has passed sice last print. force a print.
+          flush(true) # too much time has passed sice last print. force a print.
         elsif Time.now >= (@last_dbcheck + DBCHECK_INTERVAL)
-          flush()  # if we have any complete pages needing printing, print them.
+          flush # if we have any complete pages needing printing, print them.
         end
 
         if @flush
-          logger.info "Checking queue to see if we have any tags waiting to be printed... "
+          logger.info 'Checking queue to see if we have any tags waiting to be printed... '
 
           people = PeopleHelper.queued
           @last_dbcheck = Time.now
-          @last_print = @last_dbcheck if people.size == 0
+          @last_print = @last_dbcheck if people.empty?
 
           logger.info "Found #{people.size} tags waiting to be printed."
-          if people.size < TAGS_PER_PAGE and !@flush[:force]
-            logger.info "No complete pages, yet. Leaving for later..."
+          if people.size < TAGS_PER_PAGE && !@flush[:force]
+            logger.info 'No complete pages, yet. Leaving for later...'
           end
           go_ahead = false
 
-          if @flush[:force] and people.size > 0
-            remainder_page = people.size % TAGS_PER_PAGE > 0 ? 1 : 0
+          if @flush[:force] && !people.empty?
+            remainder_page = (people.size % TAGS_PER_PAGE).positive? ? 1 : 0
             logger.info "Printing all tags (#{(people.size / TAGS_PER_PAGE) + remainder_page} pages)..."
             go_ahead = true
-          elsif !@flush[:force] and people.size >= TAGS_PER_PAGE
+          elsif !@flush[:force] && people.size >= TAGS_PER_PAGE
             logger.info "Printing #{people.size / TAGS_PER_PAGE} complete pages."
             logger.info "Leaving #{people.size % TAGS_PER_PAGE} tag(s) for later..."
             go_ahead = true
@@ -86,29 +89,27 @@ class Printer
         end
         sleep ZZZ
       end
-    rescue ActiveRecord::StatementInvalid => error
-      if "#{error}".include? "does not exist"
-        puts "Migrations have not yet run. Ignoring error from print loop: #{error}"
-      else
-        raise error
-      end
+    rescue ActiveRecord::StatementInvalid => e
+      raise e unless e.to_s.include? 'does not exist'
+
+      puts "Migrations have not yet run. Ignoring error from print loop: #{e}"
     end
   end
 
   def print_tags(people, force=false)
     printed_ids = []
-    if (force and people.size < 1) or (!force and people.size < TAGS_PER_PAGE)
+    if (force && people.empty?) || (!force && people.size < TAGS_PER_PAGE)
       return printed_ids
     end
 
     # Figure out how many svg pages we need
     total_pages = people.size / TAGS_PER_PAGE
-    total_pages += 1 if force and people.size % TAGS_PER_PAGE > 0
+    total_pages += 1 if force && (people.size % TAGS_PER_PAGE).positive?
     pages = Array.new(total_pages, TAGS_PAGE)
 
     pages.each do |page|
       batch = people.shift(TAGS_PER_PAGE)
-      break if !force and batch.size < TAGS_PER_PAGE
+      break if !force && batch.size < TAGS_PER_PAGE
 
       batch.each do |person|
         current_tag = tag_for(person)
@@ -126,7 +127,7 @@ class Printer
   end
 
   def print_page(page, people)
-    if File.exists? Rails.root.join('noprint').to_s
+    if File.exist? Rails.root.join('noprint').to_s
       sleep 1
       return
     end
@@ -135,7 +136,7 @@ class Printer
     svg_file = "#{basename}.svg"
     pdf_file = "#{basename}.pdf"
 
-    File.open(svg_file, 'w') {|f| f.write(page) }  # Save the SVG into a file.
+    File.open(svg_file, 'w') { |f| f.write(page) } # Save the SVG into a file.
 
     # Convert SVG to a PDF for printing.
     logger.debug `#{RegistroConfig::SVG2PDF_CMD % { input: svg_file, output: pdf_file }}`

@@ -16,5 +16,6 @@
 # end
 
 ActiveSupport::Inflector.inflections(:en) do |inflect|
-  inflect.plural /^(iglesia)$/i, '\1s'
+  inflect.plural(/^(iglesia)$/i, '\1s')
+  inflect.plural(/^(persona)$/i, '\1s')
 end
