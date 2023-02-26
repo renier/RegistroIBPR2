@@ -3,7 +3,7 @@
 <h3><%= t("pendingtags") %></h3>
 
 <p>
-<%= link_to('/print/export', { class: "btn btn-default btn-small" }) do %>
+<%= link_to('/print/export', { target: :_blank, class: "btn btn-default btn-small" }) do %>
     <span class="glyphicon glyphicon-print"></span> <%= t("printnow") %>
 <% end %>
 </p>
