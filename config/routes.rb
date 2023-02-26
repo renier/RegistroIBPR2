@@ -1,4 +1,4 @@
-RegistroIBPR::Application.routes.draw do
+Rails.application.routes.draw do
   resources :churches do
     resources :people
     resources :checks

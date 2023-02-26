@@ -32,15 +32,15 @@ var oldPieData = [];
 var filteredPieData = [{"data":{"port":"P","octetTotalCount":12},"value":12,"startAngle":4.010543813093353,"endAngle":5.614761338330694,"name":"P"},{"data":{"port":"PA","octetTotalCount":3},"value":3,"startAngle":5.614761338330694,"endAngle":6.015815719640029,"name":"PA"},{"data":{"port":"PJ","octetTotalCount":2},"value":2,"startAngle":6.015815719640029,"endAngle":6.283185307179586,"name":"PJ"},{"data":{"port":"JD","octetTotalCount":14},"value":14,"startAngle":2.138956700316455,"endAngle":4.010543813093353,"name":"JD"},{"data":{"port":"D","octetTotalCount":16},"value":16,"startAngle":0,"endAngle":2.138956700316455,"name":"D"}];
 
 //D3 helper function to populate pie slice parameters from array data
-var donut = d3.layout.pie().value(function(d){
+var donut = d3.pie().value(function(d){
   return d.octetTotalCount;
 });
 
 //D3 helper function to create colors from an ordinal scale
-var color = d3.scale.category20();
+var color = d3.scaleOrdinal(d3.schemeCategory20);
 
 //D3 helper function to draw arcs, populates parameter "d" in path object
-var arc = d3.svg.arc()
+var arc = d3.arc()
   .startAngle(function(d){ return d.startAngle; })
   .endAngle(function(d){ return d.endAngle; })
   .innerRadius(ir)

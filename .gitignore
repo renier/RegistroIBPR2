@@ -9,26 +9,14 @@ server.key
 server.crt
 config/database.yml
 # Ignore bundler config.
-/vendor/bundle
-/public/assets/*.js
-/public/assets/*.js.gz
-/public/assets/application*.css
-/public/assets/*.css.gz
-/public/assets/*.png
-/public/assets/*.jpg
-/public/assets/*.gif
-/public/assets/*.xcf
-/public/assets/*.ttf
-/public/assets/bootstrap
-/public/assets/font-awesome
-/public/assets/*.svg
-/public/assets/*.json
+vendor/bundle
+public/assets/**
 # Ignore the default SQLite database.
-/db/*.sqlite3
-/db/*.sqlite3-journal
+db/*.sqlite3
+db/*.sqlite3-journal
 .bundle
 # Ignore all logfiles and tempfiles.
-/log/*.log
-/tmp
+log/*.log
+tmp
 
 *.sublime-*

@@ -73,6 +73,6 @@
         %>
     <% end %>
     &nbsp;<%= t("or") %>
-    <%= link_to_function t("cancel"), "history.back()", class: "cancel-link" %>
+    <%= link_to t("cancel"), '#', class: "cancel-link", :onclick=>"history.back()" %>
 <% end %>
 </div>

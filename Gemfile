@@ -1,10 +1,11 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.3'
+gem 'rails', '4.1.16'
+gem 'activerecord', '4.1.16'
 
 # Use postgresql as the database for Active Record
-gem 'pg'
+gem 'pg', '~> 0.11'
 gem 'textacular', '~> 3.0'
 gem 'paper_trail'
 
@@ -13,9 +14,6 @@ gem 'sass-rails', '~> 4.0.0'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -33,13 +31,14 @@ gem 'devise'
 gem 'kaminari'
 
 # For concurrent worker services (Printing)
+gem 'timers', '4.3.2'
 gem 'celluloid'
 
 # For the Frontend
-gem 'bootstrap-sass', '~> 3.3.3'
+gem 'bootstrap-sass', '~> 3.3'
 gem 'font-awesome-sass', '~> 4.3.0'
 gem 'bootbox-rails', '~> 0.4'
-gem 'd3-rails'
+gem 'd3-rails', '~> 4.1.0'
 
 group :development, :staging do
   gem 'puma'

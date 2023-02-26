@@ -4,6 +4,8 @@ require 'print_helper'
 require 'celluloid'
 require 'logger'
 
+Celluloid.boot
+
 class Printer
   include TagsHelper
   include PrintHelper

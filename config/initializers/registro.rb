@@ -3,7 +3,7 @@ require 'printer'
 module RegistroConfig
   DUE_PER_DELEGATE = 25
   COST_OF_MATERIALS_FOR_VISITOR = 20 # TODO: Is this needed?
-  LIVE_DATE = Time.new(2022, 3, 3)
+  LIVE_DATE = Time.new(2023, 3, 3)
   #SVG2PDF_CMD = "inkscape -A %{output} %{input}"
   SVG2PDF_CMD = "cairosvg %{input} -o %{output}"
   # Uncomment this when you want to print ids

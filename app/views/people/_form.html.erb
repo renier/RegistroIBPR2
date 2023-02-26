@@ -97,11 +97,12 @@
     </div>
 
     <% if @person.new_record? %>
-        <%= link_to_function(
+        <%= link_to(
                 raw('<i class="fa fa-save"></i> ') +
                     t("create_person_and_start_again"),
-                "$(this).closest('form')[0].action+='?continue=1';$(this).closest('form').submit()",
-                class: "btn btn-info") %> , &nbsp;
+                    '#',
+                    class: "btn btn-info",
+                    :onclick=>"$(this).closest('form')[0].action+='?continue=1';$(this).closest('form').submit()") %> , &nbsp;
     <% end %>
 
     <%= button_tag(type: "submit", class: "btn btn-primary") do %>
