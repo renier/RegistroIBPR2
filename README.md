@@ -1,7 +1,7 @@
 ## Running (development)
 
 * Requires a Linux or Mac.
-* Requires Ruby 2.7.x
+* Requires Ruby 3.2.x or higher
 * Requires Postgres SQL (look in config/database.yml for the user role needed)
 * `bundle install
 * `RAILS_ENV=production bin/rake db:migrate`
