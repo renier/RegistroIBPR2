@@ -25,7 +25,7 @@ var rails = {
     }
 };
 
-$(document).on("page:change", function() {
+$(document).on("page:change turbolinks:render", function() {
     // clear statistics refresh
     if (window.refreshDashboardTimeout) {
         window.refreshDashboardTimeout = clearTimeout(window.refreshDashboardTimeout);

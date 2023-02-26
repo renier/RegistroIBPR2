@@ -3,14 +3,15 @@ source 'https://rubygems.org'
 gem 'bundler', '2.3.26'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '5.2.8.1'
-gem 'activerecord', '5.2.8.1'
+gem 'rails', '6.0.6.1'
 gem 'responders', '~> 3.0'
-gem 'nokogiri', '~> 1.11.7'
+gem 'nokogiri', '~> 1.13.10'
+gem 'webpacker' # default javascript compiler in rails 6
+gem 'net-http' # to silence some constant definition warnings
 
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 0.11'
-gem 'textacular', '~> 5.1.0'
+gem 'pg', '~> 1.0'
+gem 'textacular', '~> 5.5.1'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 6.0'
@@ -42,7 +43,7 @@ gem 'd3-rails', '~> 5.16'
 
 group :development, :staging do
   gem 'puma', '~> 5.6.5'
-  gem 'web-console', '~> 3.0'
+  gem 'web-console', '~> 4.2'
   gem 'listen'
 end
 
