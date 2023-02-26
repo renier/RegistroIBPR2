@@ -42,8 +42,8 @@ gem 'font-awesome-sass', '~> 6.0'
 gem 'bootbox-rails', '~> 0.4'
 gem 'd3-rails', '~> 5.16'
 
+gem 'puma', '~> 5.6.5'
 group :development, :staging do
-  gem 'puma', '~> 5.6.5'
   gem 'web-console', '~> 4.2'
   gem 'listen'
 end
