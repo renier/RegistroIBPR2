@@ -3,10 +3,10 @@ require 'net/http'
 
 module TagsHelper
   TAGS_PER_PAGE = 6
-  TAG = File.open(Rails.root.join('app', 'assets', 'images', 'tag.svg').to_s, 'r').read
+  TAG = File.open(Rails.root.join('app', 'assets', 'images', 'tag.svg').to_s, 'r').read.freeze
   TAGS_PAGE = File.open(
     Rails.root.join('app', 'assets', 'images', 'tags.svg').to_s, 'r'
-  ).read
+  ).read.freeze
 
   def mb_upcase(str)
     # simple upcase is not effective on chars outside of ASCII.
@@ -19,8 +19,8 @@ module TagsHelper
     # I18n.default_locale = 'es'
     logo_right_base = 'ibpr-logo-right-2022.png'
     logo_left_base = 'ibpr-logo-left-2023.png'
+    tag = TAG
     if browser
-      tag = TAG.dup
       logo_right = view_context.image_path(logo_right_base)
       logo_left = view_context.image_path(logo_left_base)
       unless url.nil?
@@ -34,53 +34,54 @@ module TagsHelper
       logo_left = Rails.root.join('app', 'assets', 'images', logo_left_base).to_s
     end
 
-    tag = tag.sub(/\#\{logo_right\}/m, logo_right)
-    tag = tag.sub(/\#\{logo_left\}/m, logo_left)
+    role_bg_color = '#ffffff'
+    role_bg_color = '#fffed2' if person.role == 5 # Visitante
+    name = role = church_1 = church_2 = ''
 
     if person.role == 5 # Visitante
-      tag = tag.sub(/\#\{role_bg_color\}/m, "\#fffed2")
-    else
-      tag = tag.sub(/\#\{role_bg_color\}/m, "\#ffffff")
-    end
-
-    if person.role == 5 # Visitante
-      tag = tag.sub(/\#\{name\}/m, '')
-      tag = tag.sub(/\#\{role\}/m, mb_upcase(person.greetname))
-      tag = tag.sub(/\#\{church_1\}/m, CGI.escapeHTML(person.description))
-      tag = tag.sub(/\#\{church_2\}/m, '')
+      name = ''
+      role = mb_upcase(person.greetname)
+      church_1 = CGI.escapeHTML(person.description)
+      church_2 = ''
     elsif person.role == 4 # Junta Directiva
-      tag = tag.sub(/\#\{name\}/m, mb_upcase(person.greetname))
-      tag = tag.sub(/\#\{role\}/m, person.display_role)
-      tag = tag.sub(/\#\{church_1\}/m, person.church ? person.church.short_name : CGI.escapeHTML(person.description))
-      tag = tag.sub(/\#\{church_2\}/m, person.church ? CGI.escapeHTML(person.description) : '')
+      name = mb_upcase(person.greetname)
+      role = person.display_role
+      church_1 = person.church ? person.church.short_name : CGI.escapeHTML(person.description)
+      church_2 = person.church ? CGI.escapeHTML(person.description) : ''
     else # Delegados
-      tag = tag.sub(/\#\{name\}/m, mb_upcase(person.greetname))
-      tag = tag.sub(/\#\{role\}/m, person.display_role)
+      name = mb_upcase(person.greetname)
+      role = person.display_role
       if person.church
         full_church_name = person.church.display_name.strip
         if full_church_name.length > 42
-          tag = tag.sub(/\#\{church_1\}/m, "#{person.church.nth_to_word} #{person.church.prefix}".strip)
-          tag = tag.sub(/\#\{church_2\}/m, person.church.name)
+          church_1 = "#{person.church.nth_to_word} #{person.church.prefix}".strip
+          church_2 = person.church.name
         else
           # Fix weird problem with í
-          tag = tag.sub(/\#\{church_1\}/m, full_church_name.gsub(/\xc3\xad\xc2\xad/, "\xc3\xad"))
-          tag = tag.sub(/\#\{church_2\}/m, '')
+          church_1 = full_church_name.gsub(/\xc3\xad\xc2\xad/, "\xc3\xad")
+          church_2 = ''
         end
       else
-        tag = tag.sub(/\#\{church_1\}/m, '')
-        tag = tag.sub(/\#\{church_2\}/m, '')
+        church_1 = ''
+        church_2 = ''
       end
     end
 
-    tag
+    format tag, logo_right:, logo_left:, role_bg_color:, name:, role:, church_1:, church_2:
   end
 
   def tags_page_for(people, url)
-    page = TAGS_PAGE.dup
+    tags = []
     people.each do |person|
-      page = page.sub(/<!-- TAG [0-5] -->/m, tag_for(person, true, url))
+      tags << tag_for(person, true, url)
     end
 
-    page
+    if (TAGS_PER_PAGE - tags.size).positive?
+      (TAGS_PER_PAGE - tags.size).times do
+        tags << ''
+      end
+    end
+
+    TAGS_PAGE % tags
   end
 end

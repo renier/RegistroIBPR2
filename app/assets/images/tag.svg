@@ -11,7 +11,7 @@
    version="1.1">
     <!-- START HERE -->
     <rect
-       style="font-size:14px;fill:#{role_bg_color};fill-opacity:1;stroke:none"
+       style="font-size:14px;fill:%{role_bg_color};fill-opacity:1;stroke:none"
        width="360"
        height="270"
        x="0"
@@ -28,33 +28,33 @@
        height="96"
        width="126"
        preserveAspectRatio="none"
-       xlink:href="#{logo_right}" />
+       xlink:href="%{logo_right}" />
     <image
        y="1"
        x="1"
        height="60"
        width="250"
        preserveAspectRatio="none"
-       xlink:href="#{logo_left}" />
+       xlink:href="%{logo_left}" />
     <text
        xml:space="preserve"
        style="font-size:18px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;"
        x="180"
-       y="135">#{name}</text>
+       y="135">%{name}</text>
     <text
        xml:space="preserve"
        style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;"
        x="180"
-       y="160">#{role}</text>
+       y="160">%{role}</text>
     <text
        xml:space="preserve"
        style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;"
        x="180"
-       y="190">#{church_1}</text>
+       y="190">%{church_1}</text>
     <text
        xml:space="preserve"
        style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;"
        x="180"
-       y="205">#{church_2}</text>
+       y="205">%{church_2}</text>
     <!-- END HERE -->
 </svg>
