@@ -11,7 +11,7 @@ module TagsHelper
     I18n.load_path = Dir[Rails.root.join('config', 'locales', '*.yml').to_s]
     I18n.locale = 'es'
     I18n.default_locale = 'es'
-    logo_right_base = 'ibpr-logo-right-2022.png'
+    logo_right_base = 'ibpr-logo-right-2023.png'
     logo_left_base = 'ibpr-logo-left-2023.png'
     if browser
       tag = TAG.dup
