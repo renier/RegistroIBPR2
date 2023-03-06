@@ -3,11 +3,15 @@
 <head>
   <title><%= t('short_title') %></title>
   <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+  <% if not params[:controller].include? 'devise' %>
   <%= stylesheet_link_tag params[:controller] %>
+  <% end %>
   <%# Add other file names in the line below for javascripts separately bundled %>
   <%# https://stackoverflow.com/questions/58339607/why-does-rails-fails-to-boot-with-expected-to-find-a-manifest-file-in-app-asse %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <% if not params[:controller].include? 'devise' %>
   <%= javascript_include_tag params[:controller] %>
+  <% end %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -24,7 +28,7 @@
         </div>
         <ul class="nav navbar-nav">
         </ul>
-        <form action="<%= url_for controller: 'search' %>" class="navbar-form navbar-right" role="search">
+        <form action="<%= search_path %>" class="navbar-form navbar-right" role="search">
             <div class="form-group">
                 <input type="text" name="q" class="form-control" placeholder="<%= t('search') %>" value="<%= params[:q] if params[:q] %>">
             </div>
@@ -52,12 +56,12 @@
                     <% end %>
                 </li>
                 <li class="<%= 'active' if controller_name == 'print' %>">
-                    <%= link_to(controller: :print) do %>
+                    <%= link_to(print_path) do %>
                         <span class="glyphicon glyphicon-print"></span> <%= t("printing") %>
                     <% end %>
                 </li>
                 <li class="<%= 'active' if controller_name == 'reports' %>">
-                    <%= link_to(controller: :reports) do %>
+                    <%= link_to(reports_path) do %>
                         <span class="glyphicon glyphicon-list-alt"></span> <%= t("reports") %>
                     <% end %>
                 </li>

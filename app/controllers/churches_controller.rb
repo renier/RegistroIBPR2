@@ -1,4 +1,6 @@
 class ChurchesController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     sorts = [:name]
     sorts.unshift(params[:order]) if params[:order]

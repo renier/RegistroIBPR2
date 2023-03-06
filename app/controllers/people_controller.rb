@@ -1,6 +1,8 @@
 require 'tags_helper'
 
 class PeopleController < ApplicationController
+  before_action :authenticate_user!
+
   include TagsHelper
 
   def index

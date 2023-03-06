@@ -1,4 +1,6 @@
 class SearchController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     q = params[:q]
     terms = q.split(/ /)

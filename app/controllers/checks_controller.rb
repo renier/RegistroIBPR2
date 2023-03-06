@@ -1,4 +1,6 @@
 class ChecksController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @church = Church.find(params[:church_id])
     @checks = @church.checks
