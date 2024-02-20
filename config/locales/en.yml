@@ -20,5 +20,216 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
-  short_title: "Registro IBPR 2014"
+  distribution_legend: "P = Pastores, PA = Pastores Asociados, PJ = Pastores Jubilados, D = Delegados, JD = Junta Directiva, V = Visitantes"
+  copyright: "© Copyright Renier Morales Rodríguez, 2009-2024. Derechos reservados."
+  contact: "renier@morales-rodriguez.net | 787.469.6236"
+  short_title: "Registro IBPR 2024"
+  subtitle: "122<sup>da</sup> Asamblea Anual (1-2 marzo)"
+  dashboard: "Estadísticas"
+  churches: "Iglesias"
+  people: "Personas"
+  checks: "Pagos"
+  printing: "Impresión"
+  reports: "Reportes"
+  users: "Usuarios"
+  search: "Buscar"
+  results: "Resultados"
+  required_fields: 'Campos con <span class="text-danger">*</span> son requeridos.'
+  nth_help: "e.g. Primera, Segunda, Tercera, etc."
+  description_help: "Descripción, Posición u Organización"
+  cancel: "Cancelar"
+  name: "Nombre"
+  edit: "Editar"
+  edit_church: "Editar Iglesia"
+  edit_person: "Editar Persona"
+  edit_check: "Editar Pago"
+  delete: "Borrar"
+  errors_found: "Corriga los siguientes errores:"
+  confirm_church_delete: "Borrar Iglesia <strong>%{name}</strong> ¿Está seguro(a)?<br>Esto borrara todos sus delegados también."
+  church_required: "Se requiere decir la Iglesia."
+  confirm_person_delete: "Borrar a <strong>%{name}</strong> ¿Está seguro(a)?"
+  person_help: "Solamente registre las personas de ésta Iglesia que tendrán voto en la asamblea (e.g. pastores y delegados)."
+  create_person_and_start_again: "Grabar persona y empezar otra"
+  confirm_check_delete: "Borrar <strong>%{name}</strong> ¿Está seguro(a)?"
+  positive: "Sí"
+  negative: "No"
+  male: "Masculino"
+  female: "Femenino"
+  balance: "Balance"
+  or: "ó"
+  pendingtags: "Pendientes for imprimir"
+  confirm: "¿Está seguro(a)?"
+  justprinted: "Acabados de imprimir"
+  forceprint: "Forzar impresión de páginas incompletas"
+  forceprintflash: "La impresión ha sido forzada con páginas incompletas."
+  present: "Presentes"
+  registered: "Registradas"
+  arriving_churches: "Iglesias registradas por llegar"
+  present_people: "Personas presentes"
+  church_attendance: "Asistencia de Iglesias"
+  present_churches: "Iglesias Presentes"
+  present_non_churches: "Cuerpos Presentes"
+  present_churches_desc: "Iglesias con pastores, pastores asociados, o delegados que han sido marcados como presentes."
+  arriving_churches_desc: "Iglesias con pastores, pastores asociados, o delegados registrados, pero con ninguno presente."
+  missing_churches: "Iglesias sin registro"
+  missing_churches_desc: "No tienen delegados registrados."
+  full_roster: "Asistencia por Iglesia"
+  full_roster_desc: "Asistencia de personas completa agrupada por Iglesias."
+  full_roster_all: "Registrados por Iglesia"
+  full_roster_all_desc: "Toda persona registrada agrupados por Iglesia."
+  churches_with_balance: "Iglesias con balance"
+  churches_with_balance_desc: "No han pagado la totalidad de su cuota para la asamblea."
+  grand_voting_total: "Total de asistentes con voto: %{total}"
+  grand_registered_total: "Total registrados: %{total}"
+  total: "Total"
+  nth:
+    1: "Primera"
+    2: "Segunda"
+    3: "Tercera"
+    4: "Cuarta"
+    5: "Quinta"
+  activerecord:
+    models:
+      user: "Usuario"
+      church: "Iglesia"
+      person: "Persona"
+      check: "Pago"
+    attributes:
+      church:
+        name: "Nombre de la Iglesia"
+        display_name: "Nombre de la Iglesia"
+        nth: "Instancia"
+        prefix: "Prefijo"
+        nickname: "Apodo o Barrio"
+        town: "Pueblo"
+        notes: "Notas"
+        position: "Número de control"
+        full_name_help: "Nombre completo de la Iglesia (como se verá)"
+      person:
+        salutation: "Título"
+        name: "Nombre"
+        greetname: "Nombre"
+        lastnames: "Apellidos"
+        email: "Email"
+        sex: "Género"
+        description: "Descripción"
+        role: "Rol"
+        display_role: "Rol"
+        attended: "¿Asistió?"
+        materials: "¿Recibió Materiales?"
+        printed: "¿Imprimido?"
+        church_id: "Iglesia"
+      check:
+        number: "Número de cheque"
+        amount: "Cantidad"
+        description: "Descripción"
+        church_id: "Iglesia"
+    errors:
+      models:
+        church:
+          attributes:
+            name:
+              blank: "está en blanco."
+        person:
+          attributes:
+            role:
+              inclusion: "es requerido."
+            name:
+              blank: "está en blanco."
+            lastnames:
+              blank: "está en blanco."
+            sex:
+              blank: "está en blanco."
+        check:
+          attributes:
+            amount:
+              blank: "está en blanco."
+              not_a_number: "debe ser un número."
+              greater_than: " debe ser mayor de cero."
+  kaminari:
+    next: "Próxima página"
+    last: "Última página"
+    prev: "Página anterior"
+    first: "Primera página"
+  views:
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "&hellip;"
+  helpers:
+    submit:
+      create: "Crear %{model}"
+      update: "Grabar %{model}"
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "No se encontraron %{entry_name}."
+          one: "<b>1</b> %{entry_name}."
+          other: "<b>%{count}</b> %{entry_name}."
+      more_pages:
+        display_entries: "%{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> de <b>%{total}</b>."
+  flash:
+    church:
+      created: "La Iglesia <strong>%{name}</strong> ha sido creada."
+      updated: "La Iglesia <strong>%{name}</strong> fue actualizada."
+      deleted: "La Iglesia <strong>%{name}</strong> ha sido borrada."
+    person:
+      updated: "El record de <strong>%{name}</strong> ha sido actualizado."
+      created: "El record de <strong>%{name}</strong> ha sido creado."
+      deleted: "El record de <strong>%{name}</strong> ha sido borrado."
+  rolemap:
+    either:
+      0: "Pastor(a)"
+      1: "Pastor(a) Asociado(a)"
+      2: "Pastor(a) Jubilado(a)"
+      3: "Delegado(a)"
+      4: "Junta Directiva"
+      5: "Visitante"
+    m:
+      0: "Pastor"
+      1: "Pastor Asociado"
+      2: "Pastor Jubilado"
+      3: "Delegado"
+      4: "Junta Directiva"
+      5: "Visitante"
+    f:
+      0: "Pastora"
+      1: "Pastora Asociada"
+      2: "Pastora Jubilada"
+      3: "Delegada"
+      4: "Junta Directiva"
+      5: "Visitante"
+    plural:
+      0: "P"
+      1: "PA"
+      2: "PJ"
+      3: "D"
+      4: "JD"
+      5: "V"
+  salutations:
+    either:
+      0: "Pastor(a)"
+      1: "Rvdo(a)."
+      2: "Dr(a)."
+      3: "Lcdo(a)."
+      4: "Endosado(a)"
+      5: "Capellán"
+      6: "Ing."
+    m:
+      0: "Pastor"
+      1: "Rvdo."
+      2: "Dr."
+      3: "Lcdo."
+      4: "Endosado"
+      5: "Capellán"
+      6: "Ing."
+    f:
+      0: "Pastora"
+      1: "Rvda."
+      2: "Dra."
+      3: "Lcda."
+      4: "Endosada"
+      5: "Capellán"
+      6: "Ing."
