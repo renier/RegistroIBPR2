@@ -17,8 +17,8 @@ module TagsHelper
     # I18n.load_path = Dir[Rails.root.join('config', 'locales', '*.yml').to_s]
     # I18n.locale = 'es'
     # I18n.default_locale = 'es'
-    logo_right_base = 'ibpr-logo-right-2023.png'
-    logo_left_base = 'ibpr-logo-left-2023.png'
+    logo_right_base = 'ibpr-logo-right-2024.png'
+    logo_left_base = 'ibpr-logo-left-2024.png'
     tag = TAG
     if browser
       logo_right = view_context.image_path(logo_right_base)
